@@ -2,7 +2,7 @@
 JAVA小课堂
 
 # 目录
-https://it-xzy.github.io/JAVA-NEW/0-index-JAVA.html
+https://it-xzy.github.io/NEW-JAVA/0-index-JAVA.html
 
 # 严格控制文件命名格式！
 ## 日期-组名-java-任务序号.html
