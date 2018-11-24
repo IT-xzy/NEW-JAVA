@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>葡萄藤PPT</title>
+
+   <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+     <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    
+</head>
+
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>TCP/IP</h2>
+            <p>分享人：鲁伯良</p>
+        </section>
+        <section>
+            <p>目录</p>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+
+        <section>
+            <section>
+                <h3>1.背景介绍</h3>
+            </section>
+            <section style="text-align: left;">
+                <br style="text-align: left">
+                <h4></h4>
+            如果要了解一个人，可以从他归属的集体聊起来。我们的HTTP协议就属于TCP/IP协议家族中的一员，了解HTTP协议再整个网络流程中的地位，也能更加充分的理解HTTP协议。<br>
+
+            </section>
+ <section style="text-align: left;">
+               要想了解什么是TCP/IP协议，就要知道为什么有这个协议。中国人和中国人说话，要遵循汉语的的语法结构，使用汉语的发音。当我们和外国人交流时，就要适用外国的语言了，遵循外国的语法机构和发音。其实这就是一种协议，只不过我们称之为语言。计算机再这方面体现的更为直观，两台机器之间该如何通信呢，就需要制定各种各样的协议了。例如：文件传输适用TCP协议。域名系统适用DNS协议。有了些协议的存在，各种数据流按照规则传输，计算机之间得意通信。</p>
+            </section>
+        </section>
+        <section>
+
+            <section>
+                <h3>2.知识剖析</h3>
+            </section>
+            <section style="text-align: left;">
+                <h3><strong>tcp/ip四层</strong></h3>
+                <p><br>
+       1.链路层
+用来处理连接网络的硬件部分.包括控制操作系统.硬件的设备驱动.NIC,及光纤等物理可见部分(还包括连接器等一切传输媒介).硬件上的范畴均在链路层的作用范围之内.</section>
+            <section style="text-align: left;">
+			2.网络层
+网络层用来处理在网络上滚动的数据包.数据包是网络传输的最小数据单位.该层规定了通过样的路径(所谓的传输路线)到打对方计算机,并把数据包传送给对方.
+与对方计算机之间通过多台计算机或网络设备进行传输时,网络层所引起的作用就是在众多的选项内选择一条输出路线. </p>
+            </section>
+<section style="text-align: left;">
+			3.传输层
+TCP<br>
+UDP </section>
+<section style="text-align: left;">
+			4.应用层
+FTP(文件传输协议)<br>
+DNS(域名系统)<br>
+http:协议</section>
+            <section style="text-align: left;">
+                <h3><strong>IP协议</strong></h3>
+                <p>IP(Internet protocol),这里的IP不是值得我们通常所说的192.168.1.1.这个IP指的是一种协议，而后面的数字值得是IP地址。IP协议的作用在于把各种数据包准确无误的传递给对方，其中两个重要的条件是IP地址，和MAC地址（Media Access Control Address）。由于IP地址是稀有资源，不可能每个人都拥有一个IP地址，所以我们通常的IP地址是路由器给我们生成的IP地址，路由器里面会记录我们的MAC地址。而MAC地址是全球唯一的，除去人为因素外不可能重复。举一个现实生活中的例子，IP地址就如同是我们居住小区的地址，而MAC地址就是我们住的那栋楼那个房间那个人 </section>
+           
+			 <section style="text-align: left;">
+                <h3><strong>TCP协议</strong></h3>
+                <p>如果说IP协议是找到对方的详细地址。那么TCP协议就是把安全的把东西带给对方。各有分工，互不冲突
+  按层次分，TCP属于传输层，提供可靠的字节流服务。什么叫字节流服务呢？这个名字听起来让人不知所以然，下面听下我通俗的解释。所谓的字节流，其实就类似于信息切割。比如你是一个卖自行车的，你要去送货。安装好的自行车，太过庞大，又不稳定，容易损伤。不如直接把自行车拆开来，每个零件上都贴上收货人的姓名。最后送到后按照把属于同一个人的自行车再组装起来，这个拆解、运输、拼装的过程其实就是TCP字节流的过程。<br>
+            </section>
+		
+			 <section style="text-align: left;">
+                <h3><strong>DNS</strong></h3>
+                <p>  DNS(Domain names System) 和HTTP协议一样是处于应用层的服务，提供域名到IP地址之间的解析服务。
+互联网之间是通过IP地址通信的，但是IP地址并不符合认得记忆习惯，人喜欢记忆有意义的字词。所以DNS服务就为了解决这个问题而生了。其实很好理解，形如我们电脑中host文件。192.168.1.11       roverliang.com 当我们访roverliang.com 的时候，电脑便不会去外网服务器上查询了，直接去访问192.168.1.111。这是一个简单的域名劫持，足以说明DNS的涵义了。
+</section>
+			
+		
+			<section style="text-align: left;">
+			 <h3><strong>我们访问一个网页,各个协议起到的作用</strong></h3>
+			1.<br>
+DNS解析域名对应的ip<br>
+2.<br>
+http协议的职责<br>
+生成针对目标WEB服务器的http请求报文<br>
+3.<br>
+tcp 协议的职责<br>
+为了方便通信,将http请求报文分割成报文段,按序号分为多个报文段把每个报文段可靠的传给对方<br>
+4.<br>
+IP协议的职责<br>
+收索对方的地址,一遍中转一边传送<br><br>
+			</section>
+			<section style="text-align: left;">
+			5.<br>
+又到了TCP<br>
+从对方那里接受到的报文段，重组到达的报文段，按序号以原来的顺序重组请求报文<br>
+6.<br>
+HTTP协议的职责<br>
+对web服务器请求的内容的处理<br><br>
+			</section>
+			
+			<section style="text-align: left;">
+			 <h3><strong>TCP三次握手</strong></h3>
+　　第一步:我们也就是client发送一个请求，向server表示须要连接。然后等待server的回应。<br>
+　　第二步:server接收到这种请求包后，查看是否在接听的是指定的port，假设不是就拒绝建立连接。向我们表示，server连接已经准备好了，等待我们的确认。。<br>
+　　第三步:我们发送确认建立连接的信息给server。<br>
+　　这样我们的连接就建立起来了。<br>
+举个例子
+QQ聊天
+A:在吗跟你说个坏消息?   (第一次握手)   SYN<br>
+B:我做好心理准备了说吧(第二次握手)     ACK 和 SYN<br>
+A:"叽里咕噜咕噜估计................"(说正事 第三次握手) ACK<br></section>
+		
+		
+		
+		<section style="text-align: left;">
+			 <h3><strong>关闭连接的四次挥手</strong></h3>
+			 因为TCP连 接是全双工的，因此每一个方向都必须单独进行关闭。这原则是当一方完毕它的数据发送任务后就能发送一个FIN来终止这个方向的连接。收到一个 FIN仅仅意味着这一方向上没有数据流动。一个TCP连接在收到一个FIN后仍能发送数据。首先进行关闭的一方将运行主动关闭。而还有一方运行被动关闭。<br>
+　（1） TCP客 户端发送一个FIN。用来关闭客户到server的数据传送。
+(我说完了,你还有什么话要说吗?)<br>
+　（2） server收到这个FIN。它发回一个ACK，确认序号为收到的序号加1。
+(没有了.)<br>
+　（3） server关闭client的连接，发送一个FIN给client。
+(那就这样吧,再见)<br>
+　（4） 客户段发回ACK报文确认。并将确认序号设置为收到序号加1
+(拜拜)<br>
+			 		 
+			 
+		  </section>
+ </section>
+
+        <section>
+            <section>
+                <h3>3.常见问题</h3>
+            </section>
+          <section style="text-align: left;">
+                <p>为什么建立连接协议是三次握手，而关闭连接却是四次握手呢？<br>
+              </p>
+        </section>
+          </section>
+
+        <section>
+            <section>
+                <h3>4.解决方案</h3>
+            </section>
+            <section style="text-align: left" >
+    这是由于服务端的LISTEN状态下的SOCKET当收到SYN报文的建连请求后。它能够把ACK和SYN（ACK起应答作用。而SYN起同步作用）放在一个报文里来发送。但关闭连接时，当收到对方的FIN报文通知时，它只表示对方没有数据发送给你了。但未必你所有的数据都所有发送给对方了。所以你能够未必会立即会关闭SOCKET,也即你可能还须要发送一些数据给对方之后，再发送FIN报文给对方来表示你允许如今能够关闭连接了。所以它这里的ACK报文和FIN报文多数情况下都是分开发送的。</section>
+	
+        </section>
+        <section>
+            <section>
+                <h3>5.编码实战</h3>
+            </section>
+          
+
+        </section>
+        <section>
+            <section>
+                <h3>6.扩展思考</h3>
+
+            </section>
+
+            <section class="text-l">
+                <h4>DoS攻击</h4>
+				   </section>
+				    <section style="text-align: left;">
+           　一般正常的三次握手过程在①②③这三步执行之后就完成，客户端与服务器就可成功建立TCP连接。如果客户端通过伪造不存在的IP作为源地址向服务器发送SYN报文，服务器收到之后回应一个SYN+ACK报文并在自己的半连接队列中为收到的SYN报文创建一个条目，等待客户端的ACK应答。但由于客户端采取了IP欺骗，服务器发送的SYN-ACK报文根本得不到回应，这时服务器会不断等待、重传直至重传次数超过系统规定的最大重传次数才停止，并将这个SYN项目从半连接队列中删除。SYN泛洪攻击就是在短时间内伪造大量不存在的IP地址并快速发送大量这样的SYN报文给攻击目标计算机，使其半连接队列被阻塞，正常的SYN请求反而被丢弃，同时还要不断对这个庞大的半连接队列中所有项目进行SYN+ACK的重试，系统可用资源急剧减少，系统运行缓慢，严重者会引起网络堵塞甚至系统瘫痪。 </section>
+  </section>
+           
+
+
+        </section>
+        <section>
+            <section>
+                <h3>7.参考文献</h3>
+            </section>
+            <section>
+                <p style="text-align: left">参考：<br>
+                    <br>
+                    互联网
+                </p>
+
+
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>8.更多讨论</h3>
+            </section>
+        </section>
+        <section>
+            <!--<h4>鸣谢</h4>-->
+            <p>感谢大家观看</p>
+            <p>
+                <small>BY : 鲁伯良</small>
+            </p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js "></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js "></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc "或"o "键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true},
+            {
+                src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+
+</html>
