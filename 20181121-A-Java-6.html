@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h3>什么叫一致性哈希，通常用来解决什么问题？</h3>
+            <h4>小课堂</h4>
+            <p>分享人：赵君钊</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+        <section>
+
+            <section>
+                <h3>1.背景介绍</h3>
+                <p style="text-align: left">
+
+                </p>
+            </section>
+            <section>     
+                <p style="text-align: left">
+                    在了解一致性哈希算法之前，先了解一下一致性哈希算法的应用场景，在做缓存集群时，为了缓解服务器的压力，会部署多台缓存服务器，把数据资源均匀的分配到每个服务器上，分布式数据库首先要解决把整个数据集按照分区规则映射到多个节点的问题，即把数据集划分到多个节点上，每个节点负责整体数据的一个子集。
+                </p>
+            </section>
+            <section>
+                <p style="text-align: left">
+                   数据分布通常有哈希分区和顺序分区两种方式
+                </p>
+                <ul style="text-align: left">
+                	<li>
+            			顺序分布：数据分散度易倾斜、键值业务相关、可顺序访问、不支持批量操作
+                	</li>
+                	<li>
+                		哈希分布：数据分散度高、键值分布业务无关、无法顺序访问、支持批量操作
+                	</li>
+                </ul>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>2.知识剖析</h3>
+            </section>
+            <section>
+                <p>节点取余分区</p>
+                <p style="text-align: left">
+                   普通哈希算法，使用特定的数据，如Redis的键或用户ID，再根据节点数量N使用公式：hash（key）% N 计算出哈希值，用来决定数据映射到哪一个节点上。
+                </p>
+            </section>
+            <section>            
+                <p>优点</p>
+                <p style="text-align: left">
+                   这种方式的突出优点是简单性，常用于数据库的分库分表规则。一般采用预分区的方式，提前根据数据量规划好分区数
+                </p>
+                <p>缺点</p>
+                <p style="text-align: left">
+                   当节点数量变化时，如扩容或收缩节点，数据节点映射关系需要重新计算，会导致数据的重新迁移。所以扩容时通常采用翻倍扩容，避免 数据映射全部被打乱，导致全量迁移的情况，这样只会发生50%的数据迁移。
+                </p>
+            </section>
+            <section>
+                <p>一致性哈希算法</p>
+                <p style="text-align: left">
+                	一致性哈希的目的就是为了在节点数目发生改变时尽可能少的迁移数据，将所有的存储节点排列在收尾相接的Hash环上，每个key在计算Hash 后会顺时针找到临接的存储节点存放。而当有节点加入或退 时，仅影响该节点在Hash环上顺时针相邻的后续节点。
+                </p>
+            </section>
+            <section>
+            	                <img src="http://jns.img.bucket.ks3-cn-beijing.ksyun.com/skill/daily/6b4a1560-5b00-4679-be6a-528d50a0c256.png">
+
+            </section>
+            <section>            
+                <p>优点</p>
+                <p style="text-align: left">
+                   加入和删除节点只影响哈希环中顺时针方向的相邻的节点，对其他节点无影响。
+                </p>
+                <p>缺点</p>
+                <p style="text-align: left">
+                   数据的分布和节点的位置有关，因为这些节点不是均匀的分布在哈希环上的，所以数据在进行存储时达不到均匀分布的效果。
+                </p>
+            </section>
+            <section>
+                <p>虚拟槽分区</p>
+                <p style="text-align: left">
+                	本质上还是第一种的普通哈希算法，把全部数据离散到指定数量的哈希槽中，把这些哈希槽按照节点数量进行了分区。这样因为哈希槽的数量的固定的，添加节点也不用把数据迁移到新的哈希槽，只要在节点之间互相迁移就可以了，即保证了数据分布的均匀性，又保证了在添加节点的时候不必迁移过多的数据。
+                </p>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>3.常见问题</h3>
+            </section>
+            <section>
+            	
+            </section>
+        </section>
+        <section>
+            <h3>4.解决方案</h3>
+        </section>
+        <section>
+            <section>
+                <h3>5.编码实战</h3>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>6.扩展思考</h3>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>7.参考文献</h3>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>8.更多讨论</h3>
+            </section>
+        </section>
+        <section>
+            <h4>鸣谢</h4>
+            <p>感谢大家观看</p>
+            <p><small>BY：赵君钊</small></p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js "></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js "></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc "或"o "键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true},
+            {
+                src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+</html>
+Contact GitHub API Training Shop Blog About
+© 2016 GitHub, Inc. Terms Privacy Security Status He
