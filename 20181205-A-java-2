@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>葡萄藤PPT</title>
+
+   <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+     <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    
+</head>
+
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>SpringMVC运行流程</h2>
+            <p>分享人：杨若曦</p>
+        </section>
+        <section>
+            <p>目录</p>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+
+        <section>
+            <section>
+                <h3>1.背景介绍</h3>
+            </section>
+            <section style="text-align: left;">
+                <br style="text-align: left">
+                <h3>什么是springmvc</h3>
+           Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web Flow里面。Spring 框架提供了构建 Web 应用程序的全功能 MVC 模块。使用 Spring 可插入的 MVC 架构，从而在使用Spring进行WEB开发时，可以选择使用Spring的SpringMVC框架
+            </section>
+
+        </section>
+        <section>
+
+            <section>
+                <h3>2.知识剖析</h3>
+            </section>
+            <section style="text-align: left;">
+                <h3><strong>springmvc的相关组件</strong></h3>
+                1.前端控制器（DispatcherServlet）
+				<br />	
+				2.处理器映射器（HandlerMapping）
+				<br />
+				3.处理器（Handler）
+				<br />
+				4.处理器适配器（HandlerAdapter）
+				<br />
+				5.视图解析器（ViewResovler）
+                
+       </section>
+            <section style="text-align: left;">
+			<section style="text-align: center;"><strong><h3>前端控制器（DispatcherServlet）</h3></strong></section>
+			<p>接收请求、响应结果 相当于转发器</p><br />
+			用户请求到达前端控制器，它就相当于mvc模式中的c，dispatcherServlet是整个流程控制的中心，由它调用其它组件处理用户的请求，dispatcherServlet的存在降低了组件之间的耦合性。
+            </section>
+            
+<section style="text-align: left;">
+	<strong><h3>处理器映射器（HandlerMapping）</h3></strong>
+	<p>根据请求的url查找Handler</p><br />
+	HandlerMapping负责根据用户请求找到Handler即处理器，springmvc提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等。
+</section>
+
+<section style="text-align: left;">
+		
+            
+                <h3>处理器（Handler）</h3>
+                <p>编写Handler时按照HandlerAdapter的要求去做，这样适配器才可以去正确执行Handler</p>
+                Handler 是继DispatcherServlet前端控制器的后端控制器，在DispatcherServlet的控制下Handler对具体的用户请求进行处理。
+由于Handler涉及到具体的用户业务请求，所以一般情况需要工程师根据业务需求开发Handler。	
+</section>
+           
+			 <section style="text-align: left;">
+                <h3>处理器适配器（HandlerAdapter）</h3>
+                <p>按照特定规则（HandlerAdapter要求的规则）去执行Handler<br />
+                通过HandlerAdapter对处理器进行执行，这是适配器模式的应用，通过扩展适配器可以对更多类型的处理器进行执行。
+                
+            </section>
+		
+			 <section style="text-align: left;">
+                <h3><strong>视图解析器（ViewResovler）</strong></h3>
+                <p>  进行视图解析，根据逻辑视图名解析成真正的视图（view）<br />
+                View Resolver负责将处理结果生成View视图，View Resolver首先根据逻辑视图名解析成物理视图名即具体的页面地址，再生成View视图对象，最后对View进行渲染将处理结果通过页面展示给用户。 springmvc框架提供了很多的View视图类型，包括：jstlView、freemarkerView、pdfView等。
+                
+</section>
+			
+		
+
+			
+
+
+		
+		
+		
+		<section style="text-align: left;font-size: 2rem;">
+			 <h3>springmvc运行流程</h3>
+			1、  用户发送请求至前端控制器DispatcherServlet。
+<br />
+2、  DispatcherServlet收到请求调用HandlerMapping处理器映射器。
+<br />
+3、  处理器映射器找到具体的处理器(可以根据xml配置、注解进行查找)，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherServlet。
+<br />
+4、  DispatcherServlet调用HandlerAdapter处理器适配器。
+<br />
+5、  HandlerAdapter经过适配调用具体的处理器(Controller，也叫后端控制器)。
+
+			
+			 		 
+			 
+		  </section>
+		  		<section style="text-align: left;font-size: 2rem;">
+			 <h3>springmvc运行流程</h3>
+
+6、  Controller执行完成返回ModelAndView。
+<br />
+7、  HandlerAdapter将controller执行结果ModelAndView返回给DispatcherServlet。
+<br />
+8、  DispatcherServlet将ModelAndView传给ViewReslover视图解析器。
+<br />
+9、  ViewReslover解析后返回具体View。
+<br />
+10、DispatcherServlet根据View进行渲染视图（即将模型数据填充至视图中）。
+<br />
+11、 DispatcherServlet响应用户。
+		
+
+		  </section>
+ </section>
+
+
+        <section>
+            <section>
+                <h3>3.常见问题</h3>
+            </section>
+        
+          </section>
+
+        <section>
+            <section>
+                <h3>4.解决方案</h3>
+            </section>
+         </section>
+         
+         
+        <section>
+            <section>
+                <h3>5.编码实战</h3>
+            </section>
+          </section>
+
+
+
+        </section>
+        <section>
+            <section>
+                <h3>6.扩展思考</h3>
+
+            </section>
+
+           
+  </section>
+           
+
+
+        </section>
+        <section>
+            <section>
+                <h3>7.参考文献</h3>
+            </section>
+            <section>
+                <p style="text-align: left">参考：<br>
+                    <br>
+                    springmvc相关博客
+                </p>
+
+
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>8.更多讨论</h3>
+            </section>
+        </section>
+        <section>
+            <!--<h4>鸣谢</h4>-->
+            <p>感谢大家观看</p>
+            <p>
+                <small>BY : 杨若曦</small>
+            </p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js "></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js "></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc "或"o "键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true},
+            {
+                src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+
+</html>
