@@ -1,0 +1,171 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h3>接口与实体类</h3>
+      <p></p>
+            <h3></h3>
+            <p>-深圳-Java-詹威斯-</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+    <section>
+        <p>为什么要使用Interface，而不是直接使用一个实体类来完成任务？Interface和Impl这种方式的好处是什么？</p>
+            <p>Interface和Class都是java文件，Interface实现类和直接写成实体类其实都可以完成我们要的功能，那为什么不直接写成实现类？为什么更倾向于用接口？</p>
+            <p>Java接口是一系列方法的声明，是一些方法特征的集合，一个接口只有方法的特征没有方法的实现，因此这些方法可以在不同的地方被不同的类实现，而这些实现可以具有不同的行为</p>
+
+        </section>
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+        <section>
+            <h3>实体类是什么？</h3>
+      <p>实体类比较常见，也比较好理解，就是一个普通的Java class：</p>
+      <p>有成员变量</p>
+      <p>有构造器、方法，或main函数</p>
+      <p>可以直接new一个对象来使用</p>
+      <p>可以extends</p>
+        </section> 
+    <section>
+            <h3>接口Interface是什么？</h3>
+      <p>interface是一个需要实现的class，是Java里很重要的一个概念</p>
+      <p>构造方法和其他方法一般没有自己的实现（可以有default实现，在这暂不考虑）</p>
+      <p>一般没有自己的成员变量，如果有，默认都是public,static,final类型的，且必须初始化，也即接口中的成员变量为常量</p>
+      <p>Java接口必须通过类来实现它的抽象方法，通过implements来实现，可以有不止一个实现类</p>
+      <p>同时，一个类也可以同时实现多个接口，实现多继承</p>
+</section>
+      <section>
+      <p>接口中没有构造方法,不能被实例化。除了构造方法也同时有其他方法，但是只确定了返回值的类型，参数的个数和类型，默认都是public,abstract类型，没有方法体，不能被实例化</p>
+      <p>当类实现了某个Java接口时,它必须实现接口中的所有抽象方法,否则这个类必须声明为抽象类</p>
+      <p>可以extends</p>
+
+
+        </section> 
+       
+        <section>
+            <h3>3.常见问题</h3>
+        </section>
+        <section>
+            <h3>为什么更倾向于用interface?</h3>
+            <p>同学们的疑惑：我定义了一个接口，但是我在继承这个接口的类中还要写接口的实现方法，那我不如直接就在这个类中写实现方法岂不是更便捷，还省去了定义接口</p>
+          
+       </section>
+        <section>
+            <h3>4.解决方案</h3>
+        </section>
+            <section>
+      <p>对现实问题进行抽象：OOP的一个思想，就是不需要对面客户Client知道具体的实现，而只通过文档了解入参个数、类型、返回值类型以及异常，就可以直接拿去使用。至于具体的实现，是可以不用理会的。实现有开发者去关心。</p>
+            <p>规范：如果未来要更改实现的具体内容，只要去改实现类就可以了，接口是不用动的。这样就极大地降低了耦合度。</p>
+            <p>多态：一个接口可以有多个实现，一个类可以实现多个接口。</p>
+      
+       </section>
+ 
+
+        <section>
+            <h3>5.编码实战</h3>
+        </section>
+        <section>
+            <h3>6.扩展思考</h3>   
+            <p>抽象类和实体类</p>
+            <p>抽象类和接口</p>
+            <p>抽象类时对现实问题对象性质的抽象</p>
+            <p>接口更多时对对象方法的抽象</p>  
+       </section>
+        <section>
+            <h3>7.参考文献</h3>
+            <p>CSDN、百度百科、师兄们提供的资料</p>
+          
+        </section>
+        <section>
+            <h3>8.更多讨论</h3>
+            <p>什么时候用接口？什么时候用实体类？</p>
+            <p>写接口要注意什么？</p>
+            <p>写实现类要注意什么？</p>
+        </section>
+        <section>
+      
+            <p>谢谢大家观看，如有问题，恳请批评指正</p>
+            <p> by 深圳分院 - 詹威斯 </p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    //  controls: true, // 是否在右下角展示控制条
+    //  progress: true, // 是否显示演示的进度条
+    //  slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    //  history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    //  keyboard: true, // 是否启用键盘快捷键来导航
+    //  overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    //  center: true, // 是否将幻灯片垂直居中
+    //  touch: true, // 是否在触屏设备上启用触摸滑动切换
+    //  loop: false, // 是否循环演示
+    //  rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    //  fragments: true, // 全局开启和关闭碎片。
+    //  autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    //  transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    //  transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    //  mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://blog.csdn.net/USTC_Zn/article/details/54912367' },
+            { src: 'https://blog.csdn.net/luomingkui1109/article/details/72820232' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
