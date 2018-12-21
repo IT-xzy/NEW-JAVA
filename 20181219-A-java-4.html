@@ -1,0 +1,435 @@
+<!doctype html>
+
+<head xmlns="http://www.w3.org/1999/html">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题,可以在/css/reveal/theme/中选择其他主题,目前暂时只能使用该模板 -->
+     <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+     <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+    <style>
+        .text-l {
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>Map，List，Array，Set之间的关系是什么，分别适用<br>
+			       于哪些场景，集合大家族还有哪些常见的类？</h2>
+            <p>分享人：郭靖</p>
+        </section>
+        <section>
+            <p>目录</p>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+
+        <section>
+            <section>
+                <h3>1.背景介绍</h3>
+            </section>
+            <section style="text-align: left;">
+                <br style="text-align: left">
+                <h4>什么是数组？</h4>
+          数组是同一类型数据的集合。其实数组就是一个容器，是一种用于存储数据的方式。容器里面装的东西就是数组的元素，数组可以装任意类型的数据，但是定义好的数组只能装一种元素，就是说数组一旦定义了，其存储的数据类型就确定了。      
+                </p>
+            </section>
+
+
+
+          <section style="text-align: left;">
+                <br style="text-align: left">
+                <h4>什么是集合？</h4>
+          1、集合类存放在java.util包中<br>
+		  2、集合的类型主要有3中：set（集）、list（列表）和map（映射）<br>
+          3、集合中存放的是对象的引用，而非对象本身，所以称集合中的对象就是集合中对象的应用。<br>
+                </p>
+            </section>
+
+
+
+        </section>
+
+
+
+
+
+
+
+
+
+        <section>
+            <section>
+                <h3>2.知识剖析</h3>
+            </section>
+
+            <section style="text-align: left;">
+                <h3><strong></strong></h3>
+                <p c><br>
+				  2.1、数组<br>
+                  2.1.1、数组的定义	<br>
+				  格式1：<br>
+				  元素类型[] 数组名=new 元素类型[元素个数或数组长度]<br>
+				  示例：int[] arr=new int[5]；<br>
+				  格式2：<br>
+				  元素类型[] 数组名=new 元素类型[]{元素，元素，…………}<br>
+				  示例：int[] arr=new int[]{3,4,7}；<br>
+				  int[] arr={3,4,7}；<br>
+				  2.1.2、数组的遍历：<br>
+				  使用for循环进行遍历<br>
+                    </p>
+            </section>
+
+
+           <section style="text-align: left;">
+                <h3><strong></strong></h3>
+                <p c><br>
+		   2、集合<br>
+           集合分为Map和Collection两大类，集合类都是继承自Map接口或Collection接口<br>
+		   2、1 Map<br>
+           Map:在java中的接口Map<K,V>  <br>          
+           K——此映射所维护的键的类型<br>
+           V——映射值的类型<br>
+		   将键映射到值的对象，一个映射不能包含相同的键，每个键最多只能映射到一个值。Map是java中一个很重要的集合，它是一个接口，下
+		   .面继承了很多实现类。Map的主要特点是键值对的形式，一个key对应一个value，key具有唯一性。常用的map类型有HashMap，HashTable，TreeMap，ConcurrentHashMap，LinkedHashMap和WeakHashMap<br>
+                   </p>
+            </section>
+
+
+
+
+            <section style="text-align: left;">
+                <h3><strong></strong></h3>
+                <p c><br>                    
+                2.1.1 HashMap:<br>
+				Map集合是key-Value的集合，前面加上hash，即散列，无序的。所以HashMap就是散着的，无序的Key-Value集合。<br>
+                HashMap的基本数据结构是数组加链表的，它是线程不安全的Map,方法上没有使用synchronize关键字修饰。<br>
+				</p>
+             </section>
+
+
+
+
+
+
+
+             <section style="text-align: left;">
+                <h3><strong></strong></h3>
+                <p c><br>                    
+                2.1.2 HashTable<br>
+               HashTable是线程安全的map的一个实现类。它实现线程安全的方法是在各个方法上添加了synchronize关键字。但是现在已经不推荐使用HashTable了，因为有了ConcurrentHashMap这个专门用于多线程场景下的map实现类，大大优化了多线程下的性能。	  
+		              <br>
+                </p>
+             </section>
+
+
+
+
+            <section style="text-align: left;">
+                <h3><strong></strong></h3>
+                <p c><br>
+                 2.1.3 ConcurrentHashMap：<br>
+               这个map实现类是在jdk1.5中加入的，在jdk1.6/1.7版本中实现原理是segment锁段，不再使用和HashTable一样的synchronize一样的关键字对整个方法进行枷锁，而是转而利用segment段落锁来对其进行加锁，以保证map的多线程安全。可以理解为一个ConcurrentHashMap是由多个HashMap组成的，所以它允许获取不同锁段的线程同时持有该资源，segment有多少个，理论上就可以有多少个线程来持有这个资源。其中默认的segment是一个数组，默认长度为16，也就是说理论上可以提高16倍的性能。<br>
+               在jdk1.8中又对ConcurrentHashMap进行了大的修改，取消了segment锁段字段，采用了CAS+Synchronize技术来保证线程的安全，底层采用数组+链表+红黑树的存储结构。<br>
+                  </p>
+             </section>
+
+
+             <section style="text-align: left;">
+                <h3><strong><em></em></strong></h3>
+                <p c><br>
+				2.1.4 TreeMap：<br>
+				TreeMap也是一种常用的map实现类，它具有一个很大的特点就是会对key进行排序，使用了TreeMap存储键值对，再使用iterator进行遍历输出时，会发现其默认采用key从小到大的顺序输出键值对，如果想要其他方式来进行排序，需要重写override它的compartor接口。TreeMap底层的存储结构也是红黑树，因为红黑树的查找效率比较高。
+
+                  </p>
+             </section>
+
+
+
+             <section style="text-align: left;">
+                <h3><strong></strong></h3>
+                <p c><br>
+                 2.1.5 LinkedHashMap：<br>	
+				 LinkedHashMap主要特点在于linked，带有这个字眼就表示底层采用的链表来进行存储，相对于其他的无序的map实现类，还有想TreeMap这样的排序类，LinkedHashMap最大的特点是有序，但是它的有序主要体现在先进先出FIFIO上。就是说LinkedHashMap主要是依靠双向链表和hash表来实现的。					
+					<br>                 
+                  </p>
+             </section>
+
+
+
+			 <section>
+                <p class="text-l">
+          2.1.6 WeakHashMap:<br>
+          WeakHashMap是一个弱键，它的key和value都可以是null，而且其map中如果这个key值指向的对象没有被使用，此时触发GC，该对象就会被回收掉，其原理主要是使用WeakReference和ReferenceQueue实现的，其key就是weakReference，而ReferenceQueue中保存了被回收的key-value。<br>
+          如果当其中一个key-value不在使用被回收时，就将其加入ReferenceQueue队列中，当下次在调用该WeakHashMap时，就会去更新map，比如ReferenceQueue中的key-value，将其中包含的key-value全部删除掉。这就是所谓的“自动删除”。<br>
+                </p>
+            </section>
+
+
+
+            <section>
+                <p class="text-l">
+                    2.2 Set集合<br>
+					Set注重独一无二性质，该集合体系可以知道对象是否已经存在于集合中，不会存储重复的元素。Set用于存储无序元素（存入和取出的顺序不一定相同），值不能重复。<br>
+                    对象的相等性：引用到堆上同一个对象的两个引用是相等的，如果对两个引用调用hashcode方法，会得到相同的结果，如果对象所属的类没有覆盖Object的hashCode方法的话，hashCode会返回每个对象特有的序号（java是根据对象的内存地址来计算出该序号），所以两个不同的对象的hashCode的值是不可能相同的。如果想要让两个不同的对象视为相等的，就必须覆盖object继承下来的hashCode方法和equals方法，因为hashCode方法返回的是该对象的内存地址，所以必须重写hashCode方法，才能保证两个不同的对象具有相同的hashCode值，同时也需要两个不同对象equals方法会返回true。<br>
+                    Set集合没有特有的方法，直接继承自Collection。<br>
+                </p>
+            </section>
+
+
+
+            <section>
+                <p class="text-l">
+                   2.2.1 HashSet<br>
+				   哈希表中存放的是哈希值，HashSet存放元素的顺序并不是按照存入的顺序（和list显然不同）是按照哈希值来存放的，所以取数据时也是按照哈希值来取得。由于set集合不能存入重复元素的集合，那么hashSet也是具备这一特性。<br>
+				   HashSet如何检查重复元素:HashSet会通过元素的hashcode（）和equals方法进行判断元素是否重复。<br>
+                   当你试图把对象加入hashCode中时，HashSet会使用对象的hashcode方法来判断对象加入的位置，同时也会与其他已经加入的对象的hashCode进行比较，如果没有相同的hashcode，HashSet就会假设对象没有重复出现。<br>
+                   如果对象的hashCode值相同，会继续使用equals方法进行比较，如果equals为true。那么HashSet会认为新加入的元素重复了，所以加入失败。如果equals为false那么hashSet认为新加入的对象没有重复，新元素可以存入。<br>
+
+                </p>
+
+
+            </section>
+
+            <section>
+
+                <p class="text-l">
+                   2.2.2TreeSet<br>
+				  TreeSet是采用树结构实现(称为红黑树算法)，元素是按自然顺序进行排列，或者是根据创建set时提供的Comparator进行排序。主要有add()、remove()以及contains()等方法，它们都是复杂度为0(log (n))的方法；它还提供了一些处理排序的set方法，如first(), last(), headSet(), tailSet()等。<br>
+				  TreeSet中不允许使用null元素，添加null时会抛出NullPointerException异常。TreeSet是非同步的方法。不支持快速遍历，只能通过迭代器（iterator）进行遍历。
+			
+				  <br>
+                </p>
+
+
+            </section>
+
+            <section>
+
+                <p class="text-l">
+				2.2.3 LinkedHashSet <br>
+                   LinkedHashSet正好介于HashSet和TreeSet之间，它也是一个hash表，但它同时维护了一个双链表来记录插入的顺序。<br>
+                </p>
+            </section>
+
+
+
+            <section class="text-l">
+                <h3></h3>
+                <p>
+                 2.3 List<br>
+                 List继承了Collection接口，除了Collection中通用的方法，扩展了一部分只属于自己的方法。list中的元素是有序排列的而且是可重复的，所以也称为序列。List可以精确地控制每个元素的插入位置，或删除某个位置的元素。<br>
+				 2.3.1 ArrayList<br>
+				 ArrayList底层是用数组实现的，可以认为ArrayList是一个可改变大小的数组。随着越来越多的元素被添加到ArrayList中，其规模是动态增加的。<br>			
+                </p>
+            </section>
+
+
+          <section class="text-l">
+                <h3></h3>
+                <p>           
+				 2.3.2 LinkedList<br>
+				 LinkedList底层是通过双向链表实现的。所以，LinkedList和ArrayList之间的区别主要就是数组和链表的区别。<br>
+				 数组中查询和赋值比较快，因此可以直接通过数组下标访问指定位置。<br>
+				 链表中删除和增加比较快，因为可以直接通过修改链表的指针（Java中并无指针，这里可以简单理解为指针。其实是通过Node节点中的变量指定）进行元素的增删。<br>
+				 所以，LinkedList和ArrayList相比，增删的速度较快。但是查询和修改值的速度较慢。同时，LinkedList还实现了Queue接口，所以他还提供了offer(), peek(), poll()等方法。<br>
+                </p>
+            </section>
+
+
+
+
+
+          <section class="text-l">
+                <h3></h3>
+                <p>
+                 2.3.3 Vector<br>
+                 Vector和ArrayList一样，都是通过数组实现的，但是Vector是线程安全的。和ArrayList相比，其中的很多方法都通过同步（synchronized）处理来保证线程安全。<br>
+                 如果你的程序不涉及到线程安全问题，那么使用ArrayList是更好的选择（因为Vector使用synchronized，必然会影响效率）。
+                 二者之间还有一个区别，就是扩容策略不一样。在List被第一次创建的时候，会有一个初始大小，随着不断向List中增加元素，当List认为容量不够的时候就会进行扩容。Vector缺省情况下自动增长原来一倍的数组长度，ArrayList增长原来的50%。
+                </p>
+            </section>
+
+        </section>
+
+
+
+        <section>
+            <section>
+                <h3>3.常见问题</h3>
+            </section>
+
+            <section style="text-align: left;">
+                <h3><strong></strong></h3>
+                <p c><br>
+                    1、数组和集合之间的区别？<br>                  
+                   </p>
+            </section>         
+		        
+        </section>
+
+
+
+
+        <section>
+            <section>
+                <h3>4.解决方案</h3>
+            </section>
+            <section style="text-align: left;">
+                <h3><strong>数组和集合的区别？</strong></h3>
+                <p><br>
+                 1、数组的大小是固定的，并且同一个数组中存放类型一样的数据（基本类型/引用类型）<br>
+                 2、java集合可以存储和操作数目不固定的一组数据<br>
+                 3、集合中存放的都是对象的引用，而非对象本身，集合中不能存放基本数据类型（包装类可以）<br>
+                 4、如果程序中不知道究竟需要多少对象，需要在空间不足时自动扩容，则需要使用容器类库（集合），不能使用数组 <br>                              
+					</p>
+           </section>   
+
+    </section>
+
+		
+
+		<section>
+            <section>
+                <h3>5.编码实战</h3>
+            </section>            
+        </section>
+
+
+
+        <section>
+            <section>
+                <h3>6.扩展思考</h3>
+            </section>
+
+            <section class="text-l">
+			  <h3><strong></strong></h3>
+                <h4></h4>         
+           
+                <p>                  
+                  1、Queue：<br>
+				  队列是一种特殊的线性表，只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作。进行插入操作的端叫队尾，进行删除操作的端叫队头。队伍中没有元素时，叫做空队列。
+				  在队列这种数据结构中，最先插入的元素将是最先被删除的元素；反之最后插入的元素将是最后被删除的元素，因此队列又称为“先进先出”（FIFO—first in first out）的线性表。
+				  在java5中新增加了java.util.Queue接口，用以支持队列的常见操作。该接口扩展了java.util.Collection接口。
+                   Queue使用时要尽量避免Collection的add()和remove()方法，而是要使用offer()来加入元素，使用poll()来获取并移出元素。它们的优点是通过返回值可以判断成功与否，add()和remove()方法在失败的时候会抛出异常。 如果要使用前端元素而不移出该元素，使用element()或者peek()方法(没有元素时，使用element方法会抛出异常)。
+				  
+				  <br>	                
+                   
+                </p>
+               
+            </section>      
+ 
+         <section class="text-l">
+			  <h3><strong></strong></h3>
+                <h4></h4>            
+             
+                <p>                  
+                 2、Stack：				
+				 Stack 类表示后进先出（LIFO）的对象堆栈。它通过五个操作对类 Vector 进行了扩展 ，允许将向量视为堆栈。它提供了通常的 push 和 pop 操作，以及取堆栈顶点的 peek 方法、测试堆栈是否为空的 empty 方法、在堆栈中查找项并确定到堆栈顶距离的 search 方法。 
+                 因为它继承自Vector,那么它的实现原理是以数组实现堆栈的。如果要以链表方式实现堆栈可以使用LinkedList！
+                 (1) Stack实际上也是通过数组去实现的。实际调用的实现方法都是Vector中的方法！ 
+                 push时(即，将元素推入栈中)，是通过将元素追加的数组的末尾中。
+                 peek时(即，取出栈顶元素，不执行删除)，是返回数组末尾的元素。
+                 pop时(即，取出栈顶元素，并将该元素从栈中删除)，是取出数组末尾的元素，然后将该元素从数组中删除。
+                 (2) Stack继承于Vector，Stack拥有着Vector的属性和功能！								 
+				 <br>	
+                   
+                </p>
+               
+            </section>  
+
+
+
+        </section>
+
+
+
+        <section>
+            <section>
+                <h3>7.参考文献</h3>
+            </section>
+            <section>
+                <p style="text-align: left">参考：<br>
+                    <br>
+                    互联网
+                </p>
+
+
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>8.更多讨论</h3>
+            </section>
+        </section>
+        <section>
+            <!--<h4>鸣谢</h4>-->
+            <p>感谢大家观看</p>
+            <p>
+                <small>BY : 郭靖</small>
+            </p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js "></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js "></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc "或"o "键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true},
+            {
+                src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+
+</html>
