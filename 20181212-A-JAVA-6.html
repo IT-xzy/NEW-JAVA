@@ -1,0 +1,257 @@
+<!doctype html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+	<style>
+	</style>	
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h3>MemCache和Redis的区别</h3>
+            <p>分享人：秦永辉</p>
+        </section>
+        <section>
+            <p>目录</p>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+		
+	<section style="text-align: left;">
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+		
+        <section style="text-align: left;">
+         <p>1.背景介绍</p>
+		<p>Memcache 是 danga.com 的一个项目，最早是为 LiveJournal 服务的，目前全世界不少人使用这个缓存项目
+		来构建自己大负载的网站，来分担数据库的压力。</p>
+		<p>Redis：2008年，意大利的一家创业公司Merzia推出了一款基于MySQL的网站实时统计系统 LLOOGG，
+		然而没过多久该公司的创始人 Salvatore Sanfilippo 便对MySQL 的性能感到失望，
+		于是他决定亲自为 LLOOGG 量身定做一个 数据库，并于 2009 年开发完成，这个数据库就是Redis。</p>
+        </section>
+		
+		 <section "text-align: left;">
+         <p>MemCache</p>
+		 <p>MemCache是一个自由、源码开放、高性能、分布式的分布式内存对象缓存系统，
+		 用于动态Web应用以减轻数据库的负载。它通过在内存中缓存数据和对象来减少读取数据库的次数，
+		 从而提高了网站访问的速度。</p>
+		  </section>
+		  
+		<section "text-align: left;">
+		<p>Redis：</p>
+		<p>Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，
+		并提供多种语言的API。</p>
+		 </section>
+    </section>
+		
+	
+	<section "text-align: left;">
+        <section>
+           <h3>2.知识剖析</h3>
+        </section>
+		 <section "text-align: left;">
+             <p>MemCache和Redis的区别</p>
+				<p>（1）数据类型支持不同</p>
+				<p>（2）内存管理机制不同</p>
+				<p>（3）数据持久化支持</p>
+				<p>（4）集群管理的不同</p>
+         </section>
+	   
+		<section "text-align: left;">
+			<p>2.1.数据类型支持不同</p>
+			<p>Redis不仅仅支持简单的k/v类型的数据,同时还提供list,set,hash等数据结构的存储</p>
+		    <p>Redis和Memcache都是将数据存放在内存中,都是内存数据库。不过memcache还可用缓存其他东西,
+			例如图片、视频等等</p>
+		</section>
+		
+		<section "text-align: left;">
+           <p>2.2内存管理机制不同</p>          
+            <p>MemCache： memcache使用slab allocator机制来内存管理。</p>          
+            <p>slab allocator原理：先将内存划分为多个slab class仓库，每个仓库切分成不同尺寸的小块chunk。
+			需要存储内容时候，判断内容大小，为其选择合理的仓库；</p>
+            <p>Redis:底层实现通过对malloc/free进行封装来实现，通过存储数据的size，来申请一段连续的内存空间；</p>  
+       </section>
+
+       <section "text-align: left;">
+           <p>2.3数据存储及持久化</p>
+           <p>memcached不支持内存数据的持久化操作，所有的数据都以in-memory的形式存储。</p>
+           <p>redis支持持久化操作。</p>
+        </section>
+
+       <section "text-align: left;">
+            <p>2.4集群管理不同</p>
+            <p>Memcached本身并不支持分布式，因此只能在客户端通过像一致性哈希这样的分布式算法来实现
+			Memcached的分布式存储。</p>
+            <p>相较于Memcached只能采用客户端实现分布式存储，Redis更偏向于在服务器端构建分布式存储。
+			Redis本身提供集群服务的。</p>
+       </section>
+      
+</section>	
+
+        <section>
+            <section style="text-align:left;">
+                <h3>3.常见问题</h3>
+            </section>
+           <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>Memcache和Redis集群对比简介</p>
+			</section>	
+        </section>
+
+
+    <section>
+            <section style="text-align:left;">
+                <h3>4.解决方案</h3>
+				<p>Memcache和Redis集群对比简介</p>
+            </section>
+			
+		<section style="text-align:left;">
+            <p>Memcached本身并不支持分布式，因此只能在客户端通过像一致性哈希这样的分布式算法来实现Memcached的分布式存储。</p>
+			<p>当客户端向Memcached集群发送数据之前，首先会通过内置的分布式算法计算出该条数据的目标节点，
+			然后数据会直接发送到该节点上存储。但客户端查询数据时，同样要计算出查询数据所在的节点
+			，然后直接向该节点发送查询请求以获取数据。</p>
+        </section>
+		
+		<section>
+            <p>Redis官方集群方案 Redis Cluster</p>
+            <p>Redis Cluster是一种服务器Sharding技术，3.0版本开始正式提供。对客户端来说，
+			整个cluster被看做是一个整体，客户端可以连接任意一个node进行操作，就像操作单一Redis实例一样，
+			当客户端操作的key没有分配到该node上时，就像操作单一Redis实例一样，
+			当客户端操作的key没有分配到该node上时，Redis会返回转向指令，指向正确的node，
+			</p>
+        </section>
+		
+		
+    </section>
+		
+        <section>
+            <section>
+                <h3>5.编码实战</h3>
+            </section>
+        </section>
+        <section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <h3>6.扩展思考</h3>
+              <p>redis的持久化方法</p>
+               <p>redis提供了两种不同的持久化方法来讲数据存储到硬盘里面，一种是快照（snapshotting)，
+			   它可以将存在于某一时刻的所有数据都写入硬盘里面。
+			   另一种方法叫只追加文件（append-only file， AOF),它会在执行写命令时，
+			   将被执行的写命令复制到硬盘里面。</p>
+            </section>
+			
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+              <p>redis和memcache的性能差异</p>
+              <p>由于Redis只使用单核，而Memcached可以使用多核，所以平均每一个核上Redis在存储小数据时比Memcached性能更高。
+			  而在100k以上的数据时，Memcached性能要高于Redis，虽然Redis最近也在存储大数据的性能上进行优化，
+			  但是比起Memcached，还是稍有逊色。
+            </section>
+			
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+              <p>redis和memcache的内存使用效率</p>
+              <p>使用简单的key-value存储的话，Memcached的内存利用率更高，
+			  而如果Redis采用hash结构来做key-value存储，
+			  由于其组合式的压缩，其内存利用率会高于Memcached。</p>
+            </section>
+			
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+              <p>redis和memcache对数据操作效率的差异</p>
+              <p>Redis相比Memcached来说，拥有更多的数据结构并支持更丰富的数据操作，通常在Memcached里，
+			  你需要将数据拿到客户端来进行类似的修改再set回去，序列化再反序列化，这大大增加了网络IO的次数和数据体积。
+			  在Redis中，这些复杂的操作通常和一般的GET/SET一样高效。
+			  所以，如果需要缓存能够支持更复杂的结构和操作，那么Redis会是不错的选择。</p>
+            </section>
+			
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+              <p与Memcached仅支持简单的key-value结构的数据记录不同，Redis支持的数据类型要丰富得多。
+			  最为常用的数据类型主要由五种：
+			  String、Hash、List、Set和Sorted Set。Redis内部使用一个redisObject对象来表示所有的key和value。。</p>
+            </section>
+		</section>
+	
+   </section>
+        <section>
+            <section>
+                <h3>7.参考文献</h3>
+				<p>https://blog.csdn.net/u011489043/article/details/78922390</p>
+				<p>https://www.cnblogs.com/_popc/p/5968683.html</p>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>8.更多讨论</h3>
+            </section>
+        </section>
+        <section>
+            <!--<h4>鸣谢</h4>-->
+            <p>感谢大家观看</p>
+            <p>
+                <small>BY : 秦永辉</small>
+            </p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js "></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js "></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc "或"o "键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true},
+            {
+                src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+
+</html>

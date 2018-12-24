@@ -1,0 +1,193 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+    	<section>
+            <h3>
+为什么要写假数据，前后端联调的时候，应该什么时候商定接口文档，接口文档应该谁来维护，如果不提供假数据，会发生什么问题？</h3>
+      <p></p>
+            <h3></h3>
+            <p>-深圳-Java-詹威斯-</p>
+        </section>
+        
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+    <section>
+        <p>为什么要写假数据，前后端联调的时候，应该什么时候商定接口文档，接口文档应该谁来维护，如果不提供假数据，会发生什么问题？</p>
+            <p>当我们要开始开发一个新项目的时候，同时是需要前端和后端一起协作的。首先我们要分析产品需求，然后前端和后端一起把分析好的产品需求编写成API接口文档。这一步我们做的是定义接口。</p>
+            <p>定义好API接口文档之后，前后端就会开始分离独立开发。前端开发页面部分的内容，而后端处理后端的逻辑、和数据库的交互。</p>
+
+        </section>
+
+<section>
+    <p>后端最终要实现的是，能够给前端提供正常的数据。前端最终要实现的是，能把从接口获取的数据，融入到页面里展示出来。</p>
+    <p>后端可以进行独立开发，不依赖于前端的开发进度。无论是数据库、业务逻辑，都可以通过逐步开发最终实现出来。</p>
+    <p>前端的静态页面部分也可以独立开发。但是动态页面的开发，就需要依赖后端返回的数据。</p>
+</section>
+
+<section>
+    <p>因此，后端在定义好API接口文档之后，就可以进行独立开发。但前端需要后端返回的数据来开发动态页面的内容。</p>
+        <p>但返回数据要在后端所有开发都完成之后才会有，因此就会产生前端没有数据可用的问题。</p>
+
+        <p>到这里应该比较清楚，我们的假数据就是为了解决前后端分离开发里，后端还没有开发完成，但是前端需要后端返回资源的这个问题。</p>
+
+</section>
+
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+        <section>
+            <p>数据由谁提供？</p>
+            <p>假数据是什么类型的？</p>
+            <p>提供假数据的原则？</p>
+            <p>怎么提供假数据</p>
+        </section>
+        <section>
+            <h3>数据由谁提供？</h3>
+            <p>假数据和很多部分有关，第一个部分就是接口的定义。只有定义好接口，才能确定返回的数据，不管是真数据还是假数据，的结构、内容是什么。这部分必须要前后端一起沟通、协作确定下来才比较高效。</p>
+            <p>假数据是从接口返回的，一般在我们的框架里就是MVC的Controller里返回，因此最好的方式是后端提供。</p>
+        </section> 
+
+    <section>
+            <h3>假数据是什么类型的？</h3>
+            <p>假数据会是JSON类型的，JSON是JS对象对象表示法，它使用javascript语法来描述数据对象。JSON语法是JS语法的子集，但JSON任然独立于语言和平台，它是存储和交换文本信息的语法，是轻量级的文本数据交换格式，所以我们使用JSON格式来提供假数据。</p>
+            <p>返回的JSON里，一般会包含HTTP Code等内容。最好是前后端沟通好。</p>
+            
+        </section> 
+
+        <section>
+            <h3>提供假数据的原则？</h3>
+            <p>假数据仅仅是指数据不真实，并不代表着数据可以随便填。模拟数据的时候要保证数据的多样性，因此，一来是要尽可能的模拟正常使用的情况，此外要尽可能的模拟异常的情况。</p>
+        </section> 
+
+        <section>
+            <h3>怎么提供假数据</h3>
+            <p>有几种方式，比较简单的方式是：后端先配置好开发环境，对应接口文档写好Controller和实体类，通过实体类setter赋值，然后将数据返回。</p>
+            <p>还有一种比较复杂的方式，即另外安排一个服务器，在DB里生成一部分假数据，Controller通过访问DB返回JSON数据。</p>
+        </section>
+       
+        <section>
+            <h3>3.常见问题</h3>
+        </section>
+        
+        <section>
+            <h3>4.解决方案</h3>
+        </section>
+            
+ 
+
+        <section>
+            <h3>5.编码实战</h3>
+        </section>
+        
+        <section>
+            <h3>7.参考文献</h3>
+            <p>CSDN、百度百科、师兄们提供的资料</p>
+          
+        </section>
+        <section>
+            <h3>8.更多讨论</h3>
+        </section>
+
+<!--
+        <section>
+            <h3>假数据一定要写吗？不写行不行？</h3>
+            <p>理论上来说不是说非要假数据不可的，假数据的出现是为了解决前端开发动态页面需要返回数据的这个问题。因此要考虑到项目本身，前端是否有这个需求。如果有的话，那么由后端来提供假数据就是属于比较合理的。</p>
+        </section>
+        <section>
+            <h3>怎么生成假数据呢？</h3>
+            <p>一般来说是通过手动赋值的，就是模拟真实的情况，进行赋值。比如有个实体类由两个属性，id和名字，那么就赋值id为1，名字赋值为“李铁根”。但是如果需要的数据较多，可以考虑重复数据。如果要不重复的数据，那么就需要用到假数据生成的包了。</p>
+        </section>
+        
+        <section>
+            <h3>开发的时候Controller被假数据占用，怎么更改？</h3>
+            <p>一般来说，用一个Project来配置开发环境，写假数据，然后就部署给前端使用。开发的话需要另一个本地的Project。</p>
+        </section>
+        -->
+
+        <section>
+      
+            <p>谢谢大家观看，如有问题，恳请批评指正</p>
+            <p> by 深圳分院 - 詹威斯 </p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    //  controls: true, // 是否在右下角展示控制条
+    //  progress: true, // 是否显示演示的进度条
+    //  slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    //  history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    //  keyboard: true, // 是否启用键盘快捷键来导航
+    //  overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    //  center: true, // 是否将幻灯片垂直居中
+    //  touch: true, // 是否在触屏设备上启用触摸滑动切换
+    //  loop: false, // 是否循环演示
+    //  rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    //  fragments: true, // 全局开启和关闭碎片。
+    //  autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    //  transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    //  transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    //  mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://blog.csdn.net/USTC_Zn/article/details/54912367' },
+            { src: 'https://blog.csdn.net/luomingkui1109/article/details/72820232' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
