@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h3>过滤器、监听器、拦截器有什么作用</h3>
+               <p>分享人:先小波</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+ 
+   
+		 <section>
+		<p>Filter也称之为过滤器，通过Filter技术，对web服务器管理的所有web资源：例如Jsp, Servlet, 
+            静态图片文件或静态 html 文件等进行过滤，从而实现一些特殊的功能。
+            例如实现URL级别的权限访问控制、过滤敏感词汇、压缩响应信息等一些高级功能。<p>
+		<p>Interceptor也称之为拦截器，是动态拦截Action调用的对象。它提供了一种机制可以使开发者可以定义在一个Action执行的前后执行的代码，也可以在一个Action执行前阻止其执行
+        。同时也提供了一种可以提取Action中可重用的部分的方式。</p>
+        <p>Listener也称为监听器就是在application,session,request三个对象创建、销毁或者往其中添加修改删除属性时自动执行代码的功能组件。</p>
+		</section>
+		 
+		<section>
+            <h3>2.知识剖析</h3>
+        </section>
+        <section>
+            <img src="./image1.png" alt="">
+        </section>
+        <section>
+                <img src="./image2.png" alt="">
+            </section>
+            <section>
+                    <img src="./image3.png" alt="">
+                </section>
+		<section>
+		    <p>过滤器</p>
+		    <ol>
+            <li>URL级别的权限访问控制 </li>
+            <li>过滤敏感词汇</li>
+            <li>压缩响应信息</li>
+            <li>统一字符集</li>
+        </ol>
+        </section>
+        <section>
+                <p>拦截器</p>
+                <ol>
+                    <li>大部分过滤器能做的事情都能做 </li>
+                    <li>捕获异常，获得bean对象</li>
+                    <li>通常用来进行权限验证，判断用户是否登录</li>
+                    </ol>
+                </section>
+		<section>
+		<p>监听器</p>
+                <ol>
+                <li>监听servletContext、HttpSession和servletRequest等域对象的创建和销毁事件以及属性发生修改事件 </li>
+                <li>统计在线人数和在线用户</li>
+                <li>系统启动时加载初始化信息</li>
+                <li>统计网站访问量</li>
+                <li>记录用户访问路径</li>
+                </ol>
+		</section>
+	
+
+	    <section>
+            <h3>3.常见问题</h3>
+        </section>
+  
+		<section>
+		<p>过滤器、拦截器区别</p>
+		
+		</section>
+
+				
+        <section>
+            <h3>4.解决方案</h3>
+        </section>
+        
+       <section>
+            <ol>
+                    <li>拦截器是基于java的反射机制的，而过滤器是基于函数回调。</li>
+                    <li>拦截器不依赖与servlet容器，过滤器依赖与servlet容器。</li>
+                    <li>拦截器只能对action请求起作用，而过滤器则可以对几乎所有的请求起作用。</li>
+                    <li>拦截器可以访问action上下文、值栈里的对象，而过滤器不能访问。</li>
+                    <li>拦截器可以获取IOC容器中的各个bean，而过滤器就不行，这点很重要，在拦截器里注入一个service，可以调用业务逻辑。</li>
+                </ol>
+       </section>
+        <section>
+            <h3>5.编码实战</h3>
+        </section>
+
+        <section>
+        	<h3>6.扩展思考</h3>
+        </section>
+
+        <section>
+			<p>多个Filter执行顺序</p>
+		</section>
+        <section>
+            <h3>7.参考文献</h3>
+			<p>https://www.cnblogs.com/CloverSH/p/4531492.html</p>
+			<p>https://blog.csdn.net/yudiandemingzi/article/details/80399971</p>
+			<p>https://blog.csdn.net/rongxiang111/article/details/53487381</p>
+        </section>
+        <section>
+            <h3>8.更多讨论</h3>
+            <p></p>
+        </section>
+		
+		<section>
+         <p></p>
+		</section>
+		
+        <section>
+            <h4>谢谢观看</h4>
+            <p></p>
+            <p><small>By:先小波</small></p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    //  controls: true, // 是否在右下角展示控制条
+    //  progress: true, // 是否显示演示的进度条
+    //  slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    //  history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    //  keyboard: true, // 是否启用键盘快捷键来导航
+    //  overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    //  center: true, // 是否将幻灯片垂直居中
+    //  touch: true, // 是否在触屏设备上启用触摸滑动切换
+    //  loop: false, // 是否循环演示
+    //  rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    //  fragments: true, // 全局开启和关闭碎片。
+    //  autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    //  transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    //  transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    //  mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
