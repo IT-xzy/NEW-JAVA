@@ -1,0 +1,231 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>葡萄藤PPT</title>
+
+   <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+     <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    
+</head>
+
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>什么是tcp/ip协议？TCP的三次握手指的是什么，为什么一定要三次握手，而不是四次或者是两次？  </h2>
+            <p>分享人：杨若曦</p>
+        </section>
+
+        <section>
+            <p>目录</p>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+
+        <section>
+            <section>
+                <h3>1.背景介绍</h3>
+            </section>
+
+            <section style="text-align: left;">
+                <br style="text-align: left">
+                <h3>什么是TCP/IP</h3>
+                字面上来说,TCP/IP是两种协议,其实在多数情况下,他们值得是通过IP连接过程中所涉及的全部通信协议;</br>
+                实际上,TCP/IP是一个协议群;
+
+            </section>
+
+        </section>
+
+        <section>
+
+            <section>
+                <h3>2.知识剖析</h3>
+            </section>
+
+            <section style="text-align: left;">
+                <h3><strong>TCP/IP发展历史及网络架构</strong></h3>    
+            </section>
+
+            <section style="text-align: left;">
+                <section style="text-align: center;"><strong><h3>TCP/IP的发展历史</h3></strong></section>
+                网络一开始,是从美国军方通信开始的,他们要求传输过程中,遭到破坏还可以进行通信;从那时候开始研究分组通信技术;</br>
+                研究过程中,他们为了测试实用性,发明了ARPAnet网络,验证了分组技术在实际生活中的实用性;</br>
+                在研究ARPAnet中的一个实验室就研究出了TCP/IP
+            </section>
+            
+            <section style="text-align: left;">
+                <section style="text-align: center;"><strong><h3>TCP/IP的分层模型</h3></strong></section>
+                <p>TCP/IP的分层模型主要分为四层</p></br>
+                从上之下依次为:</br>
+                1.应用层;</br>
+                2.传输层;</br>
+                3.网络层;</br>
+                4.物理层;</br>
+            
+            </section>
+            
+            <section style="text-align: left;">
+                <h3>应用层</h3>
+                应用层主要是程序实现所需要功能的实现,例如邮件传输协议SMTP,邮件扩展协议MIME,文件传输协议FTP等;
+            </section>
+ 
+            <section style="text-align: left;">
+                <h3>传输层</h3>
+                传输层,则是标准意义上的实现程序之间通讯的功能,主要为TCP,和UDP;
+            </section>
+
+            <section style="text-align: left;">
+                <h3>网络层</h3>
+                网络层,在操作系统上进行传输数据,这一层主要判断系统是否连接上网络,相关的协议有: IP协议,ICMP协议和ARP协议
+            </section>
+
+             <section style="text-align: left;">
+                <h3>物理层</h3>
+                物理层,是通过计算的网卡等,连接到路由器,光纤等物理设备上面的数据传输;
+            </section>
+
+        </section>
+
+        <section>
+            <section>
+                <h3>3.常见问题</h3>
+            </section>
+        
+             <section style="text-align: left;">
+                什么是tcp/ip协议？TCP的三次握手指的是什么，为什么一定要三次握手，而不是四次或者是两次？  
+
+            </section>
+
+        </section>
+
+
+        <section>
+            <section>
+                <h3>4.解决方案</h3>
+            </section>
+			
+
+         </section>
+         
+         
+        <section>
+            <section>
+                <h3>5.编码实战</h3>
+            </section>
+        </section>
+
+
+        <section>
+            <section>
+                <h3>6.扩展思考</h3>
+            </section>
+            
+            <section>
+            	<h3>web相关的攻击技术</h3>
+            </section>
+            
+            <section style="text-align: left;">
+            	1.SQL注入;<br/>
+            	2.跨站请求伪造(CSRF);<br>
+            	3.XSS跨站脚本攻击; <br>
+            	4.点击劫持技术;
+            </section>
+
+        </section>
+           
+
+        <section>
+            <section>
+                <h3>7.参考文献</h3>
+            </section>
+
+            <section>
+                <p style="text-align: left">参考：<br>
+                    <br>
+                    <图解HTTP><br>
+                    <图解TCP/IP><br><br>
+                    
+                    <码处高效java开发手册><br/>
+                    <计算机网络-自顶向下方法>
+                    
+                    
+                    
+                </p>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h3>8.更多讨论</h3>
+            </section>
+        </section>
+
+        <section>
+            <!--<h4>鸣谢</h4>-->
+            <p>感谢大家观看</p>
+            <p>
+                <small>BY : 杨若曦</small>
+            </p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js "></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js "></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc "或"o "键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true},
+            {
+                src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+
+</html>
