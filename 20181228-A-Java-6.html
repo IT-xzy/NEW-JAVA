@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h3>什么叫集群？缓存应该在什么情况下使用集群？有哪些实现集群的方案？</h3>
+            <h4>小课堂</h4>
+            <p>分享人：赵君钊</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+        <section>
+
+            <section>
+                <h3>1.背景介绍</h3>
+                <p style="text-align: left">
+
+                </p>
+            </section>
+            <section>     
+                <p style="text-align: left">
+                	在说分布式和集群之前先说一下单机结构，单机结构是我们之前最常用的结构，所有代码都放在一个项目中，然后这个项目部署在一台服务器上，整个项目的所有服务都由这台服务器提供，但是当业务增长到一定程度时只能垂直向上进行扩展，通过增加CPU、内存和磁盘等方式提高处理能力，但是这种扩展方式的成本越来越高，而且单机的处理能力存在瓶颈，当单机出现故障时整个系统都会处于崩溃状态，稳定性和可用性难以得到保障。
+                </p>
+            </section>
+            <section>
+            	<p>
+                   分布式和集群
+                </p>
+                <p style="text-align: left">
+                   简单来说，分布式是以缩短单个任务的执行时间来提高效率的，而集群则是通过提高单位时间内执行的任务数来提升效率。
+                </p>
+                
+            </section>
+            <section>
+                <p style="text-align: left">
+                   当单机处理能力达到瓶颈时，将单机复制几份分别部署，这几台单机就构成了一个集群，每一个单机服务器都是这个集群中的一个节点，每个节点都提供相同的服务，集群结构的优点就是系统扩展非常容易，随着业务的发展给集群增加节点就可以了，但是当业务发展到一定程度时增加集群节点对系统性能的提升会不明显。
+                </p>
+            </section>
+            <section>
+                <p style="text-align: left">
+                   分布式结构就是将一个完整的系统按照业务功能拆分成一个个独立的子系统，在分布式结构中，每一个子系统被称为服务，这些子系统能够独立运行在Web容器中，再以某种协议进行通信，比如说RPC和Http。
+                </p>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>2.知识剖析</h3>
+            </section>
+            <section>
+                <p style="text-align: left">
+                   缓存使用集群主要是为了保证系统的高可用，除了可以分担一台服务器的压力外，当一个缓存服务器宕机，大量缓存失效会导致缓存雪崩，大量请求涌向数据库，数据库瞬时压力过重。这是时用缓存会把宕机的主节点下的从节点上升为主节点，这也是从一方面来保证系统的高可用。
+                </p>
+                <p style="text-align: left">
+                   这里介绍一下Redis的几种集群方案
+                </p>
+            </section>
+            <section>            
+                <p>客户端分区方案</p>
+                <p style="text-align: left">
+                   客户端就已经决定数据会被存储到哪个节点或者从哪个节点读取数据，其主要思想是采用哈希算法将Redis数据的key进行散列，通过hash函数将key映射到节点上
+                </p>
+                <p>优点</p>
+                <p style="text-align: left">
+                   这种做法的优点是不需要使用中间件，可自行控制分区逻辑。
+                </p>
+                <p>缺点</p>
+                <p style="text-align: left">
+                   缺点也很明显，无法动态进行服务节点的增删，需要手动进行维护。
+                </p>
+            </section>
+            <section>            
+                <p>代理分区方案</p>
+                <p style="text-align: left">
+                   客户端将请求发送到代理组件，代理组件解析客户端的数据，并将请求转发至正确的节点。常见的中间件有Twemproxy 和Codis。
+                </p>
+                <p>优点</p>
+                <p style="text-align: left">
+                   简化了客户端的逻辑，增删切换成本低
+                </p>
+                <p>缺点</p>
+                <p style="text-align: left">
+                   多了一层中间件，会导致一定程度上的性能损耗
+                </p>
+            </section>
+            <section>            
+                <p>查询路由方案</p>
+                <p style="text-align: left">
+                   Redis Cluster 是redis自带的一种集群方案，客户端随机的请求任意一个Redis节点，然后由这个Redis节点将请求转发给正确的redis节点。
+                </p>  
+                <p style="text-align: left">
+                   数据按照槽存储分布在多个Redis节点中，可以平滑进行增删节点，因为Redis Cluster是在Redis的主从模式和哨兵模式的基础上实现的，支持高可用和自动故障转移。
+                </p>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>3.常见问题</h3>
+            </section>
+        </section>
+        <section>
+            <section>
+            	<h3>4.解决方案</h3>
+            </section>
+            <section>            
+                <p>Redis Cluster</p>
+                <p style="text-align: left">
+                   Redis Cluster 使用的数据分布方式是虚拟槽分区，所有的键的哈希值都会映射到0~16383整数槽内，三个主节点分别维护一部分槽，之前的下课堂讲过，这里就不多说虚拟槽分区了。
+                </p>  
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>5.编码实战</h3>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>6.扩展思考</h3>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>7.参考文献</h3>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>8.更多讨论</h3>
+            </section>
+        </section>
+        <section>
+            <h4>鸣谢</h4>
+            <p>感谢大家观看</p>
+            <p><small>BY：赵君钊</small></p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js "></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js "></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc "或"o "键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true},
+            {
+                src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+</html>
+Contact GitHub API Training Shop Blog About
+© 2016 GitHub, Inc. Terms Privacy Security Status He
