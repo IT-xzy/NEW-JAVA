@@ -1,0 +1,219 @@
+﻿
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>什么是Hibernate？</h2>
+			<p></p>
+            <h3>java小课堂</h3>
+            <p>分享人：许东杰</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+        </section>
+        <section>
+		<section>
+            <h3>1.背景介绍</h3>
+</section>
+
+			<section>
+				<p style="text-align:left">hibernate:是一个全自动的orm框架，hibernate可以自动生成SQL语句，自动执行，使得Java程序员可以随心所欲的使用对象编程思维来操纵数据库</p>
+				<p style="text-align:left">hibernate和mybatis的区别：</p>
+				<p style="text-align:left">1、hibernate中基本的sql语句已经被封装好了，不需要你去写sql语句，可以节省了大量的时间</p>
+				<p style="text-align:left">2、针对高级查询，Mybatis需要编写SQL语句，以及ResultMap，hibernate只需要写sql语句，自动返回映射结果</p>
+				<p style="text-align:left">3、Hibernate的查询会将表中的所有字段查询出来，这一点会有性能消耗，但Hibernate也可以自己写SQL来指定需要查询的字段</p>
+            </section>
+
+        </section>	
+		
+
+
+
+			
+
+
+        <section>
+			<section>
+				<h3>2.知识剖析</h3>
+			</section>
+			<section>
+                <p></p>
+                <p style="text-align:center">Hibernate有两种方式获得session：</p>
+                <p style="text-align:left">openSession和getCurrentSession</p>
+                <p style="text-align:left">区别：</p>
+				<p style="text-align:left">1. 获取的是否是同一个session对象：</p>
+				<p style="text-align:left">openSession每次都会得到一个新的Session对象 </p>
+				<p style="text-align:left">getCurrentSession在同一个线程中，每次都是获取相同的Session对象，但是在不同的线程中获取的是不同的Session对象（需要在配置文件中额外配置）</p>
+            </section>
+
+
+			<section>
+                <p></p>
+               <p style="text-align:left">2. 事务提交的必要性：</p>
+				<p style="text-align:left">openSession只有在增加，删除，修改的时候需要事务，查询时不需要的</p>
+				<p style="text-align:left">getCurrentSession是所有操作都必须放在事务中进行，并且提交事务后，session就自动关闭，不能够再进行关闭</p>
+            </section>
+		
+		</section>
+		
+
+ 
+        <section>
+            <h3>3.常见问题</h3>
+			<br>
+            <p style="text-align:center">怎么避免脏读？</p>
+        </section>
+		
+        <section>
+		<section>
+            <h3>4.解决方案</h3>
+			<br>
+			<p style="text-align:left">使用乐观锁来避免脏读</p>
+			</section>
+
+				<section>
+                <p></p>
+               <p style="text-align:left">1、在实体类中加入一个version的版本属性</p>
+				<p style="text-align:left">2、更新该类的xml文件，加入版本控制的配置属性</p>
+				<p style="text-align:left">运行原理：当session1获取该类实例的时候，version=1。 那么session1更新该类实例的时候，就需要确保version还是1才可以进行更新，并且更新结束后，把version改为2，如果在session1提交时发现version已经被其他的session更改为2，则提交失败</p>
+				
+            </section>
+
+		<section>
+ <img src="file:///C:\Users\Maibenben\Desktop\小课堂文件\hibernate\乐观锁.jpg"/>
+			</section>
+
+
+
+        </section>
+
+		<section>
+			<section>
+				<h3>5.编码实战</h3>
+			</section>
+			<section>
+				<p style="text-align:left">hibernate增删改查</p>
+				<p style="text-align:left">hibernate与spring及springmvc的整合</p>
+
+			</section>
+		</section>
+	
+		
+
+		
+        <section>
+			<section>
+				<h3>6.扩展思考</h3>
+			</section>		
+			<section>
+				<p>Hibernate的事物管理</p>
+				<p style="text-align:left">1、单独hibernate框架中的操作：</p>
+				<p style="text-align:left">在Hibernate中我们每次进行一个操作的的时候我们都是要先开启事务，然后进行数据操作，然后提交事务，关闭事务</p>
+				<p style="text-align:left">2、和spring整合之后就由Spring为Hibernate提供事务管理机制</p>
+				<p style="text-align:left">Spring提供的事务管理可以分为两类：编程式的和声明式的，编程式，其实就是在代码里面来控制，像Hibernate操作数据一样，开启事务，提交事务，这种方式有一定的局限性，所以我们一般是用声明式来配置我们的事务</p>
+				
+			</section>
+
+				<section>
+ <img src="file:///C:\Users\Maibenben\Desktop\小课堂文件\hibernate\事务1.jpg"/>
+			</section>
+						<section>
+ <img src="file:///C:\Users\Maibenben\Desktop\小课堂文件\hibernate\事务2.jpg"/>
+			</section>
+						<section>
+ <img src="file:///C:\Users\Maibenben\Desktop\小课堂文件\hibernate\事务3.jpg"/>
+			</section>
+						<section>
+ <img src="file:///C:\Users\Maibenben\Desktop\小课堂文件\hibernate\事务4.jpg"/>
+			</section>
+
+        </section>
+
+        
+        
+        <section>
+            <h3>7.参考文献</h3>
+			<br>
+			<p style="text-align:center">百度、谷歌</p>
+        </section>
+
+
+        <section>
+            <h4 align="center">鸣谢</h4>
+            <p align="center">感谢观看,如有出错,恳请指正</p>
+            <p align="center"><small>BY :许东杰</small></p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
