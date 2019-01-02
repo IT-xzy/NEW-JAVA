@@ -1,0 +1,343 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+</head>
+
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>拦截器,监听器,过滤器各有什么作用？</h2>
+            <p>分享人：鲁伯良</p>
+        </section>
+        <section>
+            <p>目录</p>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+
+        <section>
+            <section>
+                <h3>1.背景介绍</h3>
+            </section>
+            <section style="text-align: left;">
+                <br style="text-align: left">
+                <h4>Servlet </h4>
+                在讲解三大器之前，我们需要对Servlet 有所了解，因为这个通常是我们在接触Javaweb 时最先了解到的知识点<br>
+                Servlet 生命周期可被定义为从创建直到毁灭的整个过程。以下是 Servlet 遵循的过程（三个重要方法）：
+                ①init () 方法进行初始化：
+                在Servlet的生命周期中，仅执行一次init()方法，它是在服务器装入Servlet时执行的，可以配置服务器，以在启动服务器或客户机首次访问Servlet 时装入Servlet。无论有多少客户机访问Servlet，都不会重复执行init()；
+                ②Servlet 调用 service() 方法来处理客户端的请求：
+            </section>
+                <section style="text-align: left;">
+                它是Servlet的核心，每当一个客户请求一个HttpServlet 对象，该对象的Service() 方法就要调用，而且传递给这个方法一个“请求”（ServletRequest）对象和一个“响应”（ServletResponse）对象作为参数。在HttpServlet 中已存在Service()方法。默认的服务功能是调用与HTTP请求的方法相应的do功能。
+                ③Servlet 通过调用 destroy() 方法终止（结束）：
+                仅执行一次，在服务器端停止且卸载Servlet 时执行该方法，有点类似于C++ delete 方法。一个Servlet 在运行service() 方法时可能会产生其他的线程，因此需要确认在调用destroy() 方法时，这些线程已经终止或完成。
+                Servlet 的生命周期的话还需要加上在init() 之前有一个加载和实例化Servlet（反射机制）的过程。
+                </p>
+            </section>
+
+
+            <section>
+                <h3>2.知识剖析</h3>
+            </section>
+            <section style="text-align: left;">
+                <h3><strong>拦截器</strong></h3>
+                <p><br>
+                  1  拦截器的概念<br>
+                    java里的拦截器是动态拦截Action调用的对象，它提供了一种机制可以使开发者在一个Action执行的前后执行一段代码，也可以在一个Action
+                    执行前阻止其执行，同时也提供了一种可以提取Action中可重用部分代码的方式。在AOP中，拦截器用于在某个方法或者字段被访问之前，进行拦截
+                    然后再之前或者之后加入某些操作。目前，我们需要掌握的主要是Spring的拦截器，Struts2的拦截器不用深究，知道即可。
+
+         </section>
+            <section style="text-align: left;">
+                <p>
+                    2，拦截器的原理<br>
+                    1、拦截请求的url；
+                    2、从cookie中获取token；
+                    3、如果没有token，则直接拦截，打回登录页面；
+                    4、获取到token，调用sso（单点登录）系统的服务查询用户信息，返回session（用户信息）；
+                    5、对获取到的session进行处理。如果session已经过期直接打回系统登录页面；如果session有效，则直接放行，达到用户的请求页面
+                    <br>
+            </section>
+
+            <section style="text-align: left;">
+                <p>
+                    拦截器实现<br>
+                    第一步：自定义一个实现了Interceptor接口的类，或者继承抽象类AbstractInterceptor。
+                    第二步：在配置文件中注册定义的拦截器。
+                    第三步：在需要使用Action中引用上述定义的拦截器，为了方便也可以将拦截器定义为默认的拦截器，这样在不加特殊说明的情况下，所有的
+                    Action都被这个拦截器拦截。
+
+            </section>
+            <section style="text-align: left;">
+                <p>
+                    生活中的拦截器<br>
+                    比如说京东，在我们搜索东西的时候是不需要我们的个人信息的，但是当我们提交订单或者查看个人订单的时候，肯定会走拦截器判断的用户信息真实有效性的。大家可以做个试验，京东提交订单结束后进入支付页面前后，分别清除浏览器缓存，进行刷新，我们是会被打回登录页面的。再者像现在的淘宝，连浏览都要求登陆，这里利用的都是拦截器，简单来说，就是我们每进入一个设置好有拦截要求的页面，这个东西都系都会走一遍，不符合条件或者不安全了，直接打回登陆页面。
+
+                    再就是权限要求了。
+
+            </section>
+
+            <section style="text-align: left;">
+                <h3><strong>过滤器</strong></h3>
+                <p>
+                过滤器简介<br>
+                    Filter也称之为过滤器，它是Servlet技术中最激动人心的技术之一，WEB开发人员通过Filter技术，对web服务器管理的所有web资源：例如Jsp,
+                    Servlet, 静态图片文件或静态html文件等进行拦截，从而实现一些特殊的功能。例如实现URL级别的权限访问控制、过滤敏感词汇、压缩响应信息等
+                    一些高级功能。
+                    　　Servlet API中提供了一个Filter接口，开发web应用时，如果编写的Java类实现了这个接口，则把这个java类称之为过滤器Filter。通过Filter
+                    技术，开发人员可以实现用户在访问某个目标资源之前，对访问的请求和响应进行拦截
+
+            </section>
+            <section style="text-align: left;">
+                <p>
+                    过滤器的原理<br>
+                    Filter接口中有一个doFilter方法，当我们编写好Filter，并配置对哪个web资源进行拦截后，WEB服务器每次在调用web资源的service方法之前，
+                    都会先调用一下filter的doFilter方法，因此，在该方法内编写代码可达到如下目的：
+                    调用目标资源之前，让一段代码执行。
+                    是否调用目标资源（即是否让用户访问web资源）。
+                    调用目标资源之后，让一段代码执行。
+                    　　web服务器在调用doFilter方法时，会传递一个filterChain对象进来，filterChain对象是filter接口中最重要的一个对象，它也提供了一个
+                    doFilter方法，开发人员可以根据需求决定是否调用此方法，调用该方法，则web服务器就会调用web资源的service方法，即web资源就会被访问，
+                    否则web资源不会被访问。
+
+            </section>
+            <section style="text-align: left;">
+                <p>
+                    过滤器的实现<br>
+                    * 编写java类实现Filter接口，并实现其doFilter方法。
+                    * 在web.xml 文件中使用(filter)和(filter-mapping)元素对编写的filter类进行注册，并设置它所能拦截的资源。
+
+            </section>
+            <section style="text-align: left;">
+                <p>
+                    Filter链<br>
+                    　在一个web应用中，可以开发编写多个Filter，这些Filter组合起来称之为一个Filter链。web服务器根据Filter在web.xml文件中的注册顺序，
+                    决定先调用哪个Filter，当第一个Filter的doFilter方法被调用时，web服务器会创建一个代表Filter链的FilterChain对象传递给该方法。在doFilter
+                    方法中，开发人员如果调用了FilterChain对象的doFilter方法，则web服务器会检查FilterChain对象中是否还有filter，如果有，则调用第2个filter，
+                    如果没有，则调用目标资源。
+            </section>
+            <section style="text-align: left;">
+                <p>
+                    Filter的生命周期<br>
+                    Filter的创建
+                    　　Filter的创建和销毁由web服务器负责。 web应用程序启动时，web服务器将创建Filter的实例对象，并调用其init方法，完成对象的初始化
+                    功能，从而为后续的用户请求作好拦截的准备工作，filter对象只会创建一次，init方法也只会执行一次。通过init方法的参数，可获得代表当前
+                    filter配置信息的FilterConfig对象。
+                     Filter的销毁
+                    　　web容器调用destroy方法销毁Filter。destroy方法在Filter的生命周期中仅执行一次。在destroy方法中，可以释放过滤器使用的资源。
+            </section>
+                    <section style="text-align: left;">
+                    FilterConfig接口
+                    　　用户在配置filter时，可以使用(init-param)为filter配置一些初始化参数，当web容器实例化Filter对象，调用其init方法时，会把封装了
+                    filter初始化参数的filterConfig对象传递进来。因此开发人员在编写filter时，通过filterConfig对象的方法，就可获得：
+                    　　String getFilterName()：得到filter的名称。
+                    　　String getInitParameter(String name)： 返回在部署描述中指定名称的初始化参数的值。如果不存在返回null.
+                    　　Enumeration getInitParameterNames()：返回过滤器的所有初始化参数的名字的枚举集合。
+                    　　public ServletContext getServletContext()：返回Servlet上下文对象的引用。
+
+            </section>
+
+            <section style="text-align: left;">
+                <h3><strong>监听器</strong></h3>
+                <p><br>
+                    1  监听器<br>
+                    当范围对象的状态发生变化的时候，服务器自动调用监听器对象中的方法。
+                    例如：创建一个“人”类Class Person
+                    人拥有吃的方法public void eat(){},我们的目的就是，在这个人吃之前要提醒他洗手，所以我们就要监听这个人，不管他在什么时候吃，我们都要能够监听到并且提醒他洗手，通俗点讲这个就是监听器的作用(在吃之前提醒他洗手)。
+
+            </section>
+            <section style="text-align: left;">
+                2.组成：<br>
+                　　 2.1Java的时间监听机制涉及到三个组件：事件源、事件监听器、事件对象
+                　　 2.2当事件源上发生操作时，它会调用事件监听器的一个方法，并且调用这个方法时，会传递事件对象过来
+                　　 2.3事件监听器是由开发人员编写，开发人员在事件监听器中，通过事件对象可以拿到事件源，从而对事件源上的操作进行处理
+
+            </section>
+            <section style="text-align: left;">
+                3.实现：<br>
+                　　3.1创建一个人类，人具有跑、吃的方法　　（创建一个事件源）
+
+                　　3.2创建一个接口用来监视人的跑、吃　　　（事件监听器）
+
+                　　3.3创建一个事件对象，里面用来封装人(Person)这个对象　　（事件对象）
+
+                　　3.4创建一个测试类，用来测试Java监听机制
+            </section>
+
+        </section>
+
+        <section>
+            <section>
+                <h3>3.常见问题</h3>
+            </section>
+            <section style="text-align: left;">
+                <p>过滤器和拦截器的区别<br>
+                    </h4>
+                    <!--<p style=" text-align:left"><br>-->
+                </p>
+
+            </section>
+        </section>
+
+
+        <section>
+            <section>
+                <h3>4.解决方案</h3>
+
+            </section>
+
+            <section>
+
+                <p class="text-l">
+                    1 、拦截器是基于java的反射机制的，而过滤器是基于函数回调。<br>
+                    2 、拦截器不依赖与servlet容器，过滤器依赖与servlet容器。<br>
+                    3 、拦截器只能对action请求起作用，而过滤器则可以对几乎所有的请求起作用。<br>
+                    4 、拦截器可以访问action上下文、值栈里的对象，而过滤器不能访问。<br>
+                    5 、在action的生命周期中，拦截器可以多次被调用，而过滤器只能在容器初始化时被调用一次。<br>
+
+                </p>
+            </section>
+
+        </section>
+        <section>
+            <section>
+                <h3>5.编码实战</h3>
+            </section>
+
+
+        </section>
+        <section>
+            <section>
+                <h3>6.扩展思考</h3>
+
+            </section>
+
+            <section class="text-l">
+                <h4>java三大器的使用场景</h4>
+            </section>
+            <section style="text-align: left;">
+                <p>过滤器应用案例<br>
+                    <img src="https://img-blog.csdn.net/20171228162330268?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYm82MTc1MjAwMTI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast"/>
+
+                        </p>
+            </section>
+
+            <section>
+                <p style="text-align: left"><br>
+                <h4>拦截器</h4><br>
+                1、日志记录 ：记录请求信息的日志
+                2、权限检查，如登录检查
+                3、性能检测：检测方法的执行时间
+                </p>
+            </section>
+
+            <section>
+                <p style="text-align: left"><br>
+                <h4>监听器</h4><br>
+                最常见的监听在线人数
+                </p>
+            </section>
+
+
+
+        </section>
+        <section>
+            <section>
+                <h3>7.参考文献</h3>
+            </section>
+            <section>
+                <p style="text-align: left">参考：<br>
+                    <br>
+                   1. 【JavaWeb 三大器--Listener、Filter 和Interceptor 总结】
+                    https:/w.cnblogs.com/hellovoyager1/p/9152292.html
+                    2. 【拦截器的原理实现】
+                    https://www.cnblogs.com/DoubleEggs/p/6112119.html
+                    3. 【Java三大器之拦截器(Interceptor)的实现原理及代码示例】
+                    https://blog.csdn.net/reggergdsg/article/details/52962774/ww
+
+                </p>
+
+
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>8.更多讨论</h3>
+            </section>
+        </section>
+        <section>
+            <!--<h4>鸣谢</h4>-->
+            <p>感谢大家观看</p>
+            <p>
+                <small>BY : 鲁伯良</small>
+            </p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js "></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js "></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc "或"o "键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true},
+            {
+                src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+
+</html>
