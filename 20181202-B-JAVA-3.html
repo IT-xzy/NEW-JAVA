@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css"> 
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+	<style>
+		.left{ text-align: left; }
+	</style>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>什么是数据库范式，是否应该严格遵守范式，什么情况下应该不遵守范式？</h2>
+            <p>分享人：张泉良</p>	
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>            
+            <p>4.编码实战</p>
+            <p>5.扩展思考</p>
+            <p>6.参考文献</p>
+            <p>7.更多讨论</p>
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+            <section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>1.背景介绍</h3>
+                <p> (1) 关系型数据库</p>
+                <p>关系型数据库是依据关系模型来创建的数据库</p>
+                <p>关系模型就是指二维表格模型,因而一个关系型数据库就是由二维表及其之间的联系组成的一个数据组织</p>
+                <p>关系模型包括数据结构（数据存储的问题，二维表）、操作指令集合（SQL语句）、完整性约束(表内数据约束、表与表之间的约束)</p>
+            </section>	
+            <section style="top: 267px; display: block;" class="" aria-hidden="true">
+                <p><img src="http://notetest.nos-eastchina1.126.net/note/image/20181202122024-421377.jpg"/></p>
+            </section>
+            <section style="top: 267px; display: block;" class="" aria-hidden="true">
+                <p><img src="http://notetest.nos-eastchina1.126.net/note/image/20181202122207-925574.jpg"/></p>
+            </section>
+            <section style="top: 267px; display: block;" class="" aria-hidden="true">
+                <p>常见的关系数据库：Oracle、DB2、PostgreSQL、Microsoft SQL Server、Microsoft Access、MySQL</p>
+                <p>安全（因为存储在磁盘）</p>
+                <p>容易理解（建立在关系模型上）</p>
+                <p>但不节省空间）</p><br>
+                中间产生的规则就是范式以及约束    
+            </section>
+        </section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>2.知识剖析</h3>
+			</section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(1) 什么是范式</p>
+                当设计关系型数据库时，需要遵从不同的规范要求，设计出合理的关系型数据库，
+                这些不同的规范要求被称为不同的范式（Normal Form），
+                越高的范式数据库冗余越小。应用数据库范式可以带来许多好处，
+                但是最主要的目的是为了消除重复数据，减少数据冗余，让数据库内的数据更好的组织，
+                让磁盘空间得到更有效的利用。
+                范式的缺点：范式使查询变的相当复杂，在查询时需要更多的连接，
+                一些复合索引的列由于范式化的需要被分割到不同的表中，导致索引策略不佳。 
+			</section>
+						
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(2)什么是第一、二、三、BC范式？</p>
+                所谓“第几范式”，是表示关系的某一种级别，所以经常称某一关系R为第几范式。
+                目前关系型数据库有六种范式：第一范式（1NF）、第二范式（2NF）、第三范式（3NF）、
+                巴斯-科德范式（BCNF）、第四范式（4NF）和第五范式（5NF，又称完美范式）。
+                满足最低要求的范式是第一范式（1NF）。在第一范式的基础上进一步满足更多规范要求的称为第二范式（2NF），
+                其余范式以次类推。满足高等级的范式的先决条件是必须先满足低等级范式。
+                <br>
+                <p>4NF：要求把同一表内的多对多关系删除</p>
+                <p>5NF:从最终结构重新建立原始结构</p>
+
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(3) 范式中会用到的一些常用概念</p>
+                <p>a、实体（Entity）：就是实际应用中要用数据描述的事物，它是现实世界中客观存在并可以被区别的事物</p>
+                <p>b、数据项（Data Item）：即字段（Fields）也可称为域、属性、列。数据项是数据的不可分割的最小单位。</p>
+                <p>c、数据元素（Data Element）：数据元素是数据的基本单位。数据元素也称元素、行、元祖、记录（Record）。
+                        一个数据元素可以由若干个数据项组成。表中的一行就是一个元组。 </p>
+                <p>d、码：也称为键（Key），它是数据库系统中的基本概念。所谓码就是能唯一标识实体的属性，
+                    它是整个实体集的性质，而不是单个实体的性质。它包括超码、候选码和主码。</p>
+              
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>e、超码：超码是一个或多个属性的集合，这些属性的组合可以在一个实体集中唯一地标识一个实体。
+                    如果K是一个超码，那么K的任意超集也是超码，也就是说如果K是超码，那么所有包含K的集合也是超码。</p>
+                <p> f、候选码：在一个超码中，可能包含了无关紧要的属性，如果对于一些超码，他们的任意真子集都不能成为超码，那么这样的最小超码称为候选码。</p>
+
+                <p> g、主码：从候选码中挑一个最少键的组合，它就叫主码（主键，Primary Key）。
+                     每个主码应该具有下列特征：1.唯一的。2.最小的（尽量选择最少键的组合）。3.非空。4.不可更新的</p>
+            </section>
+            
+            <section>
+                <p>h、全码：如果一个码包含了所有的属性，这个码就是全码（All-key）。
+                 主属性：一个属性只要在任何一个候选码中出现过，这个属性就是主属性（Prime Attribute）。</p>
+                <p> i、非主属性：与主属性相反，没有在任何候选码中出现过，这个属性就是非主属性（Nonprime Attribute）或非码属性（Non-key Attribute）。</p>
+                <p>g、外码：关系模式R中的一个属性或属性组X并非R的码，但X是另一个关系模式的码，
+                    则称X是R的外码，也称外键（Foreign Key）。</p>
+                <p> k、依赖表（Dependent Table）：也称为弱实体（Weak Entity）是需要用父表标识的子表。</p>
+            </section>
+            <section>
+                <p> m、关联表（Associative Table）：是多对多关系中两个父表的子表。</p>
+                <p>n、函数依赖：函数依赖是指关系中一个或一组属性的值可以决定其它属性的值。
+                    函数依赖：X → Y。函数依赖不是指关系模式R的某个或某些关系满足的约束条件，而是指R的一切关系均要满足的约束条件。</p>
+                <p> o、完全函数依赖：在一个关系中，若某个非主属性数据项依赖于全部关键字称之为完全函数依赖。</p>
+                <p> p、传递函数依赖：指的是如果存在“A → B → C”的决定关系，则C传递函数依赖于A。</p>
+            </section>
+				
+		</section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>3、常见问题</h3>
+			</section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(1)、如何更好的区分三大范式</p>
+                第 一范式和第二范式在于有没有分出两张表，
+                第二范式是说一张表中包含了多种不同的实体属性，那么要必须分成多张表， 
+                第三范式是要求已经分成了多张表，那么一张表中只能有另一张表中的id（主键），
+                而不能有其他的任何信息（其他的信息一律用主键在另一表查询）。
+              
+			</section>
+			
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(2)、外键的注意点</p>
+                <p>只有INNODB的数据库引擎支持外键</p>
+                <p>外键必须与参照列的数据类型必须相同（数值型要求长度和无符号都相同，字符串要求类型相同，长度可以不同）</p>
+                <p> CONSTRAINT 外键名 FOREIGN KEY (外键字段)REFERENCES 参照表 (参照字段)</p>
+                <p>CASCADE删除或更新参照表的参照字段时，外键表的记录同步删除更新</p>              
+                <p>SET NULL 删除或更新参照表的参照字段时，外键表的外键设为NULL</p>
+            </section>
+
+            <section>
+                <p>(3)、何谓反范式？什么情况需要做反范式设计？</p>
+                反范式，denormalization，字面上就是做范式的反义词，事实上也是。
+                遵循范式总体上来说是为了保证数据的integrity和减少冗余，
+                但是，从直觉上我们就可以知道，一个完全按照范式设计的冗余极低的数据库，
+                很可能在性能上会输给冗余相对多一些的数据库（比如说3NF的数据库，表多，关系复杂，数据库的IO次数很多，性能会收到影响）。
+                最典型的就是在一些数据表中不仅存作为外键的user_id,同样存user_name,这样虽然违反数据库范式增加了user_name字段，
+                但是却提高了效率，减少了获取user_id后再去user表中获取user name的操作
+            </section>
+            
+		</section>
+
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<h3>4.编码实战</h3>
+			</section>			
+		</section>
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<h3>5.扩展思考</h3>				
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(1):数据库的约束有哪些</p>
+                <p>primary KEY:设置主键约束</p>
+                <p>UNIQUE：设置唯一性约束，不能有重复值</p>
+                <p>DEFAULT 默认值约束，height DOUBLE(3,2)DEFAULT 1.2 height不输入是默认为1.2</p>
+                <p>NOT NULL：设置非空约束，该字段不能为空；</p>
+                <p>FOREIGN key :设置外键约束。</p>
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(2).做范式的目的:</p>
+                   减少冗余
+                   减少异常（delete，update，insert）
+                   让数据组织的更加和谐
+                  通过范式的不断升级，我们会发现应用的范式等级越高，则表越多。表多会带来很多问题：
+                  查询时要连接多个表，增加了查询的复杂度
+                  查询时需要连接多个表，降低了数据库查询性能
+            </section>  
+		
+		</section>
+		<section>
+            <h3>6.参考文献</h3>
+            <p>https://blog.csdn.net/sylvanasgq/article/details/79368159</p>
+            <p>https://blog.csdn.net/apt1203jn/article/details/80314605</p>
+            <p>https://yq.aliyun.com/ziliao/495680</p>
+			
+		</section>
+        <section>
+            <h3>7.更多讨论</h3>	
+        </section>
+    
+        <section>
+            <h4>分享到此结束</h4>
+            <p>欢迎大家讨论</p>            
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">				
+			</section>
+		</section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css"> 
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+	<style>
+		.left{ text-align: left; }
+	</style>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>redis缓存集群简单入门</h2>
+            <p>分享人：张泉良</p>	
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>            
+            <p>4.编码实战</p>
+            <p>5.扩展思考</p>
+            <p>6.参考文献</p>
+            <p>7.更多讨论</p>
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+            <section style="top: 267px; display: block;" class="" aria-hidden="true">
+                <h3>1.背景介绍</h3>
+                Redis作为一个使用场景很高的NoSQL数据库，支持了较为丰富的数据类型，相比于其他关系型数据库在性能方面优势明显。所以可以将一些热点数据放入Redis中来承载高吞吐量的访问。
+               单机Redis在普通的服务器上通常ops上限在5w左右，开启pipeline的情况下在20-30w左右。对于大多数中小公司来说，通常单机的Redis已经足够，最多根据不同业务分散到多台Redis。  
+            </section>	
+            <section style="top: 267px; display: block;" class="" aria-hidden="true">
+                <P>为什么需要集群</p><br>
+                <p>Redis单线程特性，多请求顺序执行，单个耗时的操作会阻塞后续的操作</p>
+                <p>单机内存有限</p>
+                <P>某些特殊业务，带宽压力较大</P>
+                <p>单点问题，缺乏高可用性</p>
+                <P>不能动态扩容</P>
+            </section>	
+
+        </section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>2.知识剖析</h3>
+			</section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(1) 什么是集群</p>
+                集群是是指将多台服务器集中在一起，每台服务器都实现相同的业务，
+                做相同的事情。但是每台服务器并不是缺一不可，
+                存在的作用主要是缓解并发压力和单点故障转移问题。
+                可以利用一些廉价的符合工业标准的硬件构造高性能的系统。实现：高扩展、高性能、低成本、高可用！
+            
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(2) redis集群</p>
+                redis是一个key-value存储系统。和Memcached类似，它支持存储的value类型相对更多，
+                包括string(字符串)、list(链表)、set(集合)、zset(sorted set --有序集合)和hash（哈希类型）。
+                redis的出现，很大程度补偿了memcached这类key/value存储的不足，在部分场合可以对关系数据库起到很好的补充作用。
+                <p>Redis 集群是一个可以在多个 Redis 节点之间进行数据共享的设施。把多个redis实例整合在一起，形成一个集群，
+                    也就是将数据分散到集群的多台机器上。当数据量过大一个主机放不下的时候，就需要对数据进行分区，
+                    将key按照一定的规则进行计算，并将key对应的value分配到指定的Redis实例上</p>
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>一致哈希性</p><br>
+                <img src="https://note-1256974902.cos.ap-chengdu.myqcloud.com/note/20181223152259.png">
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <img src="https://note-1256974902.cos.ap-chengdu.myqcloud.com/note/20181223152519.png">
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <img src="https://note-1256974902.cos.ap-chengdu.myqcloud.com/note/20181223152613.png">
+			</section>
+           
+           
+
+               				
+		</section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>3、常见问题</h3>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(1)、redis集群解决方案----------------客户端静态分片</P>
+                    需要 smart-client 支持，在业务程序端根据预先设置的路由规则进行分片，从而实现对多个redis实例的分布式访问
+                    <img src="https://note-1256974902.cos.ap-chengdu.myqcloud.com/note/20181223113556.png"><br>
+                    优点： 相比于使用代理，减少了一层网络传输的消耗，效率较高。
+                    缺点： 当redis实例需要扩容或切换的情况下，较为麻烦。并且需要维护各个语言的客户端版本
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(2)、redis集群解决方案--------------Proxy分片</P>
+                    <img src="https://note-1256974902.cos.ap-chengdu.myqcloud.com/note/20181223115827.png">
+                    通过统一的代理程序访问多个redis实例，比如 豌豆荚开源的 codis。
+                    优点： 业务程序端只需要使用普通的api去访问代理程序即可,也避免了客户端需要维持和每个redis实例的长连接导致连接数过多。
+                    缺点： 增加了一层中间件，增加了网络和数据处理的消耗，性能下降
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(3)、redis集群解决方案--------------------Redis Cluster</P>
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>数据分布：预分片</P>
+                    <img src="https://note-1256974902.cos.ap-chengdu.myqcloud.com/note/20181223114508.png"/><br>
+                    预先分配好 16384 个slot
+                    slot 和 server 的映射关系存储每一个 server 的路由表中
+                    根据 CRC16(key) mod 16384 的值，决定将一个key放到哪一个slot中
+                    数据迁移时就是调整 slot 的分布   
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>去中心化：</P>
+                <img src="https://note-1256974902.cos.ap-chengdu.myqcloud.com/note/20181223114758.png"/><br>
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                每个Redis Node可以有一个或者多个Slave，当Master挂掉时，选举一个Slave形成新的Master。
+                Master Slave 之间异步复制（可能会丢数据）。
+                采用 gossip 协议探测其他节点存活状态，超过 cluster-node-timeout，标记为 PFAIL，PING中附加此数据。
+                当 Node A发现半数以上master将失效节点标记为PFAIL，将其标记为FAIL，broadcast FAIL。
+                各 slave 等待一个随机时间后 发起选举，向其他 master broadcast，半数以上同意则赢得选举否则发起下一次选举   
+			</section>
+		</section>
+
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <h3>4.编码实战</h3>
+                 redis集群搭建
+			</section>			
+		</section>
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<h3>5.扩展思考</h3>				
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(1):为什么哈希槽的数量固定为16384？</p>
+                由于使用CRC16算法，该算法可以产生2^16-1=65535个值
+                <p>1、redis的一个节点的心跳信息中需要携带该节点的所有配置信息，而16K大小的槽数量所需要的内存为2K，如果使用65K个槽，这部分空间将达到8K，心跳信息就会很庞大。</p>
+                <p>2. Redis集群中主节点的数量基本不可能超过1000个</p>
+                <p>3. Redis主节点的配置信息中，它所负责的哈希槽是通过一张bitmap的形式来保存的，N表示节点数，如果节点数很少,而哈希槽数量很多的话
+                    但是如果bitmap的填充率slots/N很高的话，bitmap的压缩率就很低</p>
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                    <p>(2):redis怎么选择适合的持久化策略</p>
+                    
+                    <p>1、LRU缓存（临时缓存）</p>
+                    <p>2.持久化缓存</p>
+                    <p><RDB - 快照:预设频率write on copy来持久化数据</p>
+                        高内存，空间小，速度快
+                    <p><AOF - 持久化:将每个收到的写指令通过write函数追加到文本 appendonly.aof 中，通过将新记录追加到文本尾部来持久化数据</p>
+                        低内存，空间大，速度慢
+            
+		</section>
+
+		<section>
+            <h3>6.参考文献</h3>
+            <p>http://redisdoc.com/topic/cluster-tutorial.html</p>
+            <p>https://blog.csdn.net/cywosp/article/details/23397179</p>
+            <p>https://juejin.im/post/5a707f4d5188255a8817f5b1</p>
+            <p>https://blog.csdn.net/u010648555/article/details/79427608</p>
+			
+		</section>
+        <section>
+            <h3>7.更多讨论</h3>	
+        </section>
+    
+        <section>
+            <h4>分享到此结束</h4>
+            <p>欢迎大家讨论</p>            
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">				
+			</section>
+		</section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
