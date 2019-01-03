@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+         <section class="present" style="top: 221.5px; display: block;">
+            <h2>什么是spring boot</h2>
+            <p>分享人：汪天驰</p>	
+        </section>
+        <section hidden="" aria-hidden="true" class="future" style="top: 69px; display: block;">
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>            
+            <p>4.编码实战</p>
+            <p>5.扩展思考</p>
+            <p>6.参考文献</p>
+            <p>7.更多讨论</p>
+        </section>	       
+		<section hidden="" aria-hidden="true" class="future" style="top: 267px; display: block;">
+			<h3>1.背景介绍</h3>
+			
+		</section>	     
+
+		<section class="future" style="top: 119px; display: none;" hidden="" aria-hidden="true">
+		    
+            <p style="text-align:left; ">
+			 首先声明，Spring Boot不是一门新技术，所以不用紧张。从本质上来说，Spring Boot就是Spring,它做了那些没有它你也会去做的Spring Bean配置。</br>
+			 它使用“习惯优于配置”（项目中存在大量的配置，此外还内置了一个习惯性的配置，让你无需手动进行配置）的理念让你的项目快速运行起来。</br>
+			 使用Spring Boot很容易创建一个独立运行（运行jar,内嵌Servlet容器）、准生产级别的基于Spring框架的项目，使用Spring Boot你可以不用或者只需要很少的Spring配置。</br>
+			 
+			
+			</p>
+
+		</section>
+		<section class="future" style="top: 119px; display: none;" hidden="" aria-hidden="true">
+		    
+            <p style="text-align:left; ">
+			Spring将很多魔法带入了Spring应用程序的开发之中，其中最重要的是以下四个核心。</br>
+自动配置：针对很多Spring应用程序常见的应用功能，Spring Boot能自动提供相关配置</br>
+起步依赖：告诉Spring Boot需要什么功能，它就能引入需要的库。</br>
+命令行界面：这是Spring Boot的可选特性，借此你只需写代码就能完成完整的应用程序，无需传统项目构建。</br>
+Actuator：让你能够深入运行中的Spring Boot应用程序，一套究竟。</br>
+			
+			</p>
+
+		</section>
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+			<h3>2.知识剖析</h3>
+			<p></p>
+		</section>
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">			
+			<p style="text-align:left; ">
+            下图是Spring Boot的一些知识点。
+			<img src="https://raw.githubusercontent.com/rootsongjc/kubernetes-handbook/master/images/spring-boot-note-spots.png">
+			</p>
+		</section>
+		
+		<section class="future" style="top: 119px; display: none;" hidden="" aria-hidden="true">
+		    <h3>Spring Boot 特性</h3>
+            <p style="text-align:left; ">
+           使用 Spring 项目引导页面可以在几秒构建一个项目</br>
+		   方便对外输出各种形式的服务，如 REST API、WebSocket、Web、Streaming、Tasks</br>
+		   非常简洁的安全策略集成</br>
+		   支持关系数据库和非关系数据库</br>
+		   支持运行期内嵌容器，如 Tomcat、Jetty</br>
+		   强大的开发包，支持热启动</br>
+		   自动管理依赖</br>
+		   自带应用监控</br>
+		   支持各种 IED，如 IntelliJ IDEA 、NetBeans</br>
+		   缺点是集成度较高，使用过程中不太容易了解底层。</br>
+
+
+			</p>
+		</section>
+
+		
+		
+		
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+			<h3>3.常见问题</h3>
+		</section>
+		
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">			
+			<h3> SpringBoot和Spring的关系？ </h3>
+		</section>
+		
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">			
+			<p style="text-align:left; ">
+			spring就好比一个大型的电子元件生产公司，它生产的元件性能都很优秀，但是坊间使用它的元件的作坊，拿到手之后 还得搞一些电焊，衔接，可能要花个10天半个月最后做成一个家电或者机器人.</br>
+			有一天这个公司就宣布，我们现在提供 了一些功能模块，比如摄像头传感器，扩音器传感器，压力传感器，它们都是统一的usb接口的，只需要插线连接就能使用了。</br>
+
+Spring Boot没有引入任何形式的代码生成，而是利用了Spring 4的条件化配置特性， 以及Maven和Gradle提供的传递依赖解析，以此实现Spring应用程序上下文里的自动配置。 </br>
+简而言之，从本质上来说，Spring Boot就是Spring，它做了那些没有它你自己也会去做的Spring Bean配置。有了Spring Boot，你不用再写这些样板配置了，可以专注于应用程序的逻辑， 这些才是应用程序独一无二的东西。</br>
+			</p>
+		</section>
+		
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">			
+			<p style="text-align:left; ">
+			如何创建springboot项目</br>
+			</p>
+		</section>
+	
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+			<h3>4.编码实战</h3>   			
+		</section>
+		
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+			<h3>5.扩展思考</h3>
+		</section>
+		
+	
+
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+		<h3>SPRINGBOOT运行原理：<h3>
+		
+
+		</section>
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+		<p style="text-align:left; ">
+			 入口注解@SpringBootApplication注解是一个组合注解，它包含@configuration、@EnableAutoConfiguration和@componentScan三个注解组成。 </br>
+			 它的核心是@EnableAutoConfiguration注解。 </br>
+			 这个注解中有一个@Import注解，它导入配置功能EnableAutoConfigurationImportSelector，这个类有个方法扫描具有/META-INF/spring.factories文件的jar。 </br>
+			 spring.factories中声明了哪些自动配置。 </br>
+			 然后我们在application.properties文件中进行相应的配置，比如数据库连接，使springboot中的自动配置中的参数是我们需要的配置。 </br>
+
+		</p>
+</section>
+
+
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+			<h3>6.参考文献</h3>
+			<p>https://blog.csdn.net/android_zhengyongbo/article/details/67634565</p>
+		</section>        
+        <section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+            <h3>7.更多讨论</h3>
+        </section>
+        
+        <section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+            <h4>分享到此结束</h4>
+            <p>谢谢大家！</p>            
+        </section>
+      
+      
+
+    </div>
+</div>
+
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            {src: '../plugin/markdown/marked.js'},
+            {src: '../plugin/markdown/markdown.js'},
+            {src: '../plugin/notes/notes.js', async: true},
+            {
+                src: '../plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            }
+        ]
+    });
+</script>
+</body>
+</html>
