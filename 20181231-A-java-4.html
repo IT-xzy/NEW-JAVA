@@ -1,0 +1,289 @@
+<!doctype html>
+
+<head xmlns="http://www.w3.org/1999/html">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题,可以在/css/reveal/theme/中选择其他主题,目前暂时只能使用该模板 -->
+     <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+     <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+    <style>
+        .text-l {
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>什么叫数组，什么叫链表，什么是二维数组；使用场景，数组和list之间的转化？</h2>
+            <p>分享人：郭靖</p>
+        </section>
+        <section>
+            <p>目录</p>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+
+        <section>
+            <section>
+                <h3>1.背景介绍</h3>
+            </section>
+            <section style="text-align: left;">
+                <br style="text-align: left">
+                <h4></h4>
+          编程主要就是数据结构和算法，只有当我们在熟悉数据结构的基础上才能选择合适的数据结构来存储数据，只有适当的数据结构能够极大地提高程序的性能。而数组和链表是java语言中两种重要的数据结构，也是java其余众多数据结构的基础。熟练地掌握关于数组和链表的知识是很有必要的。   
+                </p>
+            </section> 
+
+        </section>
+
+
+
+
+
+
+
+
+
+        <section>
+            <section>
+                <h3>2.知识剖析</h3>
+            </section>
+
+            <section style="text-align: left;">
+                <h3><strong></strong></h3>
+                <p c><br>
+				  2.1、数组<br>
+				  数组是一种可以存储同一数据类型的数据的容器，是一种用于存储数据的方式。是数据结构中访问速度最快的，容器中装的东西就是数组的元素，数组可以装任意类型的数据，但是定义好的数组只能装一种元素，就是说数组一旦定义了，其存储的数据类型就确定了。             	
+                    </p>
+            </section>
+
+
+
+            <section style="text-align: left;">
+                <h3><strong></strong></h3>
+                <p c><br>				
+                  2.1.1、数组的初始化	<br>
+				  动态初始化：<br>
+				  元素类型[] 数组名=new 元素类型[元素个数或数组长度]<br>
+				  示例：int[] arr=new int[5]；<br>
+				  静态初始化：<br>
+				  元素类型[] 数组名=new 元素类型[]{元素，元素，…………}<br>
+				  示例：int[] arr=new int[]{3,4,7}；<br>
+				  int[] arr={3,4,7}；<br>
+				  
+                    </p>
+            </section>
+
+
+
+
+           <section style="text-align: left;">
+                <h3><strong></strong></h3>
+                <p c><br>
+		    2.2、链表<br>
+           链表（Linked  List）是一种物理存储单元上非连续、非顺序的基础数据结构，是一种线性表。但是并不会按照线性的顺序存储数据，数据元素的逻辑顺序是通过链表中的指针链接次序实现的。链表由一系列节点组成（链表中每一个元素称为节点），节点可以在运行时动态生成。每个节点包含两部分：一个存储数据元素的数据域，一个是存储下一个节点地址的指针域。
+                   </p>
+            </section>
+
+
+
+
+            <section style="text-align: left;">
+                <h3><strong></strong></h3>
+                <p c><br>                    
+                2.3 二维数组:<br>
+				二维数组就是就是以数组作为数组元素的数组，即数组的数组，又称为矩阵。<br>
+				2.3.1 初始化的方式：<br>
+                1.动态初始化<br>
+                int [][] array = new int [7][];<br>
+				代表生成一个二维数组长度是7，二维数组中的数组的长度是未知的。 <br>
+                2.静态初始化：<br>
+                int [][] array = new int[][]{{1,3,5},{3,5,7,9,1},{1，3}}<br>
+
+				</p>
+             </section>   
+			 
+        </section>
+
+
+
+        <section>
+            <section>
+                <h3>3.常见问题</h3>
+            </section>
+
+            <section style="text-align: left;">
+                <h3><strong></strong></h3>
+                <p c><br>
+                    1、数组和链表之间的区别？<br> 
+					2、集合中LinkedList和链表的关系？<br> 
+                   </p>
+            </section>         
+		        
+        </section>
+
+
+
+
+        <section>
+            <section>
+                <h3>4.解决方案</h3>
+            </section>
+          <section style="text-align: left;">
+                <h3><strong>数组和链表的区别？</strong></h3>
+                <p><br>
+                1、	数组静态分配内存，链表动态分配内存<br>
+                2、	数组在内存中连续，链表在内存中不连续，而且不是顺序的<br>
+                3、	数组元素在栈区，链表元素在堆区<br>
+                4、	数组利用下标定位，时间复杂度为O(1),链表利用定位引用元素，时间复杂度为O（n）；<br>
+                5、	数组插入和删除元素的时间复杂度为O（n），链表 的插入的时间复杂度为O（1）；<br>
+                             
+					</p>
+           </section> 
+
+
+
+
+
+
+
+            <section style="text-align: left;">
+                <h3><strong>集合中LinkedList和链表的关系？</strong></h3>
+                <p><br>
+                集合中间的LinkedList是链表中的双向链表。双向链表，优点，增加删除，用时间很短，但是因为没有索引，对索引的操作，比较麻烦，只能循环遍历，但是每次循环的时候，都会先判断一下，这个索引位于链表的前部分还是后部分，每次都会遍历链表的一半 ，而不是全部遍历。 
+                双向链表，都有一个previous和next， 链表最开始的部分都有一个first和last 指向第一个元素，和最后一个元素。增加和删除的时候，只需要更改一个previous和next，就可以实现增加和删除，所以说，LinkedList对于数据的删除和增加相当的方便。                          
+					</p>
+           </section>   
+
+
+
+
+ 
+
+
+    </section>
+
+		
+
+		<section>
+            <section>
+                <h3>5.编码实战</h3>
+            </section>            
+        </section>
+
+
+
+        <section>
+            <section>
+                <h3>6.扩展思考</h3>
+            </section>
+
+            <section class="text-l">
+			  <h3><strong></strong></h3>
+                <h4></h4>         
+           
+                <p>                  
+                  1、数组、链表和线性表的关系？<br>
+				  线性表是最常用、最基本。最简单一种数据结构。数据结构是计算机管理和存储数据的方式，是指相互之间存在一种或多种特定的数据元素的集合，选择合适的数据结构能够带来更高的存储和运行效率。
+				  线性表在逻辑上的关系是一对一的关系，链表属于线性表中的链式结构，就是说链表的节点的逻辑次序和物理次序(在内存中的存储顺序)不一定相同；数组属于线性表中的顺序结构，就是说数组在内存中的存储地址是连续的。线性表是一种逻辑结构，可以存储在数组中，也可以存储在链表中，数组和链表是线性表两种物理结构的不同体现。			  
+				  
+				  <br>	                
+                   
+                </p>
+               
+            </section>      
+ 
+      
+        </section>
+
+
+
+        <section>
+            <section>
+                <h3>7.参考文献</h3>
+            </section>
+            <section>
+                <p style="text-align: left">参考：<br>
+                    <br>
+                    互联网
+                </p>
+
+
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>8.更多讨论</h3>
+            </section>
+        </section>
+        <section>
+            <!--<h4>鸣谢</h4>-->
+            <p>感谢大家观看</p>
+            <p>
+                <small>BY : 郭靖</small>
+            </p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js "></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js "></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc "或"o "键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true},
+            {
+                src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+
+</html>
