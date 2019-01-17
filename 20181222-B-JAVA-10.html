@@ -1,0 +1,217 @@
+﻿
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>什么是spring boot？</h2>
+			<p></p>
+            <h3>java小课堂</h3>
+            <p>分享人：许东杰</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>	
+		
+        <section>
+			<section>
+                <p>1.背景介绍</p>
+				<br>
+				<p style="text-align:left">Spring Boot其设计目的是用来简化 Spring 应用的初始搭建开发以及部署过程。</p>
+				<p style="text-align:left">springboot本质是对spring框架的再次封装，将原来的复杂的XML配置文件以及复杂的Bean依赖关系用JavaConfig配置类来进行替代</p>
+				<p style="text-align:left">嵌入了Tomcat、jetty，可以直接启动web容器，集成了很多第三方技术</p>
+            </section>
+			
+		</section>
+
+			
+
+
+        <section>
+			<section>
+				<h3>2.知识剖析</h3>
+			</section>
+			<section>
+                <p></p>
+                <p style="text-align:center">springboot中的装载bean或者加载配置的几种方式</p>
+                <p style="text-align:center">1、用spring那个原来的xml配置文件</p>
+                <p style="text-align:center">2、注解装载，主方法进行扫描</p>
+				<p style="text-align:center">3、用配置类来加载配置，同时可以进行bean装载</p>
+
+            </section>
+		<section>
+                <p></p>
+                <p style="text-align:center">springboot有关配置文件的注解：</p>
+                <p style="text-align:left">@validated校验注解，放在类的上面，例如在类中的属性上加上@email，意思就是验证是否符合邮箱格式</p>
+                <p style="text-align:left">@configurationProperties直接将主配置文件中的配置导入到类中</p>
+				<p style="text-align:left">@value("")注入单个配置信息到属性上,单独使用</p>
+				<p style="text-align:left">@propertysource(classpath:{})指定自己写的外部配置文件（区别于主配置文件），将数据注入进来</p>
+				<p style="text-align:left">@importresource导入老版本的spring配置文件，让配置文件里面的内容生效,放到到主类上</p>
+            </section>
+
+
+			<section>
+                <p></p>
+                <p style="text-align:center">springboot的依赖管理：</p>
+                <p style="text-align:left">spring-boot-starter-parent是springboot的核心依赖，是所有依赖的父依赖，里面指定了很多依赖的版本，所以添加子依赖不需要写版本号</p>
+                <p style="text-align:left">所有要添加的子依赖都以spring-boot-starter开头，子依赖中还有各自的子依赖</p>
+				<p style="text-align:left">springboot 通过引用spring-boot-starter-web依赖，整合SpingMVC框架。只需要引用一个jar包，就可以通过Maven继承的方式引用到Spring-aop,Spring-beans,Spring-core,Spring-web等相关依赖</p>
+            </section>
+
+		
+		</section>
+		
+
+ 
+        <section>
+            <h3>3.常见问题</h3>
+			<br>
+            <p style="text-align:center">springboot的打war包方式</p>
+        </section>
+		
+        <section>
+
+		<section>
+				<h3>4.解决方案</h3>
+			</section>	
+	<section>
+			<p style="text-align:left">1、新加@ServletComponentScan注解，并且继承SpringBootServletInitializer。
+			2、打包方式改为war,spring-boot-starter-tomcat修改为 provided方式，以避免和独立 tomcat 容器的冲突. 
+表示provided 只在编译和测试的时候使用，打包的时候就没它了</p>
+
+</section>
+
+		<section>
+ <img src="file:///C:\Users\Maibenben\Desktop\小课堂文件\springboot使用\boot1.jpg"/>
+			</section>
+					<section>
+ <img src="file:///C:\Users\Maibenben\Desktop\小课堂文件\springboot使用\springboot2.jpg"/>
+			</section>
+
+        </section>
+
+		<section>
+			<section>
+				<h3>5.编码实战</h3>
+			</section>
+			<section>
+				<p style="text-align:left">springboot项目的创建整合打包部署运行？</p>
+
+			</section>
+		</section>
+	
+		
+
+		
+        <section>
+			<section>
+				<h3>6.扩展思考</h3>
+			</section>		
+			<section>
+				<p>springboot的统一日志管理实现方式</p>
+				<p style="text-align:left">1、原因:因为spring默认日志接口是common-logging，很多整合框架用的日志都不一样，所以要进行统一管理</p>
+				<p style="text-align:left">2、解决：springboot默认使用slf4j日志接口，增加了中间层，访问其他日志api最终都归到slf4j接口里面了</p>
+				
+			</section>
+
+			<section>
+				<p>springboot的自动配置原理</p>
+				<p style="text-align:left">1、@SpringBootApplication，主方法注解是一个符合注解，里面包含了自动配置的注解@EnableAutoConfiguration，SpringBoot 自动配置主要通过 @EnableAutoConfiguration, @Conditional, @EnableConfigurationProperties 或者 @ConfigurationProperties 等几个注解来进行自动配置完成的。
+@EnableAutoConfiguration 开启自动配置，主要作用就是调用 Spring-Core 包里的 loadFactoryNames()，将 autoconfig 包里的已经写好的自动配置加载进来。
+@Conditional 条件注解，通过判断类路径下有没有相应配置的 jar 包来确定是否加载和自动配置这个类。
+@EnableConfigurationProperties 的作用就是，给自动配置提供具体的配置参数，只需要写在 application.properties 中，就可以通过映射写入配置类的 POJO 属性中。</p>
+
+			</section>
+
+        </section>
+
+        
+        
+        <section>
+            <h3>7.参考文献</h3>
+			<br>
+			<p style="text-align:center">百度、谷歌</p>
+        </section>
+
+
+        <section>
+            <h4 align="center">鸣谢</h4>
+            <p align="center">感谢观看,如有出错,恳请指正</p>
+            <p align="center"><small>BY :许东杰</small></p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
