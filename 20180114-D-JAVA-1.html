@@ -1,0 +1,240 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+         <section class="present" style="top: 221.5px; display: block;">
+            <h2>
+Map，List，Array，Set之间的关系是什么，</h2>
+            <p>分享人：汪天驰</p>	
+        </section>
+        <section hidden="" aria-hidden="true" class="future" style="top: 69px; display: block;">
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>            
+            <p>4.编码实战</p>
+            <p>5.扩展思考</p>
+            <p>6.参考文献</p>
+            <p>7.更多讨论</p>
+        </section>	       
+		<section hidden="" aria-hidden="true" class="future" style="top: 267px; display: block;">
+			<h3>1.背景介绍</h3>
+			
+		</section>	     
+		<section class="future" style="top: 119px; display: none;" hidden="" aria-hidden="true">
+		    
+            <p style="text-align:left; ">
+		
+		在编程中，常常需要集中存放多个数据。从传统意义上讲，数组是我们的一个很好的选择，前提是我们事先已经明确知道我们将要保存的对象的数量。一旦在数组初始化时指定了这个数组长度，这个数组长度就是不可变的，如果我们需要保存一个可以动态增长的数据(在编译时无法确定具体的数量)，java的集合类就是一个很好的设计方案了。
+
+集合类主要负责保存、盛装其他数据，因此集合类也被称为容器类。所以的集合类都位于java.util包下，后来为了处理多线程环境下的并发安全问题，java5还在java.util.concurrent包下提供了一些多线程支持的集合类。
+
+在学习Java中的集合类的API、编程原理的时候，我们一定要明白，"集合"是一个很古老的数学概念，它远远早于Java的出现。从数学概念的角度来理解集合能帮助我们更好的理解编程中什么时候该使用什么类型的集合类。
+
+Java容器类类库的用途是"保存对象"，并将其划分为两个不同的概念：</br>
+</p>
+
+		</section>
+<section class="future" style="top: 119px; display: none;" hidden="" aria-hidden="true">
+		    
+            <p style="text-align:left; ">
+		1) Collection</br>
+一组"对立"的元素，通常这些元素都服从某种规则</br>
+ 　　1.1) List必须保持元素特定的顺序</br>
+ 　　1.2) Set不能有重复元素</br>
+ 　　1.3) Queue保持一个队列(先进先出)的顺序</br>
+2) Map</br>
+一组成对的"键值对"对象</br>
+Collection和Map的区别在于容器中每个位置保存的元素个数:</br>
+
+1) Collection 每个位置只能保存一个元素(对象)</br>
+2) Map保存的是"键值对"，就像一个小型数据库。我们可以通过"键"找到该键对应的"值"</br>
+</p>
+
+		</section>
+		
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+			<h3>2.知识剖析</h3>
+			<p></p>
+		</section>
+		
+		<section class="future" style="top: 119px; display: none;" hidden="" aria-hidden="true">
+		    
+            <p style="text-align:left; ">
+			 List：</br>
+			 1.可以允许重复的对象。</br>
+			 2.可以插入多个null元素。</br>
+             3.是一个有序容器，保持了每个元素的插入顺序，输出的顺序就是插入的顺序。</br>
+             4.常用的实现类有 ArrayList、LinkedList 和 Vector。ArrayList 最为流行，它提供了使用索引的随意访问，而 LinkedList 则对于经常需要从 List 中添加或删除元素的场合更为合适。</br>
+			</p>
+
+		</section>
+		<section class="future" style="top: 119px; display: none;" hidden="" aria-hidden="true">
+		    
+            <p style="text-align:left; ">
+			 Set：</br>
+			 1.不允许重复对象</br>
+			 2. 无序容器，你无法保证每个元素的存储顺序，TreeSet通过 Comparator  或者 Comparable 维护了一个排序顺序。</br>
+			 3. 只允许一个 null 元素</br>
+			 4.Set 接口最流行的几个实现类是 HashSet、LinkedHashSet 以及 TreeSet。最流行的是基于 HashMap 实现的 HashSet；TreeSet 还实现了 SortedSet 接口，因此 TreeSet 是一个根据其 compare() 和 compareTo() 的定义进行排序的有序容器。</br>
+			
+			</p>
+
+		</section>
+		<section class="future" style="top: 119px; display: none;" hidden="" aria-hidden="true">
+		    
+            <p style="text-align:left; ">
+		
+		Map:</br>
+		1.Map不是collection的子接口或者实现类。Map是一个接口。</br>
+2.Map 的 每个 Entry 都持有两个对象，也就是一个键一个值，Map 可能会持有相同的值对象但键对象必须是唯一的。</br>
+3. TreeMap 也通过 Comparator  或者 Comparable 维护了一个排序顺序。</br>
+4. Map 里你可以拥有随意个 null 值但最多只能有一个 null 键。</br>
+5.Map 接口最流行的几个实现类是 HashMap、LinkedHashMap、Hashtable 和 TreeMap。（HashMap、TreeMap最常用）</br>
+</p>
+
+		</section>
+	
+		
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+			<h3>3.常见问题</h3>
+		</section>
+		
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">			
+			<h3> 什么场景下使用list，set，map呢？ </h3>
+		如果你经常会使用索引来对容器中的元素进行访问，那么 List 是你的正确的选择。如果你已经知道索引了的话，那么 List 的实现类比如 ArrayList 可以提供更快速的访问,如果经常添加删除元素的，那么肯定要选择LinkedList。</br>
+		
+		</section>
+		
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">			
+			<p style="text-align:left; ">
+			
+如果你想容器中的元素能够按照它们插入的次序进行有序存储，那么还是 List，因为 List 是一个有序容器，它按照插入顺序进行存储。</br>
+如果你想保证插入元素的唯一性，也就是你不想有重复值的出现，那么可以选择一个 Set 的实现类，比如 HashSet、LinkedHashSet 或者 TreeSet。所有 Set 的实现类都遵循了统一约束比如唯一性，而且还提供了额外的特性比如 TreeSet 还是一个 SortedSet，所有存储于 TreeSet 中的元素可以使用 Java 里的 Comparator 或者 Comparable 进行排序。LinkedHashSet 也按照元素的插入顺序对它们进行存储。</br>
+如果你以键和值的形式进行数据存储那么 Map 是你正确的选择。你可以根据你的后续需要从 Hashtable、HashMap、TreeMap 中进行选择。</br>
+			</p>
+		</section>
+		
+	
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+			<h3>4.编码实战</h3>   			
+		</section>
+		
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+			<h3>5.扩展思考</h3>
+		</section>
+		
+	
+
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+		<h3>HashSet<h3>
+		
+
+		</section>
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+		<p style="text-align:left; ">
+			 可以看到，如果两个对象通过equals()方法比较返回true，但这两个对象的hashCode()方法返回不同的hashCode值时，这将导致HashSet会把这两个对象保存在Hash表的不同位置，从而使对象可以添加成功，这就与Set集合的规则有些出入了。</br>
+			 所以，我们要明确的是: equals()决定是否可以加入HashSet、而hashCode()决定存放的位置，它们两者必须同时满足才能允许一个新元素加入HashSet
+但是要注意的是: 如果两个对象的hashCode相同，但是它们的equlas返回值不同，HashSet会在这个位置用链式结构来保存多个对象。而HashSet访问集合元素时也是根据元素的HashCode值来快速定位的，这种链式结构会导致性能下降。</br>
+
+所以如果需要把某个类的对象保存到HashSet集合中，我们在重写这个类的equlas()方法和hashCode()方法时，应该尽量保证两个对象通过equals()方法比较返回true时，它们的hashCode()方法返回值也相等</br>
+		</p>
+</section>
+<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+		<h3>ArrayList<h3>
+		
+
+		</section>
+<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+		<p style="text-align:left; ">
+			 如果一开始就知道ArrayList集合需要保存多少元素，则可以在创建它们时就指定initialCapacity大小，这样可以减少重新分配的次数，提供性能，ArrayList还提供了如下方法来重新分配Object[]数组</p>
+
+1) ensureCapacity(int minCapacity): 将ArrayList集合的Object[]数组长度增加minCapacity</p>
+2) trimToSize(): 调整ArrayList集合的Object[]数组长度为当前元素的个数。程序可以通过此方法来减少ArrayList集合对象占用的内存空间</p>
+</section>
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+			<h3>6.参考文献</h3>
+			<p>http://www.cnblogs.com/LittleHann/p/3690187.html
+
+</p>
+		</section>        
+        <section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+            <h3>7.更多讨论</h3>
+        </section>
+        
+        <section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+            <h4>分享到此结束</h4>
+            <p>谢谢大家！</p>            
+        </section>
+      
+      
+
+    </div>
+</div>
+
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            {src: '../plugin/markdown/marked.js'},
+            {src: '../plugin/markdown/markdown.js'},
+            {src: '../plugin/notes/notes.js', async: true},
+            {
+                src: '../plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            }
+        ]
+    });
+</script>
+</body>
+</html>

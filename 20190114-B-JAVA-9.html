@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css"> 
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+	<style>
+		.left{ text-align: left; }
+	</style>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>SOA,SCA以及微服务</h2>
+            <p>分享人：张泉良</p>	
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>            
+            <p>4.编码实战</p>
+            <p>5.扩展思考</p>
+            <p>6.参考文献</p>
+            <p>7.更多讨论</p>
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+            <section style="top: 267px; display: block;" class="" aria-hidden="true">
+                <h3>1.背景介绍</h3>
+                <p>从RMI开始，我们逐渐接触到了一个新的概念，即服务架构。通过对服务架构的了解，我们接触了几个概念：SCA、SOA、微服务，那么什么是SCA，什么是SOA，什么是微服务呢？</p> 
+                <p> 为了解决ALL in One ,提出了SOA,而SCA是给SOA定义了一个规范，微服务是为了有效的拆分应用，实现敏捷开发和快速部署，使用了微服务，运维上产生了自动部署的需求（DevOps，Docker容器）</p>
+            </section>	
+
+        </section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>2.知识剖析</h3>
+			</section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(1) 什么是SCA</p>
+                <P>服务组件体系结构 (SCA) 是一个规范，它描述用于使用 SOA 构建应用程序和系统的模型。它可简化使用 SOA 进行的应用程序开发和实现工作</P>
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(2) 什么是SOA</p>
+                <p>面向服务的架构（SOA）是一个组件模型，它将应用程序的不同功能单元（称为服务）通过这些服务之间定义良好的接口和契约联系起来。
+                    接口是采用中立的方式进行定义的，它应该独立于实现服务的硬件平台、操作系统和编程语言。
+                    这使得构建在各种各样的系统中的服务可以以一种统一和通用的方式进行交互。</p>
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                    <p>SCA Assembly Model</p>
+                    <p>SCA 的基本工件是组件，它是 SCA 的基本构成单元。组件包含一个经过配置的实现实例</p>
+                    <img src="!https://img-note.oss-cn-hangzhou.aliyuncs.com/img/20190114152551.png" />
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                    
+                    <img src="https://img-note.oss-cn-hangzhou.aliyuncs.com/img/20190114140822.png" />
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p> SCA服务组件的特点</p>
+                <p> (1) 服务组件一般是粗粒度。</p>
+                <p> (2) 服务组件的接口是标准的接口。</p>
+                <p> (3) 服务组件实现与语言无关，即不绑定语言。</p>
+                <p> (4) 服务组件由组件容器管理，提供服务，不由程序代码控制。</p>
+            </section>
+
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(3) 什么是微服务</p>
+                <p>微服务是一种架构风格，一个大型复杂软件应用由一个或多个微服务组成。
+                    系统中的各个微服务可被独立部署，各个微服务之间是松耦合的。
+                    每个微服务仅关注于完成一件任务并很好地完成该任务。在所有情况下，每个任务代表着一个小的业务能力。</p>
+                <p>主流微服务框架有： Dubbo和SpringCloud</p>
+            </section>
+
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(4) 什么是注册中心</p>
+                <p>注册中心可以说是微服务架构中的”通讯录“，它记录了服务和服务地址的映射关系。在分布式架构中，服务会注册到这里，当服务需要调用其它服务时，就这里找到服务的地址，进行调用。</p>
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <img src="https://img-note.oss-cn-hangzhou.aliyuncs.com/img/20190114141923.png" />
+                <p>比如说，我们手机中的通讯录的两个使用场景：</p>
+                <P>当我想给张三打电话时，那我需要在通讯录中按照名字找到张三，然后就可以找到他的手机号拨打电话。
+                李四办了手机号，那么他把手机号告诉我，我把李四的号码存进通讯录，后续，我就可以从通讯录找到他。</p>
+            </section>
+
+		</section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>3、常见问题</h3>
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(1)为什么需要注册中心</p>
+                <img src="https://img-note.oss-cn-hangzhou.aliyuncs.com/img/20190114142320.png" >
+            </section>
+
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(2) Dubbo中的注册中心：自带的Simple、Redis和Zookeeper</p>
+                <p>Dubbo的组件：</p>
+                <img src="https://img-note.oss-cn-hangzhou.aliyuncs.com/img/20190114151904.png" />
+              
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(3) Zookeeper的负载过程</p>
+                <img src="https://img-note.oss-cn-hangzhou.aliyuncs.com/img/20190114142815.png" >
+            </section>
+        </section>
+        
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <h3>4.编码实战</h3>   
+            </section>
+		</section>
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<h3>5.扩展思考</h3>				
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(1):CAP</p>
+                <p>CAP原则:一个分布式系统中，Consistency(一致性)、Availability(可用性)、Partition Tolerance(分区容错性)，不能同时成立。</p>
+                <p>一致性：它要求在同一时刻点，分布式系统中的所有数据备份都处于同一状态。</p>
+                <p>可用性：在系统集群的一部分节点宕机后，系统依然能够响应用户的请求。</p>
+                <p>分区容错性：在网络区间通信出现失败，系统能够容忍。</p>
+                <p>而一致性的强制数据统一要求，必然会导致在更新数据时部分节点处于被锁定状态，此时不可对外提供服务，影响了服务的可用性</p>
+			</section>
+              
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>(2):SOA和微服务的对比</p>
+                <p>SOA----->>>微服务</p>
+                <p>开发上：SOA中，团队需要了解常见的通信机制，而微服务，服务可以独立于其他服务运行和部署。可以轻易扩展服务或者更新版本</p>
+                <p>SOA鼓励组件的共享，而微服务尝试通过“边界”来最小化共享</p> 
+                <p>如果需要多个协议相互访问，优先SOA</p>
+                <p>微服务中的服务组件通常有一个单一的目的，而在SOA服务中通常包含更多的业务功能，并且通常将它们实现为完整的子系统</p>
+            </section>
+		</section>
+
+		<section>
+            <h3>6.参考文献</h3>
+            <p>https://zhuanlan.zhihu.com/p/31524280</p>
+            <p>https://blog.csdn.net/aglne/article/details/70210774</p>
+            <p>https://juejin.im/post/5bb77923f265da0af3348aa3</p>
+            <p>https://juejin.im/post/5ab09943f265da238f125ee8</p>
+		</section>
+        <section>
+            <h3>7.更多讨论</h3>	
+        </section>
+    
+        <section>
+            <h4>分享到此结束</h4>
+            <p>欢迎大家讨论</p>            
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>葡萄藤PPT</title>
+
+   <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+     <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    
+</head>
+
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>Map，List，Array，Set之间的关系是什么，分别适用于哪些场景，集合大家族还有哪些常见的类？  </h2>
+            <p>分享人：杨若曦</p>
+        </section>
+
+        <section>
+            <p>目录</p>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+
+        <section>
+            <section>
+                <h3>1.背景介绍</h3>
+            </section>
+
+            <section style="text-align: left;">
+                <br style="text-align: left">
+                java结合类中主要派生出两个接口 Collection 和 Map;<br>
+                关系图如下:
+
+
+            </section>
+             <section style="text-align: left;">
+                <br style="text-align: left">
+                SET:程序可以依次吧多个对象放入到set集合中,而set不能记住元素的添加顺序;<br>
+                set集合和collection基本相同,没有提供额外的方法;<br>
+                set集合不允许相同的元素,如果添加相同元素,返回false
+                
+
+            </section>
+             <section style="text-align: left;">
+                <br style="text-align: left">
+                List:代表的是一个元素有序,可以重复的添加到集合中,每个元素对应一个索引;<br>
+                list集合是程序中使用最多的集合之一,相对set集合来说,最大的优点就是可以快速的取到相应的值<br>
+
+                
+
+            </section>
+             <section style="text-align: left;">
+                <br style="text-align: left">
+                Map: 用于保存具有映射关系的数据,Map集合中保存的两组值,一组保存的是Key,一组保存的是Value;<br>
+                Key - value一一对应,key不可以重复,value可以重复;
+
+                
+
+            </section>
+
+        </section>
+
+        <section>
+
+            <section>
+                <h3>2.知识剖析</h3>
+            </section>
+
+            <section style="text-align: left;">
+                set集合的具体实现<br>
+                HashSet:set集合最常用的实现类,主要有以下特点:1.不能保证元素的顺序;2.线程不安全,<br>
+                LinkedHashSet : HashSet的子类,可以解决HashSet没有排序的问题;<br>
+                TreeSet : 自动排序的set集合
+            </section>
+             <section style="text-align: left;">
+                list集合的具体实现<br>
+                ArrayList : 基于数组实现的一个集合,<br>
+                Vector : 古老的一个集合类;<br>
+                LinkedList : 双向链表,可以实现堆和栈的功能;
+
+
+            </section>
+             <section style="text-align: left;">
+                map集合的具体实现:<br>
+                HashMap : 底层实现为数组 + 链表 + 红黑树 ;最常使用的实现类;<br>
+                HashTable : 古老的方法 ;<br>
+                LinkedHashMap : 使用双向链表来维护key中的数据
+
+
+            </section>
+
+            
+        </section>
+
+        <section>
+            <section>
+                <h3>3.常见问题</h3>
+            </section>
+        
+             <section style="text-align: left;">
+               各个集合之间的使用场景
+
+            </section>
+
+        </section>
+
+
+        <section>
+            <section>
+                <h3>4.解决方案</h3>
+            </section>
+
+			<section style="text-align: left;">
+                对于set集合来说 : 一般情况下都使用HashSet ,当频繁对集合进行插入删除操作的时候,可以使用LinkedHashSet;<br>
+                对于list集合来说 : 一般情况都会使用ArrayList, 当频繁进行插入 删除的操作的时候,可以使用LinkedList<br>
+                对于Map集合来说 : 一般情况下会使用HashMap, 
+            </section>
+
+         </section>
+         
+         
+        <section>
+            <section>
+                <h3>5.编码实战</h3>
+                
+            </section>
+        </section>
+
+
+         <section>
+            <section>
+                <h3>6.扩展思考</h3>
+            </section>
+            
+            <section>
+            	
+            </section>
+            
+            <section style="text-align: left;">
+               
+            </section>
+
+        </section>
+           
+
+        <section>
+            <section>
+                <h3>7.参考文献</h3>
+            </section>
+
+            <section>
+                <p style="text-align: left">参考：<br>
+                    相关博客
+                                       
+                    
+                </p>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h3>8.更多讨论</h3>
+            </section>
+        </section>
+
+        <section>
+            <!--<h4>鸣谢</h4>-->
+            <p>感谢大家观看</p>
+            <p>
+                <small>BY : 杨若曦</small>
+            </p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js "></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js "></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc "或"o "键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true},
+            {
+                src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+
+</html>
