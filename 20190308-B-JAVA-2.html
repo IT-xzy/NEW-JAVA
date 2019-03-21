@@ -1,0 +1,264 @@
+-<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>什么叫MVC，Spring里对应的MVC分别是什么，是怎么收到用户请求然后分发给不同的Controller的？</h2>
+            <p>分享人：孙若飞</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.编码实战</p>
+            <p>4.常见问题</p>
+            <p>5.参考文献</p>
+            <p>6.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+
+
+        <section>
+
+            <h3>什么是springMVC </h3>
+            SpringMvc是spring的一个模块 基于MVC的一个框架 无需中间整合层来整合 
+            <p>  Spring 配备构建Web 应用的全功能MVC框架。Spring可以很便捷地和其他MVC框架集成，如Struts，Spring 的MVC框架用控制反转把业务对象和控制逻辑清晰地隔离。
+			它也允许以声明的方式把请求参数和业务对象绑定。</p>
+        </section>
+
+		<section>
+
+            <h3>MVC是什么</h3>
+			<p>MVC是一种设计模式</p>
+            <p>M-Model（模型层）：业务数据的信息表示，通常是业务实体(dao+service+entity)</p> 
+            <p>V-View （视图层）：为用户呈现数据的页面</p>            
+            <p>C-Controller(控制层）：调用业务逻辑产生合适的数据（Model），同时传递数据（Model）给视图层（View）呈现给用户</p>       
+        
+        </section>
+    
+
+        
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+		
+        <section>
+        
+            <h3>SpringMVC工作流程</h3>
+			<img src="https://img-blog.csdn.net/20180728164848531?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpbjEwOTQyMDE1NzI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" >
+            
+        </section>
+ <section>
+        
+            <h3>SpringMVC工作流程</h3>
+			<img src="https://img-blog.csdn.net/20180728214906758?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpbjEwOTQyMDE1NzI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" >
+            
+        </section>
+
+        <section>
+                <h3>SpringMVC工作流程</h3>
+                <p>  第一步：发起请求到前端控制器(DispatcherServlet)；</p>
+ 
+                <p>第二步：前端控制器请求HandlerMapping查找Handler可以根据xml配置、注解进行查找；                
+                    
+                
+            </section>
+
+            <section>
+                    <h3>SpringMVC工作流程</h3>
+                    <p>第三步：处理器映射器HandlerMapping向前端控制器返回Handler;</p>
+
+					<p>第四步：前端控制器调用处理器适配器(HandlerAdapter)去执行Handler;</p>
+
+                    <p>第五步：处理器适配器去执行Handler;</p>
+                </section>
+
+            <section>
+                    <h3>SpringMVC工作流程</h3>
+        
+                    
+
+                     <p> 第六步：Handler执行完成给适配器返回ModelAndView；</p>
+
+					 <p> 第七步：处理器适配器向前端控制器返回ModelAndView。ModelAndView是springmvc框架的一个底层对象，包括 Model和view;</p>
+    
+                     <p> 第八步：前端控制器请求视图解析器去进行视图解析，根据逻辑视图名解析成真正的视图(jsp);</p>
+  
+                     <p>第九步：视图解析器向前端控制器返回View;</p>
+                </section>
+        
+       
+                <section>
+                        <h3>SpringMVC工作流程</h3>
+    
+                        <p>  第十步：前端控制器进行视图渲染。视图渲染将模型数据(在ModelAndView对象中)填充到request域;</p>
+    
+                        <p>  第十一步：前端控制器向用户响应结果;</p>
+        
+                    </section>
+            
+            <section>
+
+                        <h3>SpringMVC组件说明</h3>
+            <p>--1、前端控制器DispatcherServlet（不需要工程师开发）,由框架提供：</p>
+            <p>
+                DispatcherServlet是什么?DispatcherServlet(前端控制器)是springMVC的核心,本质上是一个servlet,他间接的继承了servlet接口.
+
+				DispatcherServlet能干什么?接收请求，响应结果，相当于转发器，中央处理器，降低了组件之间的耦合性.</p>
+
+            <p>--2、处理器映射器HandlerMapping(不需要工程师开发),由框架提供</p>
+            <p>
+                   HandlerMapping是什么?能干什么?HandlerMapping是处理器映射器,能解析请求URL,就是通过url找到Handler.(默认可省略) </p>
+				
+			 </section>
+
+        
+        <section>
+
+                <h3>SpringMVC组件说明</h3>
+       <p>--3、处理器适配器HandlerAdapter（不需要工程师开发）,由框架提供：</p>
+      <p>
+        HandlerAdapter是什么?能干什么? HandlerAdapter是处理适配器,能把处理器包装为适配器，从而支持多种类型的处理器，即适配器设计模式的应用，从而很容易支持很多类型的处理器.(默认可省略)
+      </p>
+      
+      <p>--4、处理器Handler(需要工程师开发) 即Controller类</p>
+     <p>
+       Handler是什么?能干什么?Handeler是后端控制器,其实就是controller,能对用户请求进行处理.
+      </p>
+
+        </section>
+        <section>
+
+                <h3>SpringMVC组件说明</h3>
+
+       <p>--5、视图解析器View resolver(不需要工程师开发),由框架提供：</p>
+      <p>
+        作用：进行视图解析，根据逻辑视图名解析成真正的视图（view）
+        View Resolver首先根据逻辑视图名解析成物理视图名即具体的页面地址，再生成View视图对象，最后对View进行渲染将处理结果通过页面展示给用户。
+      </p>
+      
+      <p>--视图View(需要工程师开发jsp...)</p>
+     <p>
+        View是一个接口，实现类支持不同的View类型（jsp、freemarker、pdf...）
+      </p>
+
+        </section>
+
+        <section>
+		
+            <h3>3.编码实战</h3>
+			
+        </section>
+
+       
+        <section>
+		
+            <h3>4.常见问题</h3>
+           <p>1、异常处理 </p> 
+     <p>  springmvc提供全局异常处理器（一个系统只有一个异常处理器）进行统一异常处理。
+	   系统遇到异常，在程序中手动抛出，dao抛给service、service给controller、controller抛给前端控制器，前端控制器调用全局异常处理器。</p>
+       
+    
+    </section>
+    
+    <section>
+            <h3>4.常见问题</h3>
+            <p>2.Springmvc常用的注解都有什么？ </p>
+
+      <p> @Controller,@RequestMapping，@Resource，@ResponseBody，绑定接收参数的有@RequestParam，@PathVariable等等</p> 
+		
+</section>
+    
+    <section>
+		
+            <h3>4.常见问题</h3>
+            <p>3、Springmvc怎么配置HandlerMappeing？</p>
+            <p> Springmvc中使用@RequestMapping，告诉前端控制器（DispatcherServlet），请求路径与处理器的方法的对应关系。所以spring配置文件不用配置HandlerMappeing了。</p>
+        
+    </section>  
+
+
+        <section>
+		
+            <h3>5.参考资料</h3>
+            <P>https://www.cnblogs.com/doudouxiaoye/p/5693399.html</P>
+
+        </section>
+
+        <section>
+            <h3>6.更多讨论</h3>
+            <p></p>
+        </section>
+
+        <section>
+		
+            <h3>鸣谢</h3>
+            <p>感谢观看,如有出错,恳请指正</p>
+           
+        </section>
+
+    </div>
+    <script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
