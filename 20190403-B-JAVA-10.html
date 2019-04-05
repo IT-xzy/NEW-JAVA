@@ -1,0 +1,219 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+    <style>
+        .left {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>java多线程入门</h2>
+            <p>分享人：张泉良</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.编码实战</p>
+            <p>5.扩展思考</p>
+            <p>6.参考文献</p>
+            <p>7.更多讨论</p>
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden=""
+                 aria-hidden="true">
+            <section style="top: 267px; display: block;" class="" aria-hidden="true">
+                <h3>1.背景介绍</h3>
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+               <p>什么是线程，什么是进程？</p>
+               <p>每个进程都有独立的代码和数据空间（进程上下文），进程间的切换会有较大的开销，一个进程包含1--n个线程。（进程是资源分配的最小单位）</p>
+               <p>同一类线程共享代码和数据空间，每个线程有独立的运行栈和程序计数器(PC)，线程切换开销小。（线程是cpu调度的最小单位）</p>
+               <p>一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。</p>
+            </section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+               <p>多线程是指程序中包含多个执行流，即在一个程序中可以同时运行多个不同的线程来执行不同的任务，也就是说允许单个程序创建多个并行执行的线程来完成各自的任务。</p>
+            </section>		
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden=""
+                 aria-hidden="true">
+            <section style="top: 267px; display: block;" class="" aria-hidden="true">
+                <h3>2.知识剖析</h3>
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>创建线程的常见方式</p>
+                <p>1.继承Thread类</p>
+                <p>2.实现Runable接口</p>
+                <p>3.实现Callable接口，并与Future、线程池结合使用</p>
+            </section>
+			 <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>Thread和Runnable的区别</p>
+                <p>1.Thread：需要继承Thread类，Runnable：需要实现Runnable接口；Thread也是Runnable的实现类；</p>
+                <p>2.实现Runable接口适合多个相同的程序代码的线程去处理同一个资源</p>
+                <p>3.实现Callable接口可以避免java中的单继承的限制，增加程序的健壮性，代码可以被多个线程共享，代码和数据独立</p>
+                <p>4.线程池只能放入实现Runable或callable类线程，不能直接放入继承Thread的类</p>
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>线程安全</p>
+                <p>经常用来描绘一段代码。指在并发的情况之下，该代码经过多线程使用，线程的调度顺序不影响任何结果。
+                    这个时候使用多线程，我们只需要关注系统的内存，cpu是不是够用即可。
+                    反过来，线程不安全就意味着线程的调度顺序会影响最终结果，如不加事务的转账代码：</p>
+            </section>
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden=""
+                 aria-hidden="true">
+            <section style="top: 267px; display: block;" class="" aria-hidden="true">
+                <h3>3.常见问题</h3>
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>线程状态的转换</p>
+				<img src="https://note-1256974902.cos.ap-chengdu.myqcloud.com/note/20190403125502.png"></img>				
+            </section>
+			 <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>1、新建状态（New）：新创建了一个线程对象。</p>
+                <p>2、就绪状态（Runnable）：线程对象创建后，其他线程调用了该对象的start()方法。该状态的线程位于可运行线程池中，变得可运行，等待获取CPU的使用权。</p>		
+                <p>3、运行状态（Running）：就绪状态的线程获取了CPU，执行程序代码。</p>	
+                <p>4、阻塞状态（Blocked）：阻塞状态是线程因为某种原因放弃CPU使用权，暂时停止运行。直到线程进入就绪状态，才有机会转到运行状态。阻塞的情况分三种：</p>	
+            </section>
+			 <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>（一）、等待阻塞：运行的线程执行wait()方法，JVM会把该线程放入等待池中。(wait会释放持有的锁)</p>
+                <p>（二）、同步阻塞：运行的线程在获取对象的同步锁时，若该同步锁被别的线程占用，则JVM会把该线程放入锁池中。</p>
+                <p>（三）、其他阻塞：运行的线程执行sleep()或join()方法，或者发出了I/O请求时，JVM会把该线程置为阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入就绪状态。（注意,sleep是不会释放持有的锁）</p>
+                <p>5、死亡状态（Dead）：线程执行完了或者因异常退出了run()方法，该线程结束生命周期。</p>							
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>线程的调度</p>
+                <p>1、调整线程优先级：Java线程有优先级，优先级高的线程会获得较多的运行机会。Thread类的setPriority()和getPriority()方法分别用来设置和获取线程的优先级。</p>
+                <p>2、线程睡眠：Thread.sleep(long millis)方法，使线程转到阻塞状态。millis参数设定睡眠的时间，以毫秒为单位。当睡眠结束后，就转为就绪（Runnable）状态。sleep()平台移植性好。</p>
+                <p>3、线程等待：Object类中的wait()方法，导致当前的线程等待，直到其他线程调用此对象的 notify() 方法或 notifyAll() 唤醒方法。这个两个唤醒方法也是Object类中的方法，行为等价于调用 wait(0) 一样。</p>
+            </section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>线程的调度</p>
+                <p>4、线程让步：Thread.yield() 方法，暂停当前正在执行的线程对象，把执行机会让给相同或者更高优先级的线程。</p>
+                <p>5、线程加入：join()方法，等待其他线程终止。在当前线程中调用另一个线程的join()方法，则当前线程转入阻塞状态，直到另一个进程运行结束，当前线程再由阻塞转为就绪状态。</p>
+                <p>6、线程唤醒：Object类中的notify()方法，唤醒在此对象监视器上等待的单个线程。如果所有线程都在此对象上等待，则会选择唤醒其中一个线程。</p>
+            </section>
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden=""
+                 aria-hidden="true">
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <h3>4.编码实战</h3>
+            </section>
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden=""
+                 aria-hidden="true">
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <h3>5.扩展思考</h3>
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                    <p>ThreadLocal类</p>	
+                    <P>保存线程的独立变量。对一个线程类（继承自Thread)当使用ThreadLocal维护变量时，ThreadLocal为每个使用该变量的线程提供独立的变量副本，
+                        所以每一个线程都可以独立地改变自己的副本，而不会影响其它线程所对应的副本。常用于用户登录控制，如记录session信息。
+                    </P>		
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                    <p>Lock类和和synchronized的区别</p>		
+                    <p>lock更灵活，可以自由定义多把锁的枷锁解锁顺序（synchronized要按照先加的后解顺序）
+                     提供多种加锁方案，lock 阻塞式, trylock 无阻塞式, lockInterruptily 可打断式， 还有trylock的带超时时间版本</p>	
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                    <p>多线程的应用</p>	
+                    <p>商品库存的实时更新:</p>		
+            </section>
+			
+        </section>
+        <section>
+            <h3>6.参考文献</h3>
+            <p>https://www.cnblogs.com/happy-coder/p/6587092.html</p>
+            <p>https://www.jianshu.com/p/40d4c7aebd66</p>
+            <p>https://my.oschina.net/githubhty/blog/874082</p>
+        </section>
+        <section>
+            <h3>7.更多讨论</h3>
+        </section>
+
+        <section>
+            <h4>分享到此结束</h4>
+            <p>欢迎大家讨论</p>
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden=""
+                 aria-hidden="true">
+            <section style="top: 267px; display: block;" class="" aria-hidden="true">
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+            </section>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true},
+            {
+                src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+</html>
