@@ -1,0 +1,199 @@
+-<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>Mybatis有哪些常用标签?怎么使用标签来完成动态查询?</h2>
+            <p>分享人：蔡凯</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.编码实战</p>
+            <p>4.常见问题</p>
+            <p>5.参考文献</p>
+            <p>6.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+
+
+        <section>
+            <h3>什么是Mybatis?</h3>
+            <p>mybatis是一个优秀的基于java的持久层框架，它内部封装了jdbc，使开发者只需要关注sql语句本身，而不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。
+mybatis通过xml或注解的方式将要执行的各种statement配置起来，并通过java对象和statement中sql的动态参数进行映射生成最终执行的sql语句，最后由mybatis框架执行sql并将结果映射为java对象并返回。</p>
+        </section>
+    
+        
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+		<section>
+        
+            <h3>Mybatis的常用标签</h3>
+			<p>insert</p>
+			<p>属性介绍:id :唯一的标识符,parameterType:传给此语句的参数的全路径名或别名 例:cn.ki.pojo.User</p>
+			<p>trim</p>
+			<p>属性介绍:trim是更灵活的去处多余关键字的标签，他可以实践where和set的效果。</p>
+			<p>if</p>
+			<p>属性介绍:if标签通常用于WHERE语句中，通过判断参数值来决定是否使用某个查询条件,
+			他也经常用于UPDATE语句中判断是否更新某一个字段，还可以在INSERT语句中用来判断是否插入某个字段的值</p>
+        </section>
+		
+		<section>
+		<img src="C:\Users\Kawthy\Desktop\小课堂\20190408175216.jpg" >
+		 </section>
+		 
+		
+		<section>
+			<p>select</p>
+			<p>属性介绍:id :唯一的标识符.parameterType:传给此语句的参数的全路径名或别名 例:com.test.poso.User或userresultType :语句返回值类型或别名。注意，如果是集合，那么这里填写的是集合的泛型，而不是集合本身（resultType 与resultMap 不能并用）</p>
+			<p>sql</p>
+			<p>属性介绍:sql标签相当于java的变量,将一些繁杂的字段写在标签中,在其他地方使用include标签插入</p>
+			<p>include</p>
+			<p>属性介绍:include标签用于引用sql标签,可以在sql语句内插入此标签,很方便</p>
+        </section>
+		
+		<section>
+		<img src="C:\Users\Kawthy\Desktop\小课堂\20190408181255.jpg" >
+		 </section>
+		 
+		<section>
+			<p>delete</p>
+			<p>属性介绍:id :唯一的标识符,parameterType:传给此语句的参数的全路径名或别名 例:cn.ki.pojo.User</p>
+			<p>foreach</p>
+			<p>属性介绍:foreach标签主要用于构建in条件,他可以在sql中对集合进行迭代。</p>
+		</section>
+		<section>
+		<img src="C:\Users\Kawthy\Desktop\小课堂\20190408183435.jpg" >
+		</section>
+		
+		<section>
+		<p>choose</p>
+			<p>属性介绍:从多个选项中选择一个,按顺序判断when中的条件出否成立，如果有一个成立，则choose结束。当choose中所有when的条件都不满则时，则执行 otherwise中的sql.类似于Java 的switch 语句,choose为switch，when为case，otherwise则为default</p>
+        </section>
+		<section>
+		<img src="C:\Users\Kawthy\Desktop\小课堂\20190408183631.jpg" >
+		</section>
+		
+		<section>
+		<p>update</p>
+			<p>属性介绍:id :唯一的标识符,parameterType:传给此语句的参数的全路径名或别名 例:cn.ki.pojo.User</p>
+			<p>set</p>
+			<p>属性介绍:set标签可以将动态的配置SET 关键字，和剔除追加到条件末尾的任何不相关的逗号。</p>	
+		</section>
+		<section>
+		<img src="C:\Users\Kawthy\Desktop\小课堂\20190408184316.jpg" >
+		</section>
+		
+        <section>
+            <h3>3.编码实战</h3>
+			<p>展示过了</p>
+        </section>
+
+       
+        <section>
+            <h3>4.常见问题</h3>
+           <p>where标签</p> 
+    <p>属性介绍:where标签会知道如果它包含的标签中有返回值的话，它就插入一个‘where’。此外，如果标签返回的内容是以AND 或OR 开头的，则它会剔除掉。</p>
+		<img src="C:\Users\Kawthy\Desktop\小课堂\20190408195327.jpg" >
+		</section>
+    
+    <section>
+            <h3>4.常见问题</h3>
+            <p>trim标签 </p>
+     <p>属性介绍:trim是更灵活的去除多余关键字的标签，他可以实践where和set的效果.
+	 属性“prefix”表示：加入前缀where,属性“prefixOverrides”表示：自动覆盖第一个“and”或者“or”,后缀的用法类似.
+	 </p>
+	 <img src="C:\Users\Kawthy\Desktop\小课堂\20190408195234.jpg" >
+	 </section>
+ <section>
+            <h3>4.常见问题</h3>
+            <p>set标签 </p>
+<p>属性介绍:set标签可以将动态的配置SET 关键字，和剔除追加到条件末尾的任何不相关的逗号。</p>
+<img src="C:\Users\Kawthy\Desktop\小课堂\20190408195130.jpg" >
+</section>
+        <section>
+		
+            <h3>5.参考资料</h3>
+            <P>https://blog.csdn.net/weixin_40950778/article/details/78655288</P>
+			<P>https://blog.csdn.net/qq_35192741/article/details/78923840</P>
+        </section>
+
+        <section>
+            <h3>6.更多讨论</h3>
+            <p></p>
+        </section>
+
+        <section>
+		
+            <h3>鸣谢</h3>
+            <p>感谢观看,如有出错,恳请指正</p>
+           
+        </section>
+
+    </div>
+    <script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
