@@ -1,0 +1,228 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? './css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+	<style>
+		.left{ text-align: left; }
+	</style>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>List集合</h2>
+            <p>分享人：李雨航</p>	
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>            
+            <p>4.编码实战</p>
+            <p>5.扩展思考</p>
+            <p>6.参考文献</p>
+            <p>7.更多讨论</p>
+        </section>
+         <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+            <section style="top: 267px; display: block;" class="" aria-hidden="true">
+                <h3>1.背景介绍</h3>
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>集合框架</p>
+				<p></p>
+				<p><img src="C:\img\集合.png"></p>
+            </section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>没学集合框架之前我们存储多个数据是采用数组实现的，但是我们要创建数组的话先要初始化数组容量</p>
+				<p>这个时候我们可以使用到集合框架了 List 集合框架接口</p>
+				<p></p>
+				<p></p>
+            </section>
+        </section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>2.知识剖析</h3>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">				
+				<p>List包括List接口以及List接口的所有实现类。因为List接口实现了Collection接口，所以List接口拥有Collection接口提供的所有常用方法，又因为List是列表类型，
+                所以List接口还提供了一些适合于自身的常用方法，List中存储的元素实现类排序，而且可以重复的存储相关元素。</p>				
+				<p>List接口提供的适合于自身的常用方法均与索引有关，这是因为List集合为列表类型，以线性方式存储对象，可以通过对象的索引操作对象。</p>				
+				<p></p>
+				<p></p>
+				<p></p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+			    <p>list集合方法</p>
+				<p><p><img src="C:\img\list集合.png"></p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+			    <p>list接口实现类</p>
+				<p>List接口的常用实现类有实现类有ArrayList、LinkedList，不常用的有Vector、Stack等，在使用List集合时，通常情况下声明为List类型，实例化时根据实际情况的需要</p>
+				<p>ArrayList是基于数组实现的，是一个数组队列。可以动态的增加容量，查询元素的速度非常快！</p>
+				<p>LinkedList是基于链表实现的，从源码可以看出是一个双向链表。</p>
+				<p>Vector是基于数组实现的，是一个矢量队列，是线程安全的，Vector无论查询和增删都巨慢！</p>
+				<p>Stack是基于数组实现的，是栈，它继承与Vector，特性是FILO（先进后出）！</p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+			    <p>动态扩容</p>
+				<p>ArrayList随机读取的时候采用的是get(index),根据指定位置读取元素，而LinkedList则采用size/2 ,二分法去加速一次读取元素！</p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+			</section>					
+		</section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>3.常见问题</h3>
+			</section>	
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p></p>
+				<p>list使用场景<p/>
+				<p>
+1. 当集合中对插入元素数据的速度要求不高，但是要求快速访问元素数据，则使用ArrayList！                   
+2. 当集合中对访问元素数据速度不做要求不高，但是对插入和删除元素数据速度要求高的情况，则使用LinkedList！ 
+3.当集合中有多线程对集合元素进行操作时候，则使用Vector！但是现在Vector现在一般不再使用，如需在多线程下使用，可以用CopyOnWriteArrayList，在java.util.concurrent包下。
+4.当集合中有需求是希望后保存的数据先读取出来，则使用Stack。</p>
+				<p></p>
+				<p></p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+			</section>			
+		</section>
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<h3>4.编码实战</h3>
+			</section>			
+		</section>
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<h3>5.扩展思考</h3>				
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>set集合</p>
+				<p>Set集合的基本特征是不记录添加顺序，不允许元素重复。最常用的实现类是HashSet.还有不常用的LinkedHashSet，TreeSet，EnumSet </p>
+				<p>HashSet类直接实现了Set接口， 其底层其实是包装了一个HashMap去实现的。HashSet采用HashCode算法来存取集合中的元素，因此具有比较好的读取和查找性能。</p>
+				<p>HashSet按照Hash算法存储集合中的元素，具有很好的存取和查找性能。当向HashSet中添加一些元素时，HashSet会根据该对象的HashCode()方法来得到该对象的HashCode值，然后根据这些HashCode的值来决定元素的位置。</p>
+				<p></p>
+				<p></p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>HashSet判断元素重复</p>			
+				<p>HashSet需要同时通过equals和HashCode来判断两个元素是否相等，具体规则是，如果两个元素通过equals为true，并且两个元素的hashCode相等，则这两个元素相等（即重复）。</p>
+                <p>所以如果要重写保存在HashSet中的对象的equals方法，也要重写hashCode方法，重写前后hashCode返回的结果相等（即保证保存在同一个位置）。
+                  所有参与计算 hashCode() 返回值的关键属性，都应该用于作为 equals() 比较的标准。</p>						    
+				<p>重写了equals方法但没有重写hashCode方法，则HashSet可能无法正常工作</p>
+				<p></p>
+			    <p></p>
+				<p></p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+			<p></p>
+			<p></p>				
+				<p></p>
+				<p></p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">				
+			    <p></p>
+				<p></p>
+				<p></p>
+			    <p></p>
+				<p></p>
+			</section>
+		</section>
+		<section>
+			<h3>6.参考文献</h3>
+			<p>https://blog.csdn.net/solafy/article/details/52960777</p>
+			<p></p>
+		</section>
+        <section>
+            <h3>7.更多讨论</h3>	
+        </section>
+        
+        <section>
+            <h3>分享到此结束</h3>
+            <p></p>            
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">				
+			</section>
+		</section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: './plugin/markdown/marked.js' },
+            { src: './plugin/markdown/markdown.js' },
+            { src: './plugin/notes/notes.js', async: true },
+            { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
