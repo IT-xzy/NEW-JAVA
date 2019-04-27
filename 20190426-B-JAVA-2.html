@@ -1,0 +1,178 @@
+-<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>什么是外键，用处是什么，为什么不建议使用外键做关联？</h2>
+            <p>分享人：蔡凯</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.编码实战</p>
+            <p>4.常见问题</p>
+            <p>5.参考文献</p>
+            <p>6.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+
+
+        <section>
+            <h3>什么是外键?</h3>
+            <p>如果公共关键字在一个关系中是主关键字，那么这个公共关键字被称为另一个关系的外键。由此可见，外键表示了两个关系之间的相关联系。以另一个关系的外键作主关键字的表被称为主表，具有此外键的表被称为主表的从表。外键又称作外关键字。</p>
+        </section>
+    
+        
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+		<section>
+            <h3>外键的用处是什么?</h3>
+			<p>保持数据一致性，完整性，主要目的是控制存储在外键表中的数据。 使两张表形成关联，外键只能引用外表中的列的值或使用空值。</p>
+        </section>
+		
+		<section>
+		<p>如果不使用外键，表2的学号字段插了一个值（比如20140999999），但是这个值在表1中并没有，这个时
+候，数据库允许插入，并不会对插入的数据做关系检查。然而在设置外键的情况下，你插入表2学号字段的值必须要求在表1的学号字段能找到。 同时，如果你要删除表1的某个学号字段，必须保证表2中没有引用该字段值的列，否则就没法删除。这就是所谓的保持数据的一致性和完整性。</p>
+		 </section>
+		 
+		 <section>
+            <h3>为什么不建议使用外键做关联？</h3>
+			<p>外键是能够保证数据的完整性，但是会给系统带来很多缺陷。正是因为这些缺陷，才导致我们不推荐使用外键，具体如下：</p>
+			<p>性能问题:
+假设一张表名为user_tb。那么这张表里有两个外键字段，指向两张表。那么，每次往user_tb表里插入数据，就必须往两个外键对应的表里查询是否有对应数据。如果交由程序控制，这种查询过程就可以控制在我们手里，可以省略一些不必要的查询过程。但是如果由数据库控制，则是必须要去这两张表里判断。
+			</p>
+		</section>
+        <section>
+		<p>扩展性问题:
+这里主要是分为两点：
+
+做平台迁移方便，比如你从Mysql迁移到Oracle，像触发器、外键这种东西，都可以利用框架本身的特性来实现，而不用依赖于数据库本身的特性，做迁移更加方便。
+
+分库分表方便，在水平拆分和分库的情况下，外键是无法生效的。将数据间关系的维护，放入应用程序中，为将来的分库分表省去很多的麻烦。
+
+</section>
+<section>
+		<p>
+		技术问题:
+使用外键，其实将应用程序应该执行的判断逻辑转移到了数据库上。那么这意味着一点，数据库的性能开销变大了，那么这就对DBA的要求就更高了。很多中小型公司由于资金问题，并没有聘用专业的DBA，因此他们会选择不用外键，降低数据库的消耗。
+相反的，如果该约束逻辑在应用程序中，发现应用服务器性能不够，可以加机器，做水平扩展。如果是在数据库服务器上，数据库服务器会成为性能瓶颈，做水平扩展比较困难。</p>
+
+		并发问题:
+在使用外键的情况下，每次修改数据都需要去另外一个表检查数据,需要获取额外的锁。若是在高并发大流量事务场景，使用外键更容易造成死锁。</p>
+</section>
+
+		<section>
+            <h3>3.编码实战</h3>
+			<p>mysql设置外键</p>
+			<p>alter table locstock add foreign key locstock_ibfk2(stockid) references product(stockid)</p>
+<p>locstock 为表名, locstock_ibfk2 为外键名 第一个括号里填写外键列名, product为表名,第二个括号里是写外键关联的列名</p>
+        </section>
+
+       
+        <section>
+            <h3>4.常见问题</h3>
+           <p>Mysql中设置表的外键的时候报错</p> 
+    <p>报错:Cannot add or update a child row: a foreign key constraint fails (emp.#sql-1ad8_1, CONSTRAINT id_fk FOREIGN KEY (deptno) REFERENCES dept (deptno))</p>
+	<p>外键约束，外键必须是另一表中的主键</p>
+		</section>
+    
+    <section>
+            <h3>4.常见问题</h3>
+            <p>索引和外键什么关系? </p>
+     <p>外键是用来关联两个表的，索引是用来加速表查询的。
+	 </p>
+	 </section>
+ <section>
+            <h3>4.常见问题</h3>
+			<p>sql内链接外连接与表的主键，外键有什么关系？只有这两张表存在关系才可以使用内链接和外连接么？要求该表的外键是另一张表的主键？</p>
+            <p>没有任何关系，不需要先建立关系，一样可以连接操作，内连接和外连接（对左连接、右连接、全连接的统称）只是对于关系中失配的数据的处理不同。</p>
+
+</section>
+        <section>
+		
+            <h3>5.参考资料</h3>
+            <P>https://ask.csdn.net/questions/241400</P>
+			<P>https://ask.csdn.net/questions/189370</P>
+			<p>https://ask.csdn.net/questions/364669</p>
+			 <p>https://blog.csdn.net/u012045045/article/details/86525444</p>
+        </section>
+
+        <section>
+            <h3>6.更多讨论</h3>
+            <p></p>
+        </section>
+
+        <section>
+		
+            <h3>鸣谢</h3>
+            <p>感谢观看,如有出错,恳请指正</p>
+           
+        </section>
+
+    </div>
+    <script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
