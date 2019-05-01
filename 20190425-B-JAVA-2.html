@@ -1,0 +1,249 @@
+-<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>
+什么是http协议？get和post请求有什么区别？http请求content-Type有几种，有什么区别？http适合什么场景？http状态码有哪些？</h2>
+            <p>分享人：孙若飞</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.编码实战</p>
+            <p>4.常见问题</p>
+            <p>5.参考文献</p>
+            <p>6.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+
+
+        <section>
+
+            <h3>什么是HTTP协议 </h3>
+        协议是指计算机通信网络中两台计算机之间进行通信所必须共同遵守的规定或规则，超文本传输协议(HTTP)是一种通信协议，它允许将超文本标记语言(HTML)文档从Web服务器传送到客户端的浏览器
+        </section>
+		
+
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+		
+        <section>
+        
+            <h3>Get和Post方法的区别?</h3>
+			<p>Http协议定义了很多与服务器交互的方法，最基本的有4种，分别是GET,POST,PUT,DELETE. 
+			一个URL地址用于描述一个网络上的资源，而HTTP中的GET, POST, PUT, 
+			DELETE就对应着对这个资源的查，改，增，删4个操作。 我们最常见的就是GET和POST了。
+			GET一般用于获取/查询资源信息，而POST一般用于更新资源信息.</p>
+			        </p>
+        </section>
+		
+		<section>
+        
+            <h3>Get和Post方法的区别?</h3>
+				
+				<p>1. GET提交的数据会放在URL之后，以?分割URL和传输数据，参数之间以&相连,POST方法是把提交的数据放在HTTP包的Body中.因此get不安全,post安全</p>
+
+				<p>2. GET提交的数据大小有限制（因为浏览器对URL的长度有限制），而POST方法提交的数据没有限制.需要提交大量数据的时候使用Post</p>
+
+			
+	
+        </section>
+
+
+        <section>
+                <h3>Content-Type?</h3>
+					<p>内容类型，一般是指网页中存在的Content-Type，用于定义网络文件的类型和网页的编码，决定浏览器将以什么形式、什么编码读取这个文件.意思就是传输的是什么类型的数据.</p>
+				
+           </section>
+		    <section>
+                <h3>Content-Type?</h3>
+					<p>Content-Type使用的是 “主类型/子类型; 额外参数” (  [type]/[subtype]; parameter )的数值格式。</p>
+					<p>application/x-www-form-urlencoded：数据被编码为名称/值对。这是标准的编码格式。这种方式用的比较多。 </p>
+					<p>multipart/form-data： 数据被编码为一条消息，页上的每个控件对应消息中的一个部分。一般上传文件才会使用这种方式。</p>
+					<p>text/plain： 数据以纯文本形式(text/json/xml/html)进行编码，其中不含任何控件或格式字符。一般向服务端发送json数据会使用这种方式。</p>
+			
+           </section>
+		   
+		   
+			 <section>
+                    <h3>http状态码有哪些?</h3>                          
+			
+					<p>1xx：指示信息--表示请求已接收，继续处理</p>
+		<p>2xx：成功--表示请求已被成功接收、理解、接受</p>
+					<p>3xx：重定向--要完成请求必须进行更进一步的操作</p>
+					<p>4xx：客户端错误--请求有语法错误或请求无法实现</p>
+					<p>5xx：服务器端错误--服务器未能实现合法的请求</p>
+				
+                </section>
+            <section>
+                    <h3>http状态码有哪些?</h3>                          
+			
+					<p>200 OK //客户端请求成功</p>
+					<p>400 Bad Request //客户端请求有语法错误，不能被服务器所理解</p>
+					<p>403 Forbidden //服务器收到请求，但是拒绝提供服务 </p>
+					<p>404 Not Found //请求资源不存在，eg：输入了错误的URL</p>
+					<p>500 Internal Server Error //服务器发生不可预期的错误 </p>
+					<p>503 Server Unavailable //服务器当前不能处理客户端的请求，一段时间后可能恢复正常</p>
+				
+                </section>
+				
+				
+				         <section>
+                    <h3>HTTP与HTTPS有什么区别？</h3>                          
+			
+					 <p>http有很多不足: </p>
+					<p>通信使用明文(不加密),内容可能会被窃听 </p>
+					<p>不验证通信方身份,有可能遭遇伪装</p>
+					<p>无法证明报文的完整性,所以有可能已遭到篡改. </p>
+			
+                </section>
+
+            <section>
+                    <h3>HTTP与HTTPS有什么区别？</h3>
+                   <p>而https则弥补了这些不足,s指的是ssl,ssl(Secure Socket Layer)是一种为网络通信提供安全及数据完整性的安全协议,
+				   不仅提供加密处理,而且还使用了一种被称为证书的手段,
+				   证书由值得信任的第三方机构颁发.https其实就是身披ssl外壳的http,
+				   http通信的时候我们是直接和tcp层直接通信,http则会先和ssl通信,再由ssl和tcp通信.</p>
+				 
+                </section>
+				
+       <section>
+                    <h3>http报文</h3>
+                    <p>请求报文:请求行,请求头,请求体</p>
+					<p>响应报文:响应行,响应头,响应体</p>
+				
+		   </section>
+		      <section>
+                    <h3>http报文</h3>
+                    <img src="http://jns.img.bucket.ks3-cn-beijing.ksyun.com/skill/daily/08d3f421-517e-46b8-afc2-084200e83f95.png"/>
+				
+		   </section>
+		   
+		         <section>
+                    <h3>http报文</h3>
+
+				     <img src="http://jns.img.bucket.ks3-cn-beijing.ksyun.com/skill/daily/66b694dc-1b42-49af-a22a-96a673a62914.png"/>
+		   </section>
+		   <section>
+		
+            <h3>3.编码实战</h3>
+			
+			</section>
+
+       
+        <section>
+		
+            <h3>4.常见问题</h3>
+           <p>TCP三次握手</p> 
+			<p>所谓三次握手(Three-way Handshake)，是指建立一个TCP连接时，需要客户端和服务器总共发送3个包。
+			三次握手的目的是连接服务器指定端口，建立TCP连接,并同步连接双方的序列号和确认号并交换 TCP 窗口大小信息.在socket编程中，客户端执行connect()时。将触发三次握手。</p>
+			</section>
+			
+			<section>
+		
+            
+           <p>TCP三次握手</p> 
+		
+			<img src="http://www.centos.bz/wp-content/uploads/2012/08/100327002629.png"/>
+		
+			</section>
+			
+			
+			
+			<section>	
+            <h3>TCP四次挥手</h3>
+			<p>TCP的连接的拆除需要发送四个包，因此称为四次挥手(four-way handshake)。客户端或服务器均可主动发起挥手动作，在socket编程中，任何一方执行close()操作即可产生挥手操作。</p> 
+			
+    </section>
+	
+		<section>
+		<img src="http://www.centos.bz/wp-content/uploads/2012/08/100327022731.jpg"/>
+				</section>
+
+        <section>
+		
+            <h3>5.参考资料</h3>
+            <P>https://www.cnblogs.com/zmlctt/p/3690998.html</P>
+
+        </section>
+
+        <section>
+            <h3>6.更多讨论</h3>
+            <p></p>
+        </section>
+
+        <section>
+		
+            <h3>鸣谢</h3>
+            <p>感谢观看,如有出错,恳请指正</p>
+           
+        </section>
+
+    </div>
+    <script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
