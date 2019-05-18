@@ -1,0 +1,287 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>葡萄藤PPT</title>
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>nginx的简单使用</h2>
+            <p></p>
+            <h3>java小课堂</h3>
+            <p>分享人：陈嘉斌</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.基本配置及测试</p>
+            <p>5.参考文献</p>
+            <p>6.更多讨论</p>
+        </section>
+        <section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+            <section>
+                <p>1.背景介绍</p>
+                <br>
+                Nginx是什么？
+                <P style="text-align:left"><br>NGINX是用于Web服务，反向代理，缓存，负载平衡，媒体流等的开源软件。它最初是一个旨在实现最高性能和稳定性的Web服务器。
+                    除了HTTP服务器功能外，NGINX还可以用作电子邮件（IMAP，POP3和SMTP）的代理服务器以及HTTP，TCP和UDP服务器的反向代理和负载平衡器。</P>
+            </section>
+        </section>
+
+
+        <section>
+            <section>
+                <h3>2.知识剖析</h3>
+            </section>
+            <section>
+                反向代理
+                <p style="text-align:left">先说正向代理，比如我们要访问youtube,但是没有交通工具。于是我们打开ss，通过它才能访问youtube. ss就叫做正向代理。
+                    要是我们访问youtube,然后youtube悄悄地把这个请求交给bilibili（我们并不知道），这就是反向代理了。</p>
+            </section>
+            <section>
+                负载均衡
+                <p style="text-align:left">概念：当访问量很大的时候，一个容器吃不消了，这时候就准备多个容器，由Nginx按照权重来对请求进行分配，从而缓解单独容器的压力</p>
+            </section>
+            <section>
+                动静分离
+                <p style="text-align:left">动静分离就是指图片，css, js之类的都交给nginx来处理。比如jsp就交给tomcat等容器来处理~
+                    好处是nginx处理静态内容的吞吐量很高，可以提升性能。</p>
+            </section>
+            <section>
+                意义何在
+                <p style="text-align:left">
+                    那为什么要用127.0.0.1去反向代理到tomcat呢？ 为什么不直接使用端口127.0.0.1:8080？
+                    因为nginx在处理静态文件的吞吐量上面比tomcat好很多，通过配合，不会把所有的请求都交给后面的容器比如tomcat,
+                    而是把静态请求交给nginx，动态请求，如jsp，servlet，mvc，struts等请求交给tomcat. 从而达到动静分离的效果。
+                </p>
+            </section>
+        </section>
+
+
+        <section>
+        <section>
+            <h3>3.常见问题</h3>
+        </section>
+        <section>
+            <p style="text-align:center">nginx安装与配置？</p>
+            Ubuntu16.04举例
+            <p style="text-align:center">
+            安装nginx
+            </p>
+            <p style="text-align:center">
+                sudo apt-get update
+            </p>
+            <p style="text-align:center">
+                sudo apt-get install nginx
+            </p>
+        </section>
+            <section>
+                <p style="text-align:center">
+                    配置防火墙
+                </p>
+                <p style="text-align: left;margin-left: 20vw">
+                    sudo ufw app list<br>
+                    显示：<br>
+                    <span style="font-size: large">Available applications:</span><br>
+                    <span style="font-size: large">Nginx Full</span><br>
+                    <span style="font-size: large">Nginx HTTP </span><br>
+                    <span style="font-size: large">Nginx HTTPS</span><br>
+                    <span style="font-size: large">OpenSSH</span><br>
+                        <span style="font-size: small">*此配置文件打开端口80（正常，未加密的Web流量）和端口443（TLS / SSL加密流量）</span><br>
+                            <span style="font-size: small">*此配置文件打开端口80（正常，未加密的Web流量）</span><br>
+                                <span style="font-size: small">*端口443（TLS / SSL加密流量）</span><br>
+                </p>
+                sudo ufw allow 'Nginx HTTP'<br>
+            </section>
+            <section>
+                检查web服务器
+
+                <p style="text-align: left;margin-left: 20vw">
+                    systemctl status nginx
+                </p>
+                <p style="font-size: medium;text-align:left;margin-left: 10vw">● nginx.service - A high performance web server and a reverse proxy server
+                    <br>Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+                    <br>Active: active (running) since Mon 2019-05-06 12:38:54 UTC; 6 days ago
+                    <br>Main PID: 12857 (nginx)
+                    <br>CGroup: /system.slice/nginx.service
+                    <br>├─12857 nginx: master process /usr/sbin/nginx -g daemon on; master_process on
+                    <br>└─12858 nginx: worker process</p>
+            </section>
+            <section>
+                常用命令
+
+                <p style="font-size: medium;text-align:left;margin-left: 10vw">
+                    *停止Web服务器
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo systemctl stop nginx
+                    <br><br>*在Web服务器停止时启动
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo systemctl start nginx
+                    <br><br>*重启服务
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo systemctl restart nginx
+                    <br><br>*是进行配置更改，Nginx通常可以在不丢弃连接的情况下重新加载
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo systemctl reload nginx
+                    <br><br>*禁止Nginx开机自启
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo systemctl disable nginx
+                    <br><br>*重新启用开机自启
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo systemctl enable nginx
+            </section>
+            <section>
+                常用文件
+                </p>
+                </p>
+                <p style="font-size: medium;text-align:left;margin-left: 10vw">
+                    /var/www/html
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实际的web内容都是这里提供的，可以通过配置文件修改
+                    <br><br>/etc/nginx
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nginx配置目录。所有Nginx配置文件都在此处
+                    <br><br>/etc/nginx/nginx.conf
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主要的Nginx配置文件。可以对此进行修改以更改Nginx全局配置
+                    <br><br>/var/log/nginx/access.log
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除非将Nginx配置为执行其他操作，否则对Web服务器的每个请求都将记录在此日志文件中。
+                    <br><br>/var/log/nginx/error.log
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;任何Nginx错误都将记录在此日志中。
+                    <br><br>/etc/nginx/sites-available/
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以存储每个站点“服务器块”的目录。Nginx不会使用此目录中的配置文件，
+                    除非它们链接到sites-enabled目录。通常，所有服务器块配置都在此目录中完成，然后通过链接到其他目录来启用。
+                    <br><br>/etc/nginx/sites-enabled/
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存储每个站点“服务器块”启用的目录。通常，这些是通过链接到sites-available目录中的配置文件来创建的。
+                    <br><br>/etc/nginx/snippets
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此目录包含可以包含在Nginx配置中其他位置的配置片段。可能可重复的配置段是重构为片段的良好候选者。
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h3>4.nginx基本配置及测试</h3>
+            </section>
+            <section>
+                <p style="text-align:left">主要关心的配置</p>
+                <p style="text-align:left">
+                    nginx.conf中的：
+                </p>
+                <p style="text-align:left">
+                    listen 80; （端口号）
+                </p>
+                <p style="text-align:left">
+                    root html; （页面存放位置）
+                </p>
+                <p style="text-align:left">
+                    index index.xml; （默认访问页）
+                </p>
+            </section>
+            <section><p style="text-align:center">
+                反向代理配置
+            </p>
+                <p style="text-align:left;margin-left: 10vw"> location / {
+                    proxy_pass http://127.0.0.1:8888;
+                    }</p>
+                <p style="font-size: medium;text-align:left;margin-left: 10vw">
+                    location /
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;表示处理所有请求
+                    <br><br> proxy_pass http://127.0.0.1:8111;
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 表示把请求都交给http://127.0.0.1:8888来处理
+            </section>
+            <section><p style="text-align:center">
+                负载均衡配置
+            </p>
+                <p style="font-size: x-large;text-align:left;margin-left: 10vw"> 修改location / {proxy_pass http://customize; }</p>
+                <p style="font-size: x-large;text-align:left;margin-left: 10vw">添加 upstream customize{
+                    <br>ip_hash;
+                    <br>server 127.0.0.1:9999&nbsp;&nbsp;down; (down 表示单前的server暂时不参与负载)
+                    <br>server 127.0.0.1:8888&nbsp;&nbsp;weight=2; (weight 默认为1.weight越大，负载的权重就越大)
+                    <br>server 127.0.0.1:7777&nbsp;&nbsp;fail_timeout=60s（按响应时间分配请求）;
+                    <br>server 127.0.0.1:6666&nbsp;&nbsp;backup; (其它所有的非backup机器down或者忙的时候，请求backup机器)
+                    }</p>
+            </section>
+            <section><p style="text-align:center">
+                动静分离配置
+            </p>
+
+                <p style="font-size: x-large;text-align:left;margin-left: 10vw">添加
+                    location ~ .*\.(html|htm|gif|jpg|jpeg|bmp|png|ico|txt|js|css)$ {
+                    <br>root /webapps/myproject/code/static-resource;
+                    <br>
+                    expires 1d;}
+                    <br><span style="font-size: medium">#expires定义用户浏览器缓存的时间为7天，如果静态页面不常更新，可以设置更长，这样可以节省带宽和缓解服务器的压力
+                    </span>
+                    </p>
+            </section>
+
+        </section>
+
+        <section>
+            <h3>5.参考文献</h3>
+            <br>
+            <a href="http://how2j.cn/p/1729">http://how2j.cn/p/1729</a><br>
+            <a href="https://juejin.im/post/5cce423b51882541e40e4723">https://juejin.im/post/...</a><br>
+            <a href="https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04#step-1-install-nginx">https://www.digitalocean.com/community...</a>
+        </section>
+
+        <section>
+            <h4 align="center">鸣谢</h4>
+            <p align="center">感谢观看,如有出错,恳请指正</p>
+            <p align="center"><small>BY : 陈嘉斌</small></p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
