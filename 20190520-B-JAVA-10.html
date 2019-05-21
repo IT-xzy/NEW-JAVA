@@ -1,0 +1,193 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h3>拦截器、过滤器、监听器各有什么作用？</h3>
+            <p>分享人：王汇通</p>
+        </section>
+        
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+            <p>9.鸣谢</p>
+
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+        <section>
+            <h3>什么是拦截器</h3>
+            <p> java里的拦截器是动态拦截Action调用的对象，它提供了一种机制可以使开发者在一个Action执行的前后执行一段代码，也可以在一个Action
+                执行前阻止其执行，同时也提供了一种可以提取Action中可重用部分代码的方式。在AOP中，拦截器用于在某个方法或者字段被访问之前，进行拦截
+                然后再之前或者之后加入某些操作。目前，我们需要掌握的主要是Spring的拦截器，Struts2的拦截器不用深究，知道即可。</p>
+        </section>
+        <section>
+            <h3>什么是过滤器</h3>
+            <p>是在javaWeb中，前台传入的request,response提前过滤掉一些信息，或者提前设置一些参数，然后再传入servlet或者struts的action进行业务逻辑，比如在非法登录进行过滤掉非法的url（不是.jsp或者.action或者.do的地址请求，如果用户没有登陆都过滤掉）,或者在传入servlet或者struts的action前统一设置字符集，或者去除掉一些非法字符。主要为了减轻服务器负载，减少压力。主要的应用场景是：编码过滤、非法登录过滤、代码过滤！</p>
+        </section>
+        <section>
+            <h3>什么是监听器</h3>
+            <p>Servlet的监听器Listener，它是实现了javax.servlet.ServletContextListener接口的服务器端程序，它也是随web应用的启动而启动，只初始化一次，随web应用的停止而销毁。</p>
+        </section>
+
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+		
+        <section>
+           <h5>拦截器的原理?</h5>
+           <p>大部分时候，拦截器方法都是通过代理的方式来调用的。Struts2的拦截器实现相对简单。当请求到达Struts2的ServletDispatcher时，Struts2
+            会查找配置文件，并根据配置实例化相对的拦截器对象，然后串成一个列表（List），最后一个一个的调用列表中的拦截器。Struts2的拦截器是可
+            插拔的，拦截器是AOP的一个实现。Struts2拦截器栈就是将拦截器按一定的顺序连接成一条链。在访问被拦截的方法或者字段时，Struts2拦截器链
+            中的拦截器就会按照之前定义的顺序进行调用。
+        </section>
+    
+
+        <section>
+             <h5>监听器的分类有哪些？</h5>
+             <p>1:ServletContextListener：用于监听WEB 应用启动和销毁的事件，监听器类需要实现javax.servlet.ServletContextListener 接口。</p>
+             <p>2:ServletContextAttributeListener：用于监听WEB应用属性改变的事件，包括：增加属性、删除属性、修改属性，监听器类需要实现</p>
+             <p>3:HttpSessionAttributeListener：用于监听Session对象属性的改变事件，监听器类需要实现javax.servlet.http.HttpSessionAttributeListener接口。</p>
+        </section>
+       
+         <section>
+             <h5>自定义拦截器的步骤？</h5>
+            <p>1:自定义一个实现了Interceptor接口的类，或者继承抽象类AbstractInterceptor。</p>
+            <p>2:在配置文件中注册定义的拦截器。</p>
+            <p>3:需要使用Action中引用上述定义的拦截器，为了方便也可以将拦截器定义为默认的拦截器，这样在不加特殊说明的情况下，所有的Action都被这个拦截器拦截。</p>
+        </section>
+
+        <section>
+            <h5>过滤器与拦截器的区别</h5>
+            <p>1:拦截器是基于java反射机制来实现的，而过滤器是基于函数回调来实现的。</p>
+            <p>2:拦截器不依赖servlet容器，过滤器依赖于servlet容器。</p>
+            <p>3:拦截器不依赖servlet容器，过滤器依赖于servlet容器。</p>
+            <p>4:拦截器可以访问Action上下文和值栈中的对象，过滤器不能。</p>
+            <p>5:在Action的生命周期中，拦截器可以多次调用，而过滤器只能在容器初始化时调用一次。</p>
+        </section>
+        
+
+        <section>
+                <h3>3.常见问题</h> 
+        </section>
+            <section>
+                    <p>一丶过滤器和拦截器的执行顺序是什么？</p>
+                    <p>二丶配拦截器 过滤器 监听器的应用场景？</p>
+                </section>
+        <section>
+            <h3>4.解决方案</h3>
+        </section>
+
+        <section>
+                 <h5>过滤器和拦截器的执行顺序是什么？</h5>
+                 <p>过滤器和拦截器的执行顺序：过滤前 - 拦截前 - Action处理 - 拦截后 - 过滤后。拦截器是被包裹在过滤器之中的。</p> 
+        </section>
+        <section>
+            <h5>配置文件中的多个同样类型的处理器的执行顺序是怎样的？</h5>
+            <p>两者的本质区别：从灵活性上说拦截器功能更强大些，Filter能做的事情，Interceptor都能做，而且可以在请求前，请求后执行，比较灵活。Filter主要是针对URL地址做一个编码的事情、过滤掉没用的参数、安全校验（比较泛的，比如登录状态之类），太细的话，还是建议用interceptor。Filter只在Servlet前后起作用。而拦截器能够深入到方法前后、异常抛出前后等，因此拦截器的使用具有更大的弹性。所以在Spring构架的程序中，优先使用拦截器。</p>        </section>
+
+     <section>
+            <h3>5.编码实战</h3>
+    </section>
+
+        <section>
+                <h3>6.扩展思考</h3>
+        </section>
+        <section>
+             <p>配置文件中的多个同样类型的处理器的执行顺序是怎样的？</p> 
+      </section>
+
+         <section>
+            <h3>7.参考文献</h3>
+         </section>
+         <section>
+             <p>参考一：百度</p>
+             <p>参开二：简书</p>
+             <p>参考三：知乎</p>
+         </section>
+
+      <section>
+            <h3>8.更多讨论</h3>
+          </section>
+
+
+                    <section>
+                            <h3>9.鸣谢</h3>
+                            <p>感谢观看,如有出错,恳请指正</p>
+                        </section>
+           
+           
+        </section>
+
+    </div>
+    <script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
