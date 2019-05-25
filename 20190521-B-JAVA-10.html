@@ -1,0 +1,204 @@
+-<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>
+什么是Hash，Hash算法有几种，什么是HashMap，HashMap是线程安全的吗？</h2>
+            <p>分享人：孙若飞</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.编码实战</p>
+            <p>4.常见问题</p>
+            <p>5.参考文献</p>
+            <p>6.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+
+
+        <section>
+
+            <h3>什么是Hash? </h3>
+       Hash是一种散列算法,指一个过程，这个过程就是把任意长度的输入，通过哈希算法，变换成固定长度的输出，所输出的称为哈希值。这种变换是一种压缩映射，也即哈希值所占的空间一般来说远小于输入值的空间，不同的输入可能会哈希出相同的输出
+        </section>
+		
+
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+		
+     
+		
+		<section>
+        
+            <h3>什么是HashMap?</h3>
+				
+
+
+				<p>HashMap是一种容器,用来装数据,存储的格式时键值对的形式,"key value"</p>
+
+			<p>	• Key无序 唯一 （Set）</p>
+
+			<p>	• Value 无序  不唯一 （Collection）</p>
+		
+	
+        </section>
+
+
+        <section>
+                <h3>HashMap是线程安全的吗？</h3>
+					<p>线程不安全</p>
+					<img src="https://img-blog.csdn.net/20180602121008561?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d6aF8xMjNfMTIz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"/>
+					
+				
+           </section>
+	
+
+		   <section>
+		
+            <h3>3.编码实战</h3>
+			
+			</section>
+
+       
+        <section>
+		
+            <h3>4.常见问题</h3>
+           <p>HashMap的底层实现</p> 
+			<p>HashMap是数组+链表组成的，斗数组是HashMap的主体，而链表是为了解决哈希冲突而存在的，但是很多人不知道其实HashMap是包含树结构的，但是得有一点注意事项，什么时候会出现红黑树这种红树结构的呢？我们就得看源码了，源码解释说默认链表长度大于8的时候会转换为树。</p>
+			</section>
+			
+			<section>
+		  <h3>4.常见问题</h3>
+           <p>HashMap的底层实现</p> 
+         
+		<p>hashmap底层采用hash表,数据结构由数组和链表实现对数据的储存,hash表的本质就是数组+链表,</p>
+			</section>
+			
+	
+	
+		<section>
+		<img src="http://jns.img.bucket.ks3-cn-beijing.ksyun.com/skill/daily/70ec5bcf-79ab-4ed8-9868-ad754344fb80.jpg"/>
+				</section>
+				
+				
+		<section>
+		<img src="http://jns.img.bucket.ks3-cn-beijing.ksyun.com/skill/daily/39a6cfc7-dfb5-4ab9-8179-d6a54d25436e.png"/>
+				</section>
+				
+							
+		<section>
+	<p>假如,放入一个key和value对象,先得到key对象的hashcode,然后根据hashcode计算出hash值,在[0,15]之间,然后根据hash值,把对象放入对应的数组中的位置,.再次放key和value对象的时候,也是也是先计算key对象的hashcode,然后算出hash值,如果和上一个对象的hash值一样,就会把这个对象放入上个对象的后面,也就形成了链表.
+
+此外为了充分使用数组里的空间,就会采取散列算法算hash值.</p>
+				</section>
+
+					
+		<section>
+	<p>对 Key 求 Hash 值，然后再计算下标
+如果没有碰撞，直接放入桶中（碰撞的意思是计算得到的 Hash 值相同，需要放到同一个 bucket 中）
+如果碰撞了，以链表的方式链接到后面
+如果链表长度超过阀值（TREEIFY THRESHOLD==8），就把链表转成红黑树，链表长度低于6，就把红黑树转回链表
+如果节点已经存在就替换旧值
+如果桶满了（容量16*加载因子0.75,当一个 Map 填满了75%的 bucket 时候），就需要 resize（扩容2倍后重排）</p>
+				</section>
+
+					
+		<section>
+	<p>每个节点非红即黑
+根节点总是黑色的
+如果节点是红色的，则它的子节点必须是黑色的（反之不一定）
+每个叶子节点都是黑色的空节点（NIL节点）
+从根节点到叶节点或空子节点的每条路径，必须包含相同数目的黑色节点（即相同的黑色高度）</p>
+<img src="http://incdn1.b0.upaiyun.com/2019/01/cf94bb29c4b3cdb330ea4b57a6317187-300x216.png"/>
+				</section>
+
+				
+
+        <section>
+		
+            <h3>5.参考资料</h3>
+            <P>https://www.cnblogs.com/zmlctt/p/3690998.html</P>
+
+        </section>
+
+        <section>
+            <h3>6.更多讨论</h3>
+            <p></p>
+        </section>
+
+        <section>
+		
+            <h3>鸣谢</h3>
+            <p>感谢观看,如有出错,恳请指正</p>
+           
+        </section>
+
+    </div>
+    <script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
