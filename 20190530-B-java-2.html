@@ -1,0 +1,211 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? './css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+	<style>
+		.left{ text-align: left; }
+	</style>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>什么叫反向代理？为什么要使用反向代理？</h2>
+            <p> 分享人：王鹏</p>	
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>            
+            <p>4.编码实战</p>
+            <p>5.扩展思考</p>
+            <p>6.参考文献</p>
+            <p>7.更多讨论</p>
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+        <section style="top: 267px; display: block;" class="" aria-hidden="true">
+                <h3>1.背景介绍</h3>
+        </section>
+        <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+            <p>关于代理</p>
+			
+            <p>首先要明确一个概念，所谓代理就是一个代表，一个渠道。此时就涉及到两个角色，一个是被代理角色，一个是目标角色，被代理角色通过这个代理访问目标角色完成一些任务的过程就称为代理操作过程；如同生活中的专卖店~客人到adidas专卖店买了一双鞋，这个专卖店就是代理，被代理角色就是adidas厂家，目标角色就是用户。</p>
+        </section>
+        </section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>2.知识剖析</h3>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+		            
+					<h3>2.1 什么是正向代理？</h3>
+			<p>如今的网络环境下，我们如果由于技术需要要去访问国外的某些网站，此时你会发现位于国外的某网站我们通过浏览器是没有办法访问的，此时大家可能都会用一个操作FQ进行访问，FQ的方式主要是找到一个可以访问国外网站的代理服务器，我们将请求发送给代理服务器，代理服务器去访问国外的网站，然后将访问到的数据传递给我们！</p>
+			<p>上述这样的代理模式称为正向代理，正向代理代理的对象是客户端，它屏蔽或者隐藏了真实客户端信息，服务端不知道真实的客户端是谁，客户端请求的服务都被代理服务器代替来请求。</p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+		            
+					<h3>2.2 什么是反向代理？</h3>
+			<p>当我们请求www.baidu.com的时候，就像拨打10086一样，背后可能有成千上万台服务器为我们服务，但具体是哪一台，你不知道，也不需要知道，你只需要知道反向代理服务器是谁就好了，www.baidu.com 就是我们的反向代理服务器，反向代理服务器会帮我们把请求转发到真实的服务器那里去。</p>
+			
+			<p>上述这样的代理模式称为反向代理，与正向代理相反，它代理的对象是服务端,隐藏了真实的服务端，客户不知道真正提供服务人的是谁。</p>
+			</section>
+			
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+					<h3>2.3 正向代理的作用</h3>
+			<p>（1）访问原来无法访问的资源，比如Google。</p>
+			<p>（2）可以做缓存，加速访问资源。</p>
+			<p>（3）对客户端访问授权，上网进行认证。</p>
+			<p>（4）代理可以记录用户访问记录（上网行为管理），对外隐藏用户信息。</p>
+			</section>	
+			
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+					<h3>2.4 反向代理的作用</h3>
+			<p>（1）保证内网的安全，可以使用反向代理提供WAF功能，阻止web攻击。</p>
+			<p>（2）负载均衡，通过反向代理服务器来优化网站的负载。
+					多在高并发情况下需要使用。其原理就是将数据流量分摊到多个服务器执行，减轻每台服务器的压力，
+					多台服务器(集群)共同完成工作任务，从而提高了数据的吞吐量。</p>
+			</section>			
+		</section>
+		
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>3.常见问题</h3>
+			</section>	
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+			
+					<h3>3.1 正向代理与反向代理的区别</h3>
+			<p>（1）从用途方面来讲：
+			正向代理的典型用途是为在防火墙内的局域网客户端提供访问Internet的途径。正向代理还可以使用缓冲特性减少网络使用率。反向代理的典型用途是将 防火墙后面的服务器提供给Internet用户访问。反向代理还可以为后端的多台服务器提供负载平衡，或为后端较慢的服务器提供缓冲服务。</p>
+			<p>（2）从安全方面来讲：
+				正向代理允许客户端通过它访问任意网站并且隐藏客户端自身，因此必须采取安全措施以确保仅为经过授权的客户端提供服务。
+				反向代理对外都是透明的，访问者并不知道自己访问的是一个代理。</p>
+			</section>	
+			
+		<section>
+					<h3>3.2 反向代理的体现</h3>
+			<p>Nginx服务器，是一个轻量级、高性能、稳定性高、并发性好的HTTP服务器和反向代理服务器，也是由于其特性，应用非常广。</p>
+        </section>
+       
+	   		<section>
+					<h3>3.3 Nginx的功能</h3>
+			<p>（1）反向代理</p>
+			<p>（2）负载均衡</p>
+			<p>（3）动静分离</p>
+        </section>
+	   			
+		</section>
+		
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<h3>4.编码实战</h3>
+			</section>			
+		</section>
+		
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<h3>5.扩展思考</h3>				
+			</section>
+			
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+	            <h3>什么是DNS？</h3>
+			
+			<p>DNS（Domain Name System，域名系统），简单的说：就是把我们输入的网站域名翻译成IP地址的系统。
+
+			比如我们想访问百度，我们会在网址栏里键入www.baidu.com，但是电脑不会理解这串字符的含义。
+
+			于是就把这串字符发送给DNS（域名解析系统），系统将地址解析119.75.217.109（实际上能理解的就是这个数字），
+
+			并转向这个IP地址，于是我们就成功的打开了百度的网页。</p>
+			</section>
+			
+		</section>
+		
+		<section>
+			<h3>6.参考文献</h3>
+			<p>https://blog.csdn.net/tsummerb/article/details/79248015</p>
+            <p>https://www.zhihu.com/question/24723688</p>
+			<p>https://www.cnblogs.com/Anker/p/6056540.html</p>
+			<p>https://blog.csdn.net/ysmh2008/article/details/73658005</p>
+		</section>
+		
+        <section>
+            <h3>7.更多讨论</h3>	
+        </section>
+        
+        <section>
+                        <h3>鸣谢</h3>
+            <p>今天的分享就到这里，欢迎大家指正、留言。</p>         
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">				
+			</section>
+		</section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: './plugin/markdown/marked.js' },
+            { src: './plugin/markdown/markdown.js' },
+            { src: './plugin/notes/notes.js', async: true },
+            { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
