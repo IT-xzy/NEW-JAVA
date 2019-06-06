@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>【JAVA-TASK1】JDBC和JDBCtemplete</h2>
+            <p></p>
+           
+            <p>成都分院:何佳欢</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+ 
+        <section>
+         <p>java的世界就是和数据打交道</p>
+         <p>框架,和思想的诞生,都基于我们对数据操作的需求</p>
+         <p>数据库是存储数据的常用工具</p>
+         </section>
+        <section>
+            <p>JDBC是java应用程序访问数据库的解决方案</p>
+            <p>JDBC通过定义一套标准API实现访问数据库,对开发者屏蔽了一些细节问题</p>
+            <p>同时JDBC也被约定为j2ee13大规范之一</p>
+        </section>
+		<section>
+            <p>技术的发展,JDBC开始显得复杂繁琐</p>
+            <p>为了简化操作,就诞生了jdbcTemplete</p>
+        </section>
+
+		<section>
+            <h3>2.知识剖析</h3>
+        </section>
+
+		 <section>
+		  <p>JDBC</p>
+            <p>JDBC(java Database Connectivity):
+                JDBC API为访问不同的数据库提供了一种统一的途径,
+                就像ODBC一样,JDBC对开发者屏蔽了一些细节问题,
+                同时,JDBC对数据库的访问也具有平台无关性。</p>
+        </section>
+        <section>
+            <p>JDBC步骤</p>
+            <p>加载JDBC驱动程序 → 建立数据库连接Connection → 创建执行SQL的语句Statement → 处理执行结果ResultSet → 释放资源</p>
+        </section>
+		 <section>
+            <p>常用JDBC的API</p>
+			<p>1.Driver接口:由数据库厂家提供,开发时只需要装载厂商的数据库驱动程序</p>
+			<p>2.Connection接口:连接特定的数据库,通过指定url,user,password</p>
+            <P>3.Statement接口:用于执行静态SQL语句并返回生成的结果对象</P>
+            <p>4.ResultSet接口:用来检索不同类型字段的方法,可以用来遍历结果集</p>
+        </section>
+        <section>
+           <p>jdbcTemplete</p>
+           <p>jdbcTemplete是SpringJDBC框架的核心,是Spring在JDBCAPI上定义了一个抽象层，建立的一个JDBC存取的框架</p>
+           <p>其中涉及的Spring思想有面向Bean编程(BOP)和依赖注入(DI)</p>
+           <p>面向bean编程核心思想就是IoC是一种设计思想,IoC意味着你设计好的对象交给Spring容器控制,即不创建对象,通过描述创建它们的方式来创建</p>
+           <p>依赖注入就是容器动态将某个依赖关系注入到组件之中,这样可以提升组件重用的频率</p>
+        </section>
+
+       <section>
+            <h3>3.常见问题</h3>
+       </section>
+       		
+		<section>
+              <p>preparedStatement是怎么实现防止SQL注入的?</p>
+              <p>依赖注入的具体实现方式</p>
+              <p>spring头文件</p>
+        </section>
+        <section>
+            <h3>4.解决方案</h3>
+        </section>
+
+        <section>
+            <h3>5.编码实战</h3>
+        </section>
+
+        <section>
+        	<h3>6.扩展思考</h3>
+        </section>
+
+        <section>
+           <p>(1)为什么要引入DAO模式</p>
+           <p>(2)日志需要怎么配置</p>
+           <p></p>
+        </section>
+  
+  			<section>
+  			<p></p>
+  			</section>
+        <section>
+            <h3>7.参考文献</h3>
+            <p>【1】https://blog.csdn.net/u010168160/article/details/46883089</p>
+            <p>【2】https://www.cnblogs.com/Mr-Rocker/p/7721824.html</p>
+        </section>
+        <section>
+            <h3>8.更多讨论</h3>
+        </section>
+		
+		<section>
+         <p>(1)当数据库连接资源被占用的时候怎么解决</p>
+         <p></p>
+		</section>
+
+        <section>
+            <h3>9.鸣谢</h3>
+        </section>
+
+        <section>
+            <p>感谢李伟川、徐铭培师兄，此教程是在他们之前技术分享的基础上完善而成</p>
+            <p></p>
+        </section>
+        <section>
+            <h4>谢谢观看</h4>
+            <p></p>
+            <p><small>By:何佳欢</small></p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    //  controls: true, // 是否在右下角展示控制条
+    //  progress: true, // 是否显示演示的进度条
+    //  slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    //  history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    //  keyboard: true, // 是否启用键盘快捷键来导航
+    //  overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    //  center: true, // 是否将幻灯片垂直居中
+    //  touch: true, // 是否在触屏设备上启用触摸滑动切换
+    //  loop: false, // 是否循环演示
+    //  rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    //  fragments: true, // 全局开启和关闭碎片。
+    //  autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    //  transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    //  transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    //  mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
