@@ -1,0 +1,215 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h3>什么是session？什么是cookie？session和cookie有什么区别？什么场景适用于session？什么场景适用于cookie？</h3>
+            <p>分享人：王汇通</p>
+        </section>
+        
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+            <p>9.鸣谢</p>
+
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+        <section>
+            <h3>什么是cookie？</h3>
+            <p>cookie通常是一个很小的文本文件, 由字母和数字组成,由唯一的ID标示, 当我们访问一个网站时被下载到你的计算机中,储存在计算机中浏览器的子目录中
+                当我们用浏览器来访问一个网站时cookie会被创建,用来记住登陆信息,主题选择或一些其他的个性化设定.
+                就像一把虚拟的钥匙,当我们再次访问网站时,cookie使得一个网站能标识出不同的用户
+            </p>
+            <p>
+                目前有很多网站使用的是会话cookie和临时cookie
+                一种是会话cookie,它是一种临时cookie,保存在浏览器文件中,直到用户离开网站
+                另一种是持久cookie,保存在浏览器文件中很长一段时间,具体时间取决于cookie的生存时间
+            </p>
+        </section>
+        <section>
+            <h3>什么session?</h3>
+            <p>Session：是在服务器端状态保持机制，提供了一种把信息保存在服务器内存中的一种方式，它能存储任何数据类型包括自定义对象。
+                每个客户端的Session是独立存储的。Session对象用于存储有关用户的信息，用户不能访问和修改其他用户的session。在服务器端有一个session池，用来存储每个用户的session中的数据，为了区别，给每个存储单元加一个sessionId， 这个sessionId的值是唯一的，然后返回给浏览器，用户下次访问时带着这个sessionId， 从session池中找到对应的session存储单元，每个用户都有属于自己的session
+            </p>
+        </section>
+        <section>
+            <h3>cookie有什么优点？</h3>
+            <p>1丶可配置到期规则 Cookie 可以在浏览器会话结束时到期，或者可以在客户端计算机上无限期存在，这取决于客户端的到期规则</p>
+            <p>2丶不需要任何服务器资源 Cookie 存储在客户端并在发送后由服务器读取。</p>
+            <P>3丶简单性 Cookie 是一种基于文本的轻量结构，包含简单的键值对</P>
+            <p>4丶   数据持久性 虽然客户端计算机上 Cookie 的持续时间取决于客户端上的 Cookie 过期处理和用户干预，Cookie 通常是客户端上持续时间最长的数据保留形式。</p>
+        </section>
+        <section>
+            <h3>cookie有什么缺点？</h3>
+            <p>1丶 大小受到限制 大多数浏览器对 Cookie 的大小有 4096 字节的限制，尽管在当今新的浏览器和客户端设备版本中，支持 8192 字节的 Cookie 大小已愈发常见</p>
+            <P>2丶潜在的安全风险 Cookie 可能会被篡改。用户可能会操纵其计算机上的 Cookie，这意味着会对安全性造成潜在风险或者导致依赖于 Cookie 的应用程序失败</P>
+            <p>3丶cookie可能被用户禁用</p>
+        </section>
+
+
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+
+
+        <section>
+            <h5>session的工作机制？</h5>
+            <p>1、当客户端第一次请求session对象时，服务器会创建一个session，并通过特殊算法算出一个session的ID，用来标识该session对象，然后将这个session序列放置到set-cookie中发送给浏览器</p>
+            <p>2、浏览器下次发请求的时候，这个sessionID会被放置在请求头中，和cookie一起发送回来</p>
+            <p>3、服务器再通过内存中保存的sessionID跟cookie中保存的sessionID进行比较，并根据ID在内存中找到之前创建的session对象，提供给请求使用，也就是服务器会通过session保存一个状态记录，浏览器会通过cookie保存状态记录，服务器通过两者的对比实现跟踪状态，这样的做，也极大的避免了cookie被篡改而带来的安全性问题</p>
+        </section>
+    
+        <section>
+           <h5>cookie和session有什么区别？</h5>
+           <p>1丶Cookie是存放在客户端（浏览器），Session是保存在服务端。</p>
+           <p>2丶Cookie以文本文件格式存储在浏览器中，而session存储在服务端它存储了限制数据量。它只允许4kb它没有在cookie中保存多个变量。</p>
+           <p>3丶session中保存的是对象，cookie中保存的是字符串</p>
+        </section>
+
+        <section>
+            <h5>cookie的应用场景？</h5>
+            <p>1丶判断用户是否登录过网站</p>
+            <p>2丶保存上次登录的时间等信息</p>
+            <p>3丶保存上次查看的页面</p>
+            <p>4丶浏览计数</p>
+        </section>
+
+        <section>
+            <h5>session的应用场景？</h5>
+            <p>1丶网上商城购物车</p>
+            <p>2丶保存用户登录信息</p>
+            <p>3丶将某些数据放入session中，供同一用户的不同页面使用</p>
+            <p>4丶防止用户非法登录</p>
+        </section>
+
+        <section>
+                <h3>3.常见问题</h> 
+        </section>
+            <section>
+                    <p>一丶会话cookie和持久cookie的区别</p>
+                    <p>二丶URL重写有什么缺点？</p>
+                </section>
+        <section>
+            <h3>4.解决方案</h3>
+        </section>
+
+        <section>
+                 <h5>会话cookie和持久cookie的区别？</h5>
+                 <p>如果不设置过期时间，则表示这个cookie生命周期为浏览器会话期间，只要关闭浏览器窗口，cookie就消失了。
+                    这种生命期为浏览会话期的cookie被称为会话cookie。会话cookie一般不保存在硬盘上而是保存在内存里。 如果设置了过期时间(setMaxAge(60*60*24))，浏览器就会把cookie保存到硬盘上，关闭后再次打开浏览器，这些cookie依然有效直到超过设定的过期时间。
+                </p> 
+        </section>
+        <section>
+            <h5>URL重写有什么缺点？</h5>
+            <p>对所有的URL使用URL重写，包括超链接，form的action，和重定向的URL。每个引用你的站点的URL，
+                以及那些返回给用户的URL(即使通过间接手段，比如服务器重定向中的Location字段)都要添加额外的信息。
+                这意味着在你的站点上不能有任何静态的HTML页面(至少静态页面中不能有任何链接到站点动态页面的链接)。因此，每个页面都必须使用servlet或 JSP动态生成。即使所有的页面都动态生成，如果用户离开了会话并通过书签或链接再次回来，会话的信息都会丢失，因为存储下来的链接含有错误的标识信息－该URL后面的SESSION ID已经过期了。
+            </p>       
+         </section>
+
+     <section>
+            <h3>5.编码实战</h3>
+    </section>
+
+        <section>
+                <h3>6.扩展思考</h3>
+        </section>
+        <section>
+             <p>如果浏览器禁用cookie,如何标识用户？</p> 
+      </section>
+
+         <section>
+            <h3>7.参考文献</h3>
+         </section>
+         <section>
+             <p>参考一：百度</p>
+             <p>参开二：简书</p>
+             <p>参考三：知乎</p>
+         </section>
+
+      <section>
+            <h3>8.更多讨论</h3>
+          </section>
+
+
+                    <section>
+                            <h3>9.鸣谢</h3>
+                            <p>感谢观看,如有出错,恳请指正</p>
+                        </section>
+           
+           
+        </section>
+
+    </div>
+    <script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
