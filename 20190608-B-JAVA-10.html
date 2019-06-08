@@ -1,0 +1,226 @@
+-<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>什么是Hibernate？</h2>
+            <p>分享人：孙若飞</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.编码实战</p>
+            <p>4.常见问题</p>
+            <p>5.参考文献</p>
+            <p>6.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+
+
+        <section>
+
+            <h3>什么是Hibernate？</h3>
+      Hibernate是一个轻量级的JDBC封装，也就是说，我们可以使用Hibernate来完成原来我们使用JDBC完成的操作，也就是与数据库的交互操作。它是在dao层去使用的。
+        </section>
+		
+
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+		
+     
+		
+		<section>
+        
+            <h3>Hibernate的体系结构</h3>
+				<img src="https://img-blog.csdn.net/20161004164946153"/>
+					
+	
+        </section>
+
+
+        <section>
+                <h3>Hibernate开发步骤？</h3>
+					<img src="https://img-blog.csdn.net/20161004165247404"/>
+					
+					
+           </section>
+		   
+		   
+        <section>
+                <h3>什么是ORM？</h3>
+					<p>对象关系映射（英语：Object Relation Mapping，简称ORM，或O/RM，或O/R mapping），
+					是一种程序技术，用于实现面向对象编程语言里不同类型系统的数据之间的转换。</p>
+						<p>简单来说，我们使用ORM可以将我们的对象(或类)去进行映射，使得我们可以去操作对象就能完成对表的操作。</p>
+						
+						<img src="https://img-blog.csdn.net/20170320230433928?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveWVyZW55dWFuX3BrdQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast"/>
+           </section>
+		   
+	
+
+		   <section>
+		
+            <h3>3.编码实战</h3>
+			
+			</section>
+
+       
+        <section>
+		
+            <h3>4.常见问题</h3>
+           <p>Hibernate和Mybatis简要比较</p> 
+			<p>开发速度</p>
+			<p>Hibernate的真正掌握要比Mybatis来得难些。Mybatis框架相对简单容易上手。</p>
+			</section>
+			
+			<section>
+           <p>Hibernate和Mybatis简要比较</p> 
+         
+		<p>开发工作量</p>
+		<p>Hibernate和MyBatis都有代码生成工具。可以生成简单基本的DAO层方法。针对高级查询，Mybatis需要手动编写SQL语句，以及ResultMap。而Hibernate有良好的映射机制，开发者无需关心SQL的生成与结果映射，可以更专注于业务流程。</p>
+		
+			</section>
+			
+	
+	
+		<section>
+		<p>Hibernate和Mybatis简要比较</p> 
+		<p>两者相同点</p>
+			<p>Hibernate与MyBatis都可以是通过SessionFactoryBuider由XML配置文件生成SessionFactory，然后由SessionFactory 生成Session，最后由Session来开启执行事务和SQL语句。</p>
+				</section>
+			<section>	
+  <p>Hibernate和Mybatis简要比较</p> 
+			<p>Mybatis优势</p>
+			<p>•MyBatis可以进行更为细致的SQL优化，可以减少查询字段。
+
+•MyBatis容易掌握，而Hibernate门槛较高。</p>
+			</section>
+<section>	
+ <p>Hibernate和Mybatis简要比较</p> 
+			<p>Hibernate优势</p>
+			<p>•Hibernate的DAO层开发比MyBatis简单，Mybatis需要维护SQL和结果映射。
+
+•Hibernate对对象的维护和缓存要比MyBatis好，对增删改查的对象的维护要方便。
+
+•Hibernate数据库移植性很好，MyBatis的数据库移植性不好，不同的数据库需要写不同SQL。
+
+•Hibernate有更好的二级缓存机制，可以使用第三方缓存。MyBatis本身提供的缓存机制不佳。</p>
+			</section>
+        <section>
+		
+           
+           <p>什么是事务的ACID特性?</p> 
+			<p>事务是由一组SQL语句组成的逻辑处理单元</p>
+			<p>1原子性：事务必须是原子工作单元，对其进行的数据修改，要么全部执行，要么全不执行。 事务执行的结果必须是使数据库从一个一致性状态变到另一个一致性状态。比如，当数据库只包含成功事务提交的结果时，就说数据库处于一致性状态。如果数据库系统在运行中发生故障，有些事务尚未完成就被迫中断，这些未完成事务对数据库所做的修改有一部分已写入物理数据库，这时数据库就处于一种不正确的状态，或者说是不一致的状态。
+
+2一致性：事务在完成时，必须使所有的数据都保持一致状态，即所有的数据都要发生更改，以保证数据的完整性。
+</p>
+			</section>
+			 <section>
+			    <p>什么是事务的ACID特性?</p> 
+			
+			<p>
+3隔离性：一个事务的执行不能其它事务干扰。即一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务之间不能互相干扰。
+
+4持久性：一旦事务被提交之后，数据库的变化中数据的改变就应该是永久性的。接下来的其它操作或故障不应该对其执行结果有任何影响。</p>
+			</section>
+			
+			
+			
+	<section>	
+  <p>如何在控制台看到hibernate生成并执行的sql</p> 
+			<p>在定义数据库和数据库属性的文件applicationConfig.xml里面，把hibernate.show_sql 设置为true 
+这样生成的SQL就会在控制台出现了 
+注意：这样做会加重系统的负担，不利于性能调优</p>
+			
+			</section>
+
+
+
+	
+
+        <section>
+		
+            <h3>5.参考资料</h3>
+            <P>https://blog.csdn.net/qq_38977097/article/details/81326503</P>
+
+        </section>
+
+        <section>
+            <h3>6.更多讨论</h3>
+            <p></p>
+        </section>
+
+        <section>
+		
+            <h3>鸣谢</h3>
+            <p>感谢观看,如有出错,恳请指正</p>
+           
+        </section>
+
+    </div>
+    <script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
