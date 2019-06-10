@@ -1,0 +1,228 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h3>什么叫集群？缓存应该在什么情况下使用集群？有哪些实现集群的方案？</h3>
+            <h4>小课堂</h4>
+            <h5>分享人：陈嘉斌</h5>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+        </section>
+        <section>
+
+            <section>
+                <h3>1.背景介绍</h3>
+                <p style="text-align: left">
+
+                </p>
+            </section>
+            <section>
+                <p style="text-align: left">
+                    单机Mysql的年代。当时的业务很相对简单，就是JSP---> Action---->Service---->DAO----->数据库，数据库也就是一个实例而已，无论是Mysql还是Oracle。把这五层缩减为三层的话便是：应用层------>DAO层------>Mysql实例。                </p>
+            </section>
+            <section>
+                <p>
+                    NoSQL+MySQL
+                </p>
+                <p style="text-align: left">
+                    开始比较流行的是通过文件缓存(MongoDB)来缓解数据库的压力，但是当访问量继续增大的时候，多台web机器通过文件缓存不能共享，大量的小文件缓存也带来了比较高的IO压力。
+                </p>
+
+            </section>
+            <section>
+                <p>
+                    互联网需求的3高
+                </p>
+                <p style="text-align: left">
+                    1.高并发（就是同一时间的访问量非常大）
+                </p>
+                <p style="text-align: left">
+                    2.高可扩（无论是物理主机还是云服务主机，内存资源往往是有限的，scale up不是一个好的解决办法，我们需要scale out横向可伸缩扩展，把一台服务器扩展成多台变成一个集群，而且集群都有负载均衡，分配到每台服务器上的请求也会相对少了）
+                </p>
+                <p style="text-align: left">
+                    3.高性能（比如单点故障、数据库容灾备份等都要求有很高的性能）
+                </p>
+            </section>
+            <section>
+                <p style="text-align: left">
+                    当单机处理能力达到瓶颈时，将单机复制几份分别部署，这几台单机就构成了一个集群，每一个单机服务器都是这个集群中的一个节点，每个节点都提供相同的服务，集群结构的优点就是系统扩展非常容易，随着业务的发展给集群增加节点就可以了，但是当业务发展到一定程度时增加集群节点对系统性能的提升会不明显。
+                </p>
+            </section>
+            <section>
+                <p style="text-align: left">
+                    分布式结构就是将一个完整的系统按照业务功能拆分成一个个独立的子系统，在分布式结构中，每一个子系统被称为服务，这些子系统能够独立运行在Web容器中，再以某种协议进行通信，比如说RPC和Http。
+                </p>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>2.知识剖析</h3>
+            </section>
+            <section>
+                <p style="text-align: left">
+                    缓存使用集群主要是为了保证系统的高可用，除了可以分担一台服务器的压力外，当一个缓存服务器宕机，大量缓存失效会导致缓存雪崩，大量请求涌向数据库，数据库瞬时压力过重。这是时用缓存会把宕机的主节点下的从节点上升为主节点，这也是从一方面来保证系统的高可用。
+                </p>
+            </section>
+            <section>
+                <p>Sentinel</p>
+                <p style="text-align: left;font-size: x-large">
+                    Seentinel负责持续监视主从节点的健康，当主节点挂掉的时候，自动选择一个最优的从节点切换成主节点。客户端来连接集群时会先访问Sentinel，通过Sentinel来查询主节点的地址，然后再连接主节点进行数据交换。当出节点发生故障，客户端会重新请求地址。Sentinel会持续
+                    监视挂掉的主节点，等到恢复后回让它成为新的从节点。
+                </p>
+                <p>消息丢失</p>
+                <p style="text-align: left;font-size: x-large">
+                    Redis主从采用异步复制，这意味着当主节点挂掉时，从节点可能没有收到全部的同步消息，未同步的消息就会丢失了，如果延迟特别大，那丢失的数据会特别多。Sentinel不能保证消息完全不丢失。
+                    只能尽量保证少丢失
+                </p>
+
+            </section>
+            <section>
+                <p>Codis</p>
+                <p style="text-align: left;font-size: x-large">
+                    Codis是Redis集群方案之一，它是中国人开发并开源的。Codis使用Go语言开发，是一个代理中间件，当客户向Codis发送指令时，Codis负责将指令转发到后面的Redis实例来执行，并将返回结果再转发回客户端。
+                </p>
+                <p>缺点</p>
+                <p style="text-align: left;font-size: x-large">
+                    Codis中所有的key分布在不同的Redis实例中，所以就不能再支持事务，事务只能在单个实例中完成。为了支持扩容，单个key的value不宜过大，官方推荐单个集合总字节量不要超过1MB。Codis因为增加Proxy作为中转层，所以在网络开销上比单个Redis大。
+                </p>
+                <p>优点</p>
+                <p style="text-align: left;font-size: x-large">
+                    Codis在设计上比Redis官方的Cluster方案简单很多，它将分布式的问题交给了第三方去负责，这样就省去了复杂的分布式一致性代码的编写和维护工作。
+                </p>
+            </section>
+            <section>
+                <p>Cluster</p>
+                <p style="text-align: left;font-size: x-large">
+                    Redis Cluster 是Redis提供的集群方案，和Codis不同，它是去中心化的，客户端随机的请求任意一个Redis节点，然后由这个Redis节点将请求转发给正确的redis节点。
+                </p>
+                <p style="text-align: left;font-size: x-large">
+                    Redis Cluster将数据划分为16384个slot。按照槽存储分布在多个Redis节点中，可以平滑进行增删节点，因为Redis Cluster是在Redis的主从模式和哨兵模式的基础上实现的，支持高可用和自动故障转移。
+                </p>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>3.常见问题</h3>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>4.解决方案</h3>
+            </section>
+            <section>
+                <p>Redis Cluster</p>
+                <p style="text-align: left">
+                    Redis Cluster 使用的数据分布方式是虚拟槽分区，所有的键的哈希值都会映射到0~16383整数槽内，三个主节点分别维护一部分槽。
+                </p>
+            </section>
+            <section>
+                <p style="text-align: left">
+                    我们已经知道redis存取key的时候，都要定位相应的槽(slot)。 Redis 集群键分布算法使用数据分片（sharding）而非一致性哈希（consistency hashing）来实现： 一个 Redis 集群包含 16384 个哈希槽（hash slot）， 它们的编号为0、1、2、3……16382、16383，这个槽是一个逻辑意义上的槽，实际上并不存在。redis中的每个key都属于这 16384 个哈希槽的其中一个，存取key时都要进行key->slot的映射计算。
+                </p>
+            </section>
+            <section>
+                <p>
+                    HASH_SLOT（key）= CRC16(key) % 16384
+                </p>
+                <p style="text-align: left">
+                    其中 CRC16(key) 语句用于计算键 key 的 CRC16 校验和 。key经过公式计算后得到所对应的哈希槽，而哈希槽被某个主节点管理，从而确定key在哪个主节点上存取，这也是redis将数据均匀分布到各个节点上的基础。
+                </p>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>5.编码实战</h3>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>6.扩展思考</h3>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>7.参考文献</h3>
+                <P>
+                    https://www.cnblogs.com/hjwublog/p/5681700.html
+                </P>
+                <p>
+                    https://blog.csdn.net/hyl999/article/details/79552348
+                </p>
+            </section>
+        </section>
+        <section>
+            <h4>鸣谢</h4>
+            <p>感谢大家观看</p>
+            <p><small>BY：陈嘉斌</small></p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js "></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js "></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc "或"o "键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true},
+            {
+                src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+</html>
