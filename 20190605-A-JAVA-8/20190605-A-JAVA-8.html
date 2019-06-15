@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? './css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+	<style>
+		.left{ text-align: left; }
+	</style>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>什么是RMI，什么是RPC，两者之间的区别是什么？</h2>
+            <p>分享人：徐元祥</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.编码实战</p>
+            <p>5.扩展思考</p>
+            <p>6.参考文献</p>
+            <p>7.更多讨论</p>
+        </section>
+         <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+            <section style="top: 267px; display: block;" class="" aria-hidden="true">
+                <h3>1.背景介绍</h3>
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>在了解RMI和RPC之前，先了解下服务器的网站的架构</p>
+				<p><img src="img/单机架构.png"/></p>
+            </section>
+			 <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				 <p><img src="img/2、架构.png"/></p>
+				 <!--<p>应用服务和数据服务的分离</p>-->
+			 </section>
+			 <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				 <p><img src="img/3、使用缓存.png"/></p>
+				 <!--<p>使用缓存改善性能</p>-->
+			 </section>
+			 <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				 <p><img src="img/4、提高并发.png"/></p>
+				 <!--<p>负载均衡</p>-->
+			 </section>
+			 <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				 <p><img src="img/5、读写分离.png"/></p>
+				 <!--<p>读写分离</p>-->
+			 </section>
+			 <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				 <p><img src="img/6、反向代理和cdn.png"/></p>
+				 <!--<p>反向代理和CDN缓存</p>-->
+			 </section>
+			 <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				 <p><img src="img/7、分布式.png"/></p>
+				 <!--<p>分布式文件系统和分布式数据库系统</p>-->
+			 </section>
+			 <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				 <p><img src="img/8、NoSQL.png"/></p>
+				 <!--<p>NoSQL和搜索引擎</p>-->
+			 </section>
+			 <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				 <p><img src="img/9、业务拆分呢.png"/></p>
+				 <!--<p>业务拆分</p>-->
+			 </section>
+			 <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				 <p><img src="img/10、分布式服务.png"/></p>
+				 <!--<p>分布式服务</p>-->
+			 </section>
+			 <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				 <p>那么网站为了应付高并发和业务量越来越大，于是就需要将每个模块分开，一个模块一个服务器，将一个软件的功能进行拆分，比如搜索放在一个服务器，购物车放到另一个服务器，通过服务器的互相调用实现搜索完物品，加入到购物车。</p>
+				 <p>这样的话就需要实现服务器之间的互相调用，这样的话就需要分布式的架构。</p>
+				 <p>其中的分布式的远程通信技术有RMI、MINA、ESB、Burlap、Hessian、SOAP、EJB和JMS等</p>
+			 </section>
+			 <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				 <p>这次讲的就是RMI和RPC之间的通信技术的区别</p>
+				 <p>在此之前先了解一下基本的原理，从底层层面来看，网络通信需要做的就是将流从一台计算机传输到另一台计算机，基础传输协议和网络IO来实现，所有的分布式都是基于这个原理来实现的。</p>
+				 <p>远程服务通讯，需要达到的目的是在一台计算机上发起请求，另一台计算机接收到了请求后处理并返回处理结果。</p>
+				 <p>为了方便就有了应用层协议，其中就有咱们讲的RMI和RPC协议</p>
+			 </section>
+        </section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>2.知识剖析</h3>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>RMI和RPC的区别</p>
+				<p>RMI和RPC都是远程对象方法调用，区别有RPC支持多种语言，而RMI只支持Java语言。</p>
+				<p>RMI和RPC的最主要的区别在于方法的调用。</p>
+				<p>在RMI中，每个远程方法都具有方法签名，如果一个方法在服务器上执行，但是没有匹配的签名被添加到这个接口上，那么这个接口就不能够被RMI调用</p>
+				<p>而在RPC中，当一个请求到达RPC服务器上的时候，这个请求就包含了一个参数集和一个文本值，通常形成“classname.methodname”的形式，这就向服务器表明，被请求的方法为“classname”的类中，名叫“methodname。然后RPC服务器就去搜索与之相匹配的类和方法，并把它作为那种方法参数类型的输入。</p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>RPC:远程过程调用，用于一个进程调用另一个进程的过程，从而提供了分布能力</p>
+				<P>RMI:远程方法调用，在远程过程调用的基础上，提供了分布式对象的通信。允许运行在java虚拟机的对象调用运行在另一个虚拟机上的对象的方法，可以是不同进程也可以是不同计算机</p>
+				<p></p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>RMI的工作原理</p>
+				<p>首先、RMIService必须先启动并开始监听对应的端口</p>
+				<p>其次、RMIService将自己提供的服务的实现类注册到RMIService上，并指定一个访问路径供RMIClient使用</p>
+				<p>最后、RMIClient使用事先知道的路径到RMIService上去寻找这个服务，并使用这个服务在本地的接口调用服务的具体方法</p>
+			</section>
+		</section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>3.常见问题</h3>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p></p>
+			</section>
+		</section>
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<h3>4.编码实战</h3>
+			</section>
+		</section>
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<h3>5.扩展思考</h3>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p></p>
+			</section>
+		</section>
+		<section>
+			<h3>6.参考文献</h3>
+			<p>https://zhuanlan.zhihu.com/p/52503248</p>
+			<p>https://blog.csdn.net/xiaominthere/article/details/46501505</p>
+			<p>https://zhuanlan.zhihu.com/p/50678735</p>
+			<p>https://zh.wikipedia.org/wiki/Java远程方法调用</p>
+			<p>https://www.cnblogs.com/xt0810/p/3640167.html</p>
+			<p>https://blog.csdn.net/jianghuchuanke/article/details/81902449</p>
+			<p>https://blog.csdn.net/baidu_39511645/article/details/78345573</p>
+		</section>
+        <section>
+            <h3>7.更多讨论</h3>	
+        </section>
+        
+        <section>
+            <h3>分享到此结束</h3>
+            <p></p>            
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">				
+			</section>
+		</section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: './plugin/markdown/marked.js' },
+            { src: './plugin/markdown/markdown.js' },
+            { src: './plugin/notes/notes.js', async: true },
+            { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
