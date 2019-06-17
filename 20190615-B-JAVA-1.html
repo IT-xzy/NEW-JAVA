@@ -1,0 +1,221 @@
+-<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>Spring的IOC有几种方式？它们之间的差别是什么，应该选择Annonation还是应该选择XML？</h2>
+            <p>分享人：白栋</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.编码实战</p>
+            <p>4.常见问题</p>
+			<p>5.解决方案</p>
+			<p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+			<p>9.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+
+
+        <section>
+
+            <h3>Spring </h3>
+            <p>Spring是一个开源框架，Spring是在2003年兴起的一个轻量级java开发框架，由Rod Johnson创建</p>
+            <p>简单来说，Spring就是一个分层的JavaSE/EE一站式轻量级开源框架，每一层都有解决的方案</p>
+        </section>
+
+		<section>
+
+            <h3>Spring的优点</h3> 		
+	   </section>
+    
+        <section>
+
+            <h3>Spring的核心 </h3>
+            <p>IOC(控制反转)：是面向对象编程中的一种设计原则，可以用来减低计算机代码之间的耦合度。通过控制反转，对象在被创建的时候，由一个调控系统内所有对象的外界实体将其所依赖的对象的引用传递给它</p>
+            <p>AOP(面向切面编程):通过预编译方式和运行期动态代理实现程序功能的统一维护的一种技术。利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高了开发的效率。</p>
+        </section>
+        
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+		<section> 
+        
+            <h3>IOC</h3>
+			
+			<p>将对象的创建权交给spring。</p>
+        </section>
+		<section>
+                    <h3>DI(依赖注入)</h3> 
+                    
+                     <p> 前提是在IOC的环境中，spirng管理类的时候将这个类的依赖的属性注入进来</p>
+                </section>
+        
+        <section>
+		<h3>IOC的两种配置形式</h3>  
+                     <p>基于XML文件</p>
+					 <p>基于Annonation</p>
+		</section>
+        <section>
+		<h3>IOC基于XML的配置形式</h3>  
+		</section>
+
+		<section>
+		<h3>属性注入的3种方式</h3> 
+        <h3>构造方法的方式的属性注入</h3> 
+        <h3>Set方法的方式的属性注入</h3> 
+		<h3>接口注入的方式</h3> 
+		</section>
+			<section>
+		<h3>spring注入方式</h3> 
+        <h3>构造方法的方式的属性注入</h3> 
+        <h3>Set方法的方式的属性注入</h3> 
+		<h3>P名称空间的属性注入</h3> 
+		<h3>SpEL的属性注入</h3> 
+		</section>	
+		
+		<section>
+		
+            <h3>3.编码实战</h3>
+			
+        </section>	
+					
+					
+		<section>
+		
+            <h3>4.常见问题</h3>
+			
+        </section>
+		
+        <section>
+            <h3>1. <bean>标签的id和name的配置的区别</h3>
+            <h3>2.ApplicationContext有两个实现类:ClassPathXmlApplicationContext和FileSystemXmlApplicationContext区别</h3>			
+        </section>	
+
+         <section>
+		
+            <h3>5.解决方案</h3>
+			
+        </section>
+		
+		<section>
+		
+            <h3>1. <bean>标签的id和name的配置</h3>
+			<h3>id：使用了约束中的唯一约束，里面不能出现特殊字符</h3>
+            <h3>name：没有使用了约束中的唯一约束，里面可以出现特殊字符</h3>
+			<h3>class：bean全类名，通过反射的方式创建Bean，Bean中这个类必须有无参数构造器</h3>
+        </section>	
+					
+		<section>
+		
+            <h3>2.ApplicationContext有两个实现类:ClassPathXmlApplicationContext和FileSystemXmlApplicationContext区别</h3>
+			<h3>ClassPathXmlApplicationContext	：加载类路径下的配置文件</h3>
+            <h3>FileSystemXmlApplicationContext	：加载文件系统下的配置文件，文件只能唯一</h3>
+        </section>	
+
+			
+        <section>
+		
+            <h3>6.扩展思考</h3>
+			
+        </section>
+
+       <section>
+		
+            <h3>spirng IOC XML和注解的比较</h3>
+        </section>
+        <section>
+		<section>
+			<h3>XML和Annonation的整合开发</h3>
+			<h3>将类放入Bean标签，属性由注解完成注入</h3>
+        </section>
+      
+    
+        <section>
+		
+            <h3>7.参考资料</h3>
+            <P>https://my.oschina.net/jasonwung/blog/665324</P>
+
+        </section>
+
+        <section>
+            <h3>8.更多讨论</h3>
+            <p></p>
+        </section>
+
+        <section>
+		
+            <h3>鸣谢</h3>
+            <p>感谢观看,如有出错,恳请指正</p>
+           
+        </section>
+
+    </div>
+    <script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
