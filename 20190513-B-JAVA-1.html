@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+         <section class="present" style="top: 221.5px; display: block;">
+            <h2> 什么叫反射？反射的坏处是什么？有哪些反射的应用场景？</h2>
+            <p>分享人：廖志鹏</p>	
+        </section>
+        <section hidden="" aria-hidden="true" class="future" style="top: 69px; display: block;">
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>            
+            <p>4.编码实战</p>
+            <p>5.扩展思考</p>
+            <p>6.参考文献</p>
+            <p>7.更多讨论</p>
+        </section>	       
+		<section hidden="" aria-hidden="true" class="future" style="top: 267px; display: block;">
+			<h3>1.背景介绍</h3>
+			
+		</section>	     
+
+		<section class="future" style="top: 119px; display: none;" hidden="" aria-hidden="true">
+		    
+            <p style="text-align:left; ">
+			 什么叫反射？</br>
+			 反射 (Reflection) 是 Java 的特征之一，它允许运行中的 Java 程序获取自身的信息，并且可以操作类或对象的内部属性</br>
+			 Oracle官方解释是：</br>
+			 Reflection使Java代码能够发现有关已加载类的字段，方法和构造函数的信息，并使用反射字段，方法和构造函数在安全限制内对其基础对应项进行操作。</br>
+			 API适用于需要访问目标对象的公共成员（基于其运行时类）或给定类声明的成员的应用程序。它还允许程序抑制默认的反射访问控制。</br>
+			</p>
+
+		</section>
+		
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+			<h3>2.知识剖析</h3>
+			<p></p>
+		</section>
+		
+		<section class="future" style="top: 119px; display: none;" hidden="" aria-hidden="true">
+		    <h3>反射有什么作用</h3>
+            <p style="text-align:left; ">
+			通过反射，我们可以在运行时获得程序或程序集中每一个类型的成员和成员的信息。程序中一般的对象的类型都是在编译期就确定下来的，而 Java 反射机制可以动态地创建对象并调用其属性，这样的对象的类型在编译期是未知的。所以我们可以通过反射机制直接创建对象，即使这个对象的类型在编译期是未知的
+			反射的核心是 JVM 在运行时才动态加载类或调用方法/访问属性，它不需要事先（写代码的时候或编译期）知道运行对象是谁
+			</p>
+		</section>
+		
+		<section class="future" style="top: 119px; display: none;" hidden="" aria-hidden="true">
+		    <h3>反射有哪些功能</h3>
+            <p style="text-align:left; ">
+			java反射主要提供以下功能：</br>
+			在运行时判断任意一个对象所属的类；</br>
+			在运行时构造任意一个类的对象；</br>
+			在运行时判断任意一个类所具有的成员变量和方法（通过反射甚至可以调用private方法）；</br>
+			在运行时调用任意一个对象的方法</br>
+			重点：运行过程中
+			</p>
+		</section>
+
+		
+		
+		
+		
+			 
+		
+		
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+			<h3>3.常见问题</h3>
+			<p></p>
+		</section>
+			<section class="future" style="top: 119px; display: none;" hidden="" aria-hidden="true">
+		    <h3>反射的优缺点</h3>
+            <p style="text-align:left; ">
+	   <p style="text-align:left; ">优点</p>
+
+<p style="text-align:left; ">反射提高了程序的灵活性和扩展性，降低耦合性，提高自适应能力。它允许程序创和控制任何类的对象，无需提前硬编码目标类</p>
+
+
+
+			</p>
+		</section>
+		
+		
+		<section class="future" style="top: 69px; display: none;" hidden="" aria-hidden="true">
+		    
+			<p style="text-align:left; ">
+			<p style="text-align:left; ">缺点</p>
+性能问题，使用反射基本上是一种解释操作，字段和方法接入时要远慢于直接代码。因此反射机制主要应用在对灵活性和扩展性要求很高的系统框架上，普通程序不建议使用</br>
+			
+				   </p>
+		</section>
+			<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+			<h3>4.编码实战</h3>
+			<p></p>
+		</section>
+		<section class="future" style="top: 119px; display: none;" hidden="" aria-hidden="true">
+		    <h3>反射的应用场景</h3>
+            <p style="text-align:left; ">
+	JDBC连接数据库时使用Class.forName()通过反射加载数据库的驱动程序；</br>
+	Spring框架也用到很多反射机制，最经典的就是xml的配置模式。Spring 通过 XML 配置模式装载 Bean 的过程：</br>
+	1) 将程序内所有 XML 或 Properties 配置文件加载入内存中;</br>
+	2)Java类里面解析xml或properties里面的内容，得到对应实体类的字节码字符串以及相关的属性信息;</br>
+	3)使用反射机制，根据这个字符串获得某个类的Class实例;</br>
+	4)动态配置实例的属性
+			</p>
+		</section>
+
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+			<h3>5.扩展思考</h3>
+		</section>
+		<section class="future" style="top: 119px; display: none;" hidden="" aria-hidden="true">
+		    <h3>invoke和reflect的联系</h3>
+            <p style="text-align:left; ">
+			invoke是method类的一种方法，依靠反射来实现；</br>
+			reflect是java的一种运行机制
+			</p>
+		</section>
+		
+		<section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+			<h3>6.参考文献</h3>
+	   <p>CSDN、简书</p>
+		</section>        
+        <section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+            <h3>7.更多讨论</h3>
+        </section>
+        
+        <section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+            <h4>分享到此结束</h4>
+            <p>谢谢大家！</p>            
+        </section>
+      
+      
+
+    </div>
+</div>
+
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            {src: '../plugin/markdown/marked.js'},
+            {src: '../plugin/markdown/markdown.js'},
+            {src: '../plugin/notes/notes.js', async: true},
+            {
+                src: '../plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            }
+        ]
+    });
+</script>
+</body>
+</html>

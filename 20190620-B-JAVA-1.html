@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? './css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+	<style>
+		.left{ text-align: left; }
+	</style>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <p>JDBC和JDBCTemplate</p>
+		   
+            <p>分享人：程政皓</p>	
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>  
+            <p>4.解决方案</p>          
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+         <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+            <section style="top: 267px; display: block;" class="" aria-hidden="true">
+                <h3>1.背景介绍</h3>
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>Java程序员在以后的工作中很重要的一点就是得和数据库打交道,但是代码和数据库是两个不相干的，
+
+怎么使用代码对数据库进行操作呢,这个时候就用到JDBC。</p>
+			
+            </section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>在开发业务系统时，经常需要对数据进行持久化操作，将数据保存到硬盘中比如对数据进行新增、查询、更新和删除。
+这时候就需要使用数据库，通常使用第三方数据库中间件来进行数据操作，应用程序只需要调用数据库中间件提供的api即可。
+由于市面上有很多数据库，如果提供的api不同，那么应用程序在使用不同的数据库时需要写不同的代码，带来维护的复杂性。
+这时候就需要一套标准，由不同的数据库厂家来共同这套遵守标准来提供实现给应用程序调用</p>
+				<p></p>
+				<p></p>
+				<p></p>
+			</section>
+			
+        </section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>2.知识剖析</h3>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>JDBC是什么？</p>
+				<p>Java数据库连接，（Java Database Connectivity，简称JDBC）是一组专门负责连接并操作数据库的标准，在整个JDBC 中实际上大量的提供的是接口。针对于各个不同的数据库生产商 ，只要想使用JAVA 进行数据库的开发，则对这些标准有所支持。</p>
+				<p>JDBC（Java DataBase Connectivity,java数据库连接）是一种用于执行SQL语句的Java API，可以为多种关系数据库提供统一访问，它由一组用Java语言编写的类和接口组成。</p>
+				<p>而多的这个template,就是模板,是Spring框架为我们提供的,所以JDBCTemplate就是Spring对JDBC的封装,通俗点说就是Spring对jdbc的封装的模板</p>
+				<p></p>
+				<p></p>
+				<p></p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">			
+				<p>JDBC的用途</p>
+				<p>简单地说，JDBC 主要做四件事：①、加载对应数据库驱动 （Load Driver） ②、与数据库建立连接（connection） ③、发送 操作数据库的语句（createStatement） ④、执行并处理返回结果（executeQuery）如下图：</p>
+				<p></p>
+			</section>
+				<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">				
+				<p><img src="http://m.qpic.cn/psb?/V13XarJ245WDsQ/hdlNwGNfKq5e4l*2QqVot54KA0p.1J0ppmIioz6Ut3c!/b/dL4AAAAAAAAA&bo=hQNwAgAAAAADB9Y!&rf=viewer_4"></p>
+				<p></p>
+				<p></p>
+				<p></p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>JDBC的常用类</p>
+				<p>1.Connection
+通过配置文件可以创建一个connect对象</p>
+				<p>2.Statement
+通过connect对象获取操作数据库的Statement对象，
+
+         通过它来实现对数据库增删改查操作。
+
+         executeQuery()：查，返回数据集
+
+         executeUpdate():增删改，返回int的数据，影响的行数</p>
+				<p>3.ResultSet
+数据集，可以理解就是一个集合。
+
+取出数据：
+
+                   通过下标：从1开始
+
+                   通过字段名：SQL语句中select后面跟的字段，有可能和数据库一样，也可能不一样</p>
+				<p></p>
+				<p></p>
+			</section>	
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+			    <p>JDBC的优化</p>
+				<p>平时开发和项目上线之后使用的数据库是不一样的，不是同一个
+
+这也就是我们说的，开发环境不一样
+
+开发环境不一样，使用的数据库也就不一样，那么上面的数据库中配置的三要素就要进行修改
+
+而这种修改是人工操作的，人工操作就有存在了失误，而修改之后的.java文件，也要重新编译，这也可能出现错误</p>
+            </section>	
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+                <p>假设项目上线，需要以下四个步骤：
+测试环境-->修改配置 -->重新编译-->生产环境
+如果想要避免上述出现的失误的情况，就要绕开中间的两个步骤
+解决的方法就是，配置文件，添加配置文件，将要修改的配置信息存放到配置文件中，每次读取信息从配置文件中读取
+而配置文件的位置是固定的，也不会重新编译，这样就可以降低风险
+java中用IO流也可以读取配置文件，通过一个专有的类Properties也可以读写配置文件</p>
+                <p></p>
+                <p></p>
+				<p></p>
+				
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden=""
+				<p>JDBCTempalte是什么？</p>
+				<p>JdbcTemplate是最基本的Spring JDBC模板，这个模板支持简单的JDBC数据库访问功能以及基于索引参数的查询。</p>
+				<p>Spring对数据库的操作在jdbc上面做了深层次的封装，使用spring的注入功能，可以把DataSource注册到JdbcTemplate之中。</p>
+				<p></p>
+				<p></p>
+				<p></p>
+			</section>					
+		</section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>3.常见问题</h3>
+			</section>	
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">				
+				<p>什么是JDBC连接，在Java中如何创建一个JDBC连接？</p>
+				</section>	
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>JDBC和JDBCTempalte有什么不同？</p>
+				<p></p>
+			</section>
+		</section>
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+	        	<h3>4.解决方案</h3>
+	        	</section>	
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+	        	<p>JDBC连接是和数据库服务器建立的一个会话。你可以想像成是一个和数据库的Socket连接。
+创建JDBC连接很简单，只需要两步：
+A. 注册并加载驱动：使用Class.forName()，驱动类就会注册到DriverManager里面并加载到内存里。 B. 用DriverManager获取连接对象：调用DriverManager.getConnnection()方法并传入数据库连接的URL，用户名及密码，就能获取到连接对象。</p>
+        </section>	
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+	        	<p>Spring数据访问模板：在数据库操作过程中，有很大一部分重复工作，比如事务控制、管理资源以及处理异常等，Spring的模板类处理这些固定部分。同时，应用程序相关的数据访问在回调的实现中处理，包括语句、绑定参数以及整理结果等。这样一来，我们只需关心自己的数据访问逻辑即可。</p>
+	        	<p>Spring的JDBC框架承担了资源管理和异常处理的工作，从而简化了JDBC代码，我们只需要编写从数据库读写数据的必需代码就万事大吉了。</p>
+	        </section>
+		</section>
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>5.编码实战</h3>
+			</section>			
+		</section>
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>6.扩展思考</h3>				
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>JDBC是如何实现Java程序和JDBC驱动的松耦合的？</p>
+				<p>JDBC API使用Java的反射机制来实现Java程序和JDBC驱动的松耦合。随便看一个简单的JDBC示例，你会发现所有操作都是通过JDBC接口完成的，而驱动只有在通过Class.forName反射机制来加载的时候才会出现。</p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>数据库连接池工作原理和实现方案？</p>
+				<p>工作原理：JAVA EE服务器启动时会建立一定数量的池连接，并一直维持不少于此数目的池连接。客户端程序需要连接时，池驱动程序会返回一个未使用的池连接并将其表记为忙。如果当前没有空闲连接，池驱动程序就新建一定数量的连接，新建连接的数量有配置参数决定。当使用的池连接调用完成后，池驱动程序将此连接表记为空闲，其他调用就可以使用这个连接。</p>
+                </section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>实现方案：连接池使用集合来进行装载，返回的Connection是原始Connection的代理，代理Connection的close方法，当调用close方法时，不是真正关连接，而是把它代理的Connection对象放回到连接池中，等待下一次重复利用。</p>
+		</section>
+	</section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+			<h3>7.参考文献</h3>
+			<p>维基百科</p>
+			<p>https://blog.csdn.net/h1025372645/article/details/89191301</p>
+			<p>http://www.php.cn/java-article-368819.html</p>
+			<p>https://www.cnblogs.com/kevinf/p/3705148.html</p>
+		</section>
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+            <h3>8.更多讨论</h3>	
+        </section>
+         </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+            <h3>分享到此结束</h3>
+            <p></p>            
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">				
+			</section>
+		</section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: './plugin/markdown/marked.js' },
+            { src: './plugin/markdown/markdown.js' },
+            { src: './plugin/notes/notes.js', async: true },
+            { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
