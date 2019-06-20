@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? './css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+	<style>
+		.left{ text-align: left; }
+	</style>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+           
+		    <p>拦截器、过滤器、监听器各有什么作用？</p>
+            <p>分享人：殷路</p>	
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>            
+            <p>4.编码实战</p>
+            <p>5.扩展思考</p>
+            <p>6.参考文献</p>
+            <p>7.更多讨论</p>
+        </section>
+         <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+            <section style="top: 267px; display: block;" class="" aria-hidden="true">
+                <h3>1.背景介绍</h3>
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>拦截器</p>
+				<p>拦截器是在面向切面编程中应用的，就是在你的service或者一个方法前调用一个方法，或者在方法后调用一个方法比如动态代理就是拦截器的简单实现，在你调用方法前打印出字符串（或者做其它业务逻辑的操作），也可以在你调用方法后打印出字符串，甚至在你抛出异常的时候做业务逻辑的操作。拦截器不是在web.xml配置的，比如struts在struts.xml配置，在springMVC在spring与springMVC整合的配置文件中配置。</p>
+				<p></p>
+				<p></p>
+            </section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>过滤器</p>
+				<p>Servlet中的过滤器Filter是实现了javax.servlet.Filter接口的服务器端程序，主要的用途是过滤字符编码、做一些业务逻辑判断等。其工作原理是，只要你在web.xml文件配置好要拦截的客户端请求，它都会帮你拦截到请求，此时你就可以对请求或响应(Request、Response)统一设置编码，简化操作；同时还可以进行逻辑判断，如用户是否已经登录、有没有权限访问该页面等等工作，它是随你的web应用启动而启动的，只初始化一次，以后就可以拦截相关的请求，只有当你的web应用停止或重新部署的时候才能销毁。</p>
+				<p></p>
+				<p></p>
+				<p></p>
+			</section>
+			 <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>监听器</p>
+				<p>web监听器是一种Servlet中的特殊的类，它们能帮助开发者监听web中的特定事件，比如ServletContext,HttpSession,ServletRequest的创建和销毁；变量的创建、销毁和修改等。可以在某些动作前后增加处理，实现监控。</p>
+				<p></p>
+				<p></p>
+            </section>
+        </section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>2.知识剖析</h3>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>过滤器的原理</p>
+				<p> Filter接口中有一个doFilter方法，当我们编写好Filter，并配置对哪个web资源进行拦截后，WEB服务器每次在调用web资源的service方法之前，
+
+ 都会先调用一下filter的doFilter方法，因此，在该方法内编写代码可达到如下目的：
+				 调用目标资源之前，让一段代码执行。
+				 是否调用目标资源（即是否让用户访问web资源）。
+				 调用目标资源之后，让一段代码执行。
+				 web服务器在调用doFilter方法时，会传递一个filterChain对象进来，filterChain对象是filter接口中最重要的一个对象，它也提供了一个
+
+ doFilter方法，开发人员可以根据需求决定是否调用此方法，调用该方法，则web服务器就会调用web资源的service方法，即web资源就会被访问，
+
+否则web资源不会被访问。</p>				
+				<p></p>
+				<p></p>
+				<p></p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">			
+				<p>过滤器的使用</p>				
+				<p> 第一步创建一个类实现Filter接口</p>
+				<p>第二步重写接口中方法  doFilter方法是真正过滤的。</p>
+				<p>第三步呢就是我们需要在web.xml中配置过滤器的路径。</p>
+				<p></p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>监听器的种类</p>
+				<p> ServletContext相关监听器：1.ServletContextListener：主要用于监听ServletContext即Servlet容器的创建与销毁。2.ServletContextAttributeListener：主要用于监听ServletContext作用域中属性的变化。</p>
+				<p> ServletRequest相关监听器：1.ServletRequestListener：主要用于监听request对象的创建与销毁。
+2.ServletRequestAttributeListener：主要用于监听request作用域中属性的变化。</p>
+				<p></p>
+				<p></p>
+			</section>	
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>HttpSession相关监听器:1.HttpSessionListener：用于监听session对象的创建与销毁。
+2.HttpSessionAttributeListener：用户监听session作用域中属性的变化。
+3.HttpSessionBindingListener：由实体类实现，不需要注册，用于监听实体对象添加到session作用域与从session作用域中删除的事件。
+4.HttpSessionActivationListener：实体类在实现该接口的同时必须实现Serializable接口，实体类对象必须保存在session作用域中。用于监听实体类对象被序列化与反序列化的事件。</p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+			</section>				
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+			    <p>监听器的用途</p>
+				<p> 利用HttpSessionLisener统计在线人数</p>
+                <p>利用ServletContextListener加载初始化信息</p>
+                <p>统计网站访问量</p>
+				<p>实现访问监控</p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>拦截器的使用</p>
+				<p>第一步：自定义一个实现了Interceptor接口的类，或者继承抽象类AbstractInterceptor。重写相应的preHandle(...)、postHandle(...)和afterCompletion(...)方法</p>
+				<p>第二步：在springMVC.xml配置文件中注册定义的拦截器。</p>
+				<p>第三步：在需要使用Action中引用上述定义的拦截器，为了方便也可以将拦截器定义为默认的拦截器，这样在不加特殊说明的情况下，所有的
+
+ Action都被这个拦截器拦截。</p>
+				<p></p>
+				<p></p>
+			</section>		
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>拦截器的方法</p>
+				<p>（1）preHandle 方法将在请求处理之前进行调用。所以可以在这个方法中进行一些前置初始化操作或者是对当前请求的一个预处理，也可以在这个方法中进行一些判断来决定请求是否要继续进行下去。该方法的返回值是布尔值Boolean 类型的，当它返回为false 时，表示请求结束，后续的Interceptor 和Controller 都不会再执行；当返回值为true 时就会继续调用下一个Interceptor 的preHandle 方法，如果已经是最后一个Interceptor 的时候就会是调用当前请求的Controller 方法。</p>
+				
+				<p></p>
+			</section>			
+ <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>拦截器的方法</p>
+				
+				<p>（2）postHandle 方法，顾名思义就是在当前请求进行处理之后，也就是Controller 方法调用之后执行，但是它会在DispatcherServlet 进行视图返回渲染之前被调用，所以我们可以在这个方法中对Controller 处理之后的ModelAndView 对象进行操作。</p>
+				<p>（3）afterCompletion法将在整个请求结束之后，也就是在DispatcherServlet 渲染了对应的视图之后执行。这个方法的主要作用是用于进行资源清理工作的。</p>
+				<p></p>
+				<p></p>
+			</section>					
+		</section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>3.常见问题</h3>
+			</section>	
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>1、过滤器和拦截器的区别？</p>				
+				<p>①拦截器基于java的反射机制，而过滤器是基于函数回调。</p>
+				<p>②拦截器不依赖与servlet容器，过滤器依赖与servlet容器。</p>
+				<p>③拦截器只能对action请求起作用，而过滤器则可以对几乎所有的请求起作用。</p>				
+				<p>④拦截器可以访问action上下文、值栈里的对象，而过滤器不能访问。</p>
+				<p>⑤在action的生命周期中，拦截器可以多次被调用，而过滤器只能在容器初始化时被调用一次。</p>
+				<p>⑥拦截器可以获取IOC容器中的各个bean，而过滤器就不行，在拦截器里注入一个service，可以调用业务逻辑。</p>		
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>2、拦截器、过滤器、监听器的执行顺序</p>				
+				<p>监听器 > 过滤器 > 拦截器 > servlet执行 > 拦截器 > 过滤器 > 监听器</p>
+				<p></p>
+			</section>
+		</section>
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<h3>4.编码实战</h3>
+			</section>			
+		</section>
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<h3>5.扩展思考</h3>				
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>1、多个拦截器的执行顺序（两个为例）</p>
+				<p>（1）当俩个拦截器都实现放行操作时，顺序为preHandle 1，preHandle 2，postHandle 2，postHandle 1，afterCompletion 2，afterCompletion 1；</p>
+				<p>（2）当第一个拦截器preHandle返回false，也就是对其进行拦截时，第二个拦截器是完全不执行的，第一个拦截器只执行preHandle部分；</p>
+			    <p>（3）当第一个拦截器preHandle返回true，第二个拦截器preHandle返回false，顺序为preHandle 1，preHandle 2 ，afterCompletion 1。</p>				
+				<p></p>
+			</section>
+		
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+			    <p>2、多个过滤器的执行顺序</p>
+			    <p>web服务器根据Filter在web.xml中的注册顺序，决定先调用哪个Filter，当第一个Filter的doFilter方法被调用时，web服务器会创建一个代表Filter链的FilterChain对象传递给该方法，在doFilter方法中，开发人员如果调用了FilterChain对象的doFilter方法，则web服务器会检查FilterChain对象中是否还有filter，如果有，则调用第二个filter，如果没有，则调用目标资源。</p>				
+				<p></p>
+				<p></p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">				
+			    <p>3、多个监听器的执行顺序</p>
+				<p>  一个webServlet里面若有多个监听器的话，顺序是按照加载的顺序来加载和注册的这些servlet监听器的。</p>
+				<p></p>
+			    <p></p>
+				<p></p>
+			</section>
+		</section>
+		<section>
+			<h3>6.参考文献</h3>
+			<p>https://blog.csdn.net/u011464124/article/details/75097710</p>
+			<p>https://www.cnblogs.com/DoubleEggs/p/6112119.html</p>
+			<p>https://www.cnblogs.com/CloverSH/p/4531492.html#3674958</p>
+		</section>
+        <section>
+            <h3>7.更多讨论</h3>	
+        </section>
+        
+        <section>
+            <h3>分享到此结束</h3>
+            <p></p>            
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">				
+			</section>
+		</section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: './plugin/markdown/marked.js' },
+            { src: './plugin/markdown/markdown.js' },
+            { src: './plugin/notes/notes.js', async: true },
+            { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
