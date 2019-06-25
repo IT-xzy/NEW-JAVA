@@ -1,0 +1,200 @@
+-<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>
+什么叫动态查询？什么场景下才应该有动态查询，Mybatis支持动态查询么，怎么实现的，有没有缺点？</h2>
+            <p>分享人：孙若飞</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.编码实战</p>
+            <p>4.常见问题</p>
+            <p>5.参考文献</p>
+            <p>6.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+
+
+        <section>
+
+            <h3>什么叫动态查询？</h3>
+		<p>有的时候开发人员并不能确定，查询哪张表，查询哪些字段,所以动态的根据是否传入了某个参数来进行的查询就是动态查询</p>
+        </section>
+		
+
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+		
+		<section>
+        
+            <h3>什么场景下才应该有动态查询?</h3>
+			<p>比如多个搜索框,某个搜索框可能会输入内容,其他的可能不会输入内容,或者都不输入</p>		
+						
+	
+        </section>
+
+
+        <section>
+                <h3>Mybatis支持动态查询么，怎么实现的？</h3>
+				<p>mybatis支持动态查询</p>
+           </section>
+		   
+		   
+
+		   <section>
+		
+            <h3>3.编码实战</h3>
+			
+			</section>
+
+       
+        <section>
+		
+            <h3>4.常见问题</h3>
+           <p>resultMap和resultType的区别</p> 
+			<p>resultType：当使用resultType做SQL语句返回结果类型处理时，对于SQL语句查询出的字段在相应的实体类中必须有和它相同的字段对应，而resultType中的内容就是实体类在项目中的位置。</p>
+			<p>resultMap：当使用resultMap做SQL语句返回结果类型处理时，需要在mapper.xml中定义resultMap进行实体类和相应表字段的对应。也就是说,我们自己定义数据库和实体类字段名的映射</p>
+			
+			</section>
+			
+			<section>
+				<p>mybatis中#{}和${}的区别</p> 
+			<p>#{ }：占位符号，好处防止sql注入,一个 #{ } 被解析为一个参数占位符 ? 。</p>
+			<p>${ }：sql拼接符号,${ } 仅仅为一个纯碎的 string 替换，在动态 SQL 解析阶段将会进行变量替换。</p>
+			<p>#{}方式一般用于传入字段值，并将该值作为字符串加到执行sql中，一定程度防止sql注入；</p>
+			<p>${}方式一般用于传入数据库对象，例如传入表名，不能防止sql注入，存在风险。</p>
+			<p>两者都是动态的向sql语句中传入需要的参数</p>
+			</section>
+			
+	
+		<section>
+			<p>eg:select id,name,age from student where name=#{name}  这个name是动态的，可变的。当你传入什么样的值，就会根据你传入的值执行sql语句。</p> 
+			<p>传入一个不改变的字符串或者传入数据库字段(列名)，例如要传入order by 后边的参数这种情况下必须使用${}。</p>
+			
+			</section>
+
+		<section>
+			<p>什么是SQL注入?</p> 
+			<p>通过把这个命令插入到表单提交的查询字符串恶意执行的命令</p>
+
+<p>举例:
+
+正常来说我们在登录的时候,就会输入用户名和密码,只有输入用户名和密码以后,后台程序查一遍数据库,能拿到正确的信息才会让你登录,但是如果你输入一些不合法的字符串,就会直接进入网站内部.
+
+比如,直接在用户名一栏什么也不输,在密码里输入
+
+'or 1=1#</p>
+<p>SELECT * FROM `user` where name= '' and password = ''or 1=1#' ;</p>
+			
+			</section>
+
+        <section>
+		
+     
+            <P>防止sql注入的方法:</P>
+            <P>1.使用预编译绑定变量的SQL语句
+
+2.严格加密处理用户的机密信息
+
+3.不要随意开启生产环境中Webserver的错误显示
+
+4.使用正则表达式过滤传入的参数
+
+5.字符串过滤
+
+6.检查是否包函非法字符</P>
+
+        </section>
+
+
+	
+
+        <section>
+		
+            <h3>5.参考资料</h3>
+            <P>https://blog.csdn.net/qq_38977097/article/details/81326503</P>
+
+        </section>
+
+        <section>
+            <h3>6.更多讨论</h3>
+            <p></p>
+        </section>
+
+        <section>
+		
+            <h3>鸣谢</h3>
+            <p>感谢观看,如有出错,恳请指正</p>
+           
+        </section>
+
+    </div>
+    <script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
