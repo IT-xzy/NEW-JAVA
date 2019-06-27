@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>什么是外键，用处是什么，为什么不建议使用外键做关联？</h2>
+            <p></p>
+            <h3></h3>
+            <p>-上海-java-孔晓平-</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+        <section>
+            <h3>什么是外键?</h3>
+            <p align="left">&nbsp;&nbsp;&nbsp;&nbsp;简单的讲，就是两个表，一个主表，一个从表，主表的主键，放到从表的表格内，然后这个从表和主表就通过外键关联了，这个从表的这个一列和主键有关系的数据，就是从表的外键。</p>
+        </section>
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+        <section>
+            <h3>外键的用处是什么?</h3>
+            <p align="left">&nbsp;&nbsp;&nbsp;&nbsp;保持数据一致性，完整性，主要目的是控制存储在外键表中的数据。 使两张表形成关联，外键只能引用外表中的列的值或使用空值。</p>
+        </section>
+        <section>
+            <p>阻止执行：</p>
+            <p>  1、从表插入新行，其外键值不是主表的主键值便阻止插入；</p>
+            <p>  2、从表修改外键值，新值不是主表的主键值便阻止修改；</p>
+            <p>  3、主表删除行，其主键值在从表里存在便阻止删除(要想删除，必须先删除从表的相关行)；</p>
+            <p>  4、主表修改主键值，旧值在从表里存在便阻止修改(要想修改，必须先删除从表的相关行)。</p>
+        </section>
+        <section>
+        <p>级联执行：</p>
+        <p>  1、主表删除行，连带从表的相关行一起删除；</p>
+        <p>  2、主表修改主键值，连带从表相关行的外键值一起修改。两种方法提供给用户选择。无论选取哪种方法，从表里都不会有多余行。从另一个角度理解，用拒绝同一事物在从表中的标志与主表不一致来实现与主表中的标志一致。</p>
+        </section>
+        <section>
+        <h3>为什么不建议使用外键做关联？</h3>
+        <p>外键是能够保证数据的完整性，但是会给系统带来很多缺陷。正是因为这些缺陷，才导致我们不推荐使用外键，具体如下：</p>
+        <p>1.性能问题:
+            假设一张表名为user_tb。那么这张表里有两个外键字段，指向两张表。那么，每次往user_tb表里插入数据，就必须往两个外键对应的表里查询是否有对应数据。如果交由程序控制，这种查询过程就可以控制在我们手里，可以省略一些不必要的查询过程。但是如果由数据库控制，则是必须要去这两张表里判断。
+        </p>
+        </section>
+
+        <section>
+            <p>2.扩展性问题:</p>
+            <p> 这里主要是分为两点：</p>
+
+            <p>2.1做平台迁移方便，比如你从Mysql迁移到Oracle，像触发器、外键这种东西，都可以利用框架本身的特性来实现，而不用依赖于数据库本身的特性，做迁移更加方便。</p>
+
+            <p>2.2分库分表方便，在水平拆分和分库的情况下，外键是无法生效的。将数据间关系的维护，放入应用程序中，为将来的分库分表省去很多的麻烦。</p>
+        </section>
+        <section>
+            <p>3.技术问题:</p>
+            <p>使用外键，其实将应用程序应该执行的判断逻辑转移到了数据库上。那么这意味着一点，数据库的性能开销变大了，那么这就对DBA的要求就更高了。很多中小型公司由于资金问题，并没有聘用专业的DBA，因此他们会选择不用外键，降低数据库的消耗。</p>
+            <p>相反的，如果该约束逻辑在应用程序中，发现应用服务器性能不够，可以加机器，做水平扩展。如果是在数据库服务器上，数据库服务器会成为性能瓶颈，做水平扩展比较困难。</p>
+        </section>
+        <section>
+            <p>4.并发问题:</p>
+            <p>在使用外键的情况下，每次修改数据都需要去另外一个表检查数据,需要获取额外的锁。若是在高并发大流量事务场景，使用外键更容易造成死锁。</p>
+        </section>
+        <section>
+            <h3>3.编码实战</h3>
+            <p>mysql设置外键</p>
+            <p>alter table locstock add foreign key locstock_ibfk2(stockid) references product(stockid)</p>
+            <p>locstock 为表名, locstock_ibfk2 为外键名 第一个括号里填写外键列名, product为表名,第二个括号里是写外键关联的列名</p>
+        </section>
+        <section>
+            <h3>4.常见问题</h3>
+            <p> Q1:Mysql中设置表的外键的时候报错
+
+                报错:Cannot add or update a child row: a foreign key constraint fails (emp.#sql-1ad8_1, CONSTRAINT id_fk FOREIGN KEY (deptno) REFERENCES dept (deptno))
+
+                A1:外键约束，外键必须是另一表中的主键</p>
+        </section>
+        <section>
+            <h3>5.参考资料</h3>
+            <p>https://www.cnblogs.com/rjzheng/p/9907304.html</p>
+            <p>https://www.cnblogs.com/mcad/archive/2014/12/28/4190288.html</p>
+            <p>百度百科</p>
+        </section>
+        <section>
+            <h3>6.更多讨论</h3>
+            <p></p>
+        </section>
+        <section>
+            <h3>鸣谢</h3>
+            <p>感谢观看,如有出错,恳请指正</p>
+        </section>
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://blog.csdn.net/USTC_Zn/article/details/54912367' },
+            { src: 'https://blog.csdn.net/luomingkui1109/article/details/72820232' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
