@@ -1,0 +1,235 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? './css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+	<style>
+		.left{ text-align: left; }
+	</style>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>什么是外键，用处是什么，为什么不建议使用外键做关联？</h2>
+            <p> 分享人：王鹏</p>	
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>            
+            <p>4.编码实战</p>
+            <p>5.扩展思考</p>
+            <p>6.参考文献</p>
+            <p>7.更多讨论</p>
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+        <section style="top: 267px; display: block;" class="" aria-hidden="true">
+                <h3>1.背景介绍</h3>
+        </section>
+        <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+            <p>关于外键</p>
+			
+            <p>MySQL是一个关系型数据库管理系统，也是最流行的关系型数据库管理系统之一，在 WEB 应用方面，MySQL是最好的 RDBMS (Relational Database      Management System，关系数据库管理系统) 应用软件。
+			MySQL中“键”和索引的定义是一样的，所以外键和主键也是索引的一种。</p>
+        </section>
+        </section>
+		
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>2.知识剖析</h3>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+		            
+					<h3>2.1 什么是外键？</h3>
+			<p>如果公共关键字在一个关系中是主关键字，那么这个公共关键字被称为另一个关系的外键。由此可见，外键表示了两个关系之间的相关联系。
+			   以另一个关系的外键作主关键字的表被称为主表，具有此外键的表被称为主表的从表。外键又称作外关键字。</p>
+			<p>外键是相对于主键说的，是建立表之间 的联系的必须的前提。</p>
+			</section>
+			
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+					<h3>2.2 外键的作用</h3>
+			<p>保持数据的一致性、完整性。</p>
+			<P>主要目的是控制存储在外键表中的数据。
+			   使两张表形成关联，外键只能引用外表中的列的值！保证数据的一致性和实现一些级联操作。</p>
+			<p>主表：以另一个关系的外键作主键的表被称为主表。</p>
+			<P>从表：具有此外键的表被称为主表的从表</p>
+			<P>级联操作：主表删除行，连带从表的相关行一起删除；主表修改主键值，连带从表相关行的外键值一起修改。</p>
+			</section>
+			
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+					<h3>2.3 外键的使用规范</h3>
+			<p>（1）从表的字段必须与外键类型一致</p>
+			<p>（2）外键必须是主表的唯一键</p>
+			<p>（3）有关联的字段</p>
+			<p>（4）避免使用复合键（也就是说从表能够同一时候引用多个外表的字段作为一个外键，一般不推荐这样的做法）</p>
+			</section>	
+			
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<h3>2.4 为什么不建议使用外键做关联</h3>
+			<p>外键是能够保证数据的完整性，但会给系统带来很多缺陷。正是因为这些缺陷，才导致不推荐使用外键，具体如下：</P>
+			<p>（1）性能问题：
+				假设一张表名为user_tb。那么这张表里有两个外键字段，指向两张表。那么，每次往user_tb表里插入数据，就必须往两个外键对应的表里查询是否
+				有对应数据。如果交由程序控制，这种查询过程就可以控制在我们手里，可以省略一些不必要的查询过程。但是如果由数据库控制，则是必须要去
+				这两张表里判断。</p>
+			<p>（2）并发问题：
+				在使用外键的情况下，每次修改数据都需要去另外一个表检查数据,需要获取额外的锁。若是在高并发大流量事务场景，使用外键更容易造成死锁。</p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+			<p>（3）扩展性问题：
+				①做平台迁移方便，比如你从Mysql迁移到Oracle，像触发器、外键这种东西，都可以利用框架本身的特性来实现，
+				而不用依赖于数据库本身的特性，做迁移更加方便。
+				②分库分表方便，在水平拆分和分库的情况下，外键是无法生效的。将数据间关系的维护，放入应用程序中，为将来的分库分表省去很多的麻烦。</p>
+			<p>（4）技术问题：
+				使用外键，其实将应用程序应该执行的判断逻辑转移到了数据库上。那么这意味着一点，数据库的性能开销变大了，那么这就对DBA的要求就更高了。
+				很多中小型公司由于资金问题，并没有聘用专业的DBA，因此他们会选择不用外键，降低数据库的消耗。
+				相反的，如果该约束逻辑在应用程序中，发现应用服务器性能不够，可以加机器，做水平扩展。如果是在数据库服务器上，
+				数据库服务器会成为性能瓶颈，做水平扩展比较困难。</p>
+			</section>	
+			
+		</section>
+		
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>3.常见问题</h3>
+			</section>	
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+			
+					<h3>3.1 主键和外键的区别</h3>
+			<p>（1）定义：主键不能有重复的，不能为Null；外键可以有重复的，可以为Null。</p>
+			<p>（2）作用：主键用来保证数据完整性；外键用来和其它表建立联系。</p>
+			<p>（3）个数：主键只能有一个；一个表可以有多个外键。</p>
+			</section>	
+			
+		<section>
+					<h3>3.2 外键和索引的区别</h3>
+			<p>（1）定义：外键可以有重复的，可以为Null；索引没有重复值，可以为Null-会使索引无效。</p>
+			<p>（2）作用：外键用来和其它表建立联系；索引提高查询排序的速度。</p>
+			<p>（3）个数：一个表中都可以存在多个。</p>
+        </section>
+       
+	   		<section>
+					<h3>3.3 设置外键报错</h3>
+			<p>报错：[1215] Cannot add foreign key constraint</p>
+			<p>原因：（1）两张表里要设主键和外键的字段的数据类型或者数据长度不一样。 </p>
+			<p>（2）某个表中已存在记录。</p>
+        </section>
+	   			
+		</section>
+		
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+			<h3>4.编码实战</h3>
+			<p>Mysql设置外键</p>
+			<p>语法：Alter table 表名 add [constraint 外键名字] foreign key [外键字段] references 父表(主键字段);</p>
+			<p>alter table locstock add foreign key locstock_ibfk2(stockid) references product(stockid)</p>
+			<p>locstock 为表名, locstock_ibfk2 为外键名 第一个括号里填写外键列名, product为表名,第二个括号里是写外键关联的列名</p>
+			</section>			
+		</section>
+		
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<h3>5.扩展思考</h3>				
+			</section>
+			
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+	            <h3>5.1 什么是数据冗余？</h3>
+			<p>	数据冗余是指数据之间的重复，也可以说是同一数据存储在不同数据文件中的现象。
+				可以说增加数据的独立性和减少数据冗余是企业范围信息资源管理和大规模信息系统获得成功的前提条件。</p>
+			</section>
+			
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+	            <h3>5.2 关系型数据库与非关系型数据库的区别</h3>
+			<p>（1）关系型数据库通过外键关联来建立表与表之间的关系；</p>
+			<p>（2）非关系型数据库通常指数据以对象的形式存储在数据库中，而对象之间的关系通过每个对象自身的属性来决定。</p>
+			</section>
+			
+		</section>
+		
+		<section>
+			<h3>6.参考文献</h3>
+			<p>百度百科</p>
+            <p>CSDN</p>
+			<p>简书</p>
+		</section>
+		
+        <section>
+            <h3>7.更多讨论</h3>	
+        </section>
+        
+        <section>
+                        <h3>鸣谢</h3>
+            <p>今天的分享就到这里，欢迎大家指正、留言。</p>         
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">				
+			</section>
+		</section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: './plugin/markdown/marked.js' },
+            { src: './plugin/markdown/markdown.js' },
+            { src: './plugin/notes/notes.js', async: true },
+            { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
