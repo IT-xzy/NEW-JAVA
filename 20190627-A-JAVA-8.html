@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? './css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+	<style>
+		.left{ text-align: left; }
+	</style>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>Thrift，Protobuffer分别是什么，一般用于什么场景？</h2>
+            <p>分享人：徐元祥</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.编码实战</p>
+            <p>5.扩展思考</p>
+            <p>6.参考文献</p>
+            <p>7.更多讨论</p>
+        </section>
+         <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+            <section style="top: 267px; display: block;" class="" aria-hidden="true">
+                <h3>1.背景介绍</h3>
+            </section>
+            <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>在没有跨语言通信方案之前是如何进行跨平台服务的，在刚开始进入同一计算机运行多任务的时候，分布式系统开发人员能够在一台或几台通过消息传递连接的计算机内构建和运行整个分布式系统，这就催生了SOA</p>
+				<p>随着计算能力的提高和计算机价格降低，大量的分布式系统开始出现，但是系统数量的增加，导致服务之间的点对点连接的不可扩展和不可维护，这样就诞生了“服务总线”的概念，在这个之后基于REST的通信更加流行了起来</p>
+				<p>随后就是分布式大爆炸的时代，在此之间诞生了各种跨语言通信框架，其中就有这次讨论的Thrift和Protobuffer</p>
+            </section>
+			 <section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				 <p>RMI和RPC之间的通信框架的区别</p>
+				 <p>消息数据之间的比较，Protobuffer序列化后的大小是json的十分之一，xml格式的二十分之一，二进制序列化的十分之一，意味着相同的数据更快的传输速度，相同的大小更多的数据</p>
+			 </section>
+        </section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>2.知识剖析</h3>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>Protobuffer的优点</p>
+				<p>灵活、便于接口更新、高效</p>
+				<p>性能好</p>
+				<p>代码生成机制</p>
+				<p>向前向后兼容</p>
+				<p>易于使用，通过一定的语法定义结构化的消息格式，然后发送给命令行工具，工具将自动生成</p>
+				<p>语言支持，原生支持C++、java、python</p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>Thrift的优点</p>
+				<p>支持许多语言的绑定</p>
+				<p>文件生成目标代码，简单易用</p>
+				<p>消息定义文件支持注释</p>
+				<p>数据结构与传输表现的分离，支持多种消息格式</p>
+				<p>包含完整的客户端/服务端堆栈，可快速实现RPC</p>
+				<p>支持同步和异步通信</p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>Protobuffer的缺点</p>
+				<p>功能简单，不能表达复杂的概念</p>
+				<p>应用不够广泛</p>
+				<p>缺乏自描述</p>
+				<p>默认不具备动态特性</p>
+				<p>只涉及序列化和反序列化技术，不涉及RPC功能</p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>Thrift的缺点</p>
+				<p>不支持动态特性</p>
+				<p>支持全套RPC解决方案，学习成本高</p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>Protobuffer的应用场景</p>
+				<p>对消息大小很敏感的，信息交互场景</p>
+				<p>小数据场景</p>
+				<p>使用的语言是C++、java、python的场景</p>
+				<p></p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>Thrift的应用场景</p>
+				<p>功能丰富、支持全套RPC处理</p>
+				<p>小数据场景</p>
+				<p>使用的语言是C++、java、python的场景</p>
+				<p></p>
+			</section>
+		</section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>3.常见问题</h3>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>1、客户端的thrift通信端口，与服务端thrift端口保持一致【且客户端、服务端thrift通信协议必须保持一致】，且服务端thrift通信端口号与http服务端口号不相同。服务端thrift通信端口号，是在项目启动时自动绑定到服务。</p>
+				<p>2、protobuf版本冲突问题，先查看有多少个protobuf，视情况删除高版本，在下载合适的版本安装</p>
+				<p>3、修改字段的注意事项，不可以改变已经存在的标签的数字，不可以增加或删除必须字段。</p>
+			</section>
+		</section>
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<h3>4.编码实战</h3>
+			</section>
+		</section>
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<h3>5.扩展思考</h3>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p></p>
+			</section>
+		</section>
+		<section>
+			<h3>6.参考文献</h3>
+			<p>https://zh.wikipedia.org/wiki/Thrift</p>
+			<p>https://www.infoq.cn/article/the-evolution-of-distributed-systems</p>
+			<p>https://blog.mimvp.com/article/7491.html</p>
+			<p>https://www.cnblogs.com/cocos2014/p/4259037.html</p>
+		</section>
+        <section>
+            <h3>7.更多讨论</h3>	
+        </section>
+        
+        <section>
+            <h3>分享到此结束</h3>
+            <p></p>            
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">				
+			</section>
+		</section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: './plugin/markdown/marked.js' },
+            { src: './plugin/markdown/markdown.js' },
+            { src: './plugin/notes/notes.js', async: true },
+            { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
