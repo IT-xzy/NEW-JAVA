@@ -1,0 +1,261 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h3>什么叫集群？缓存应该在什么情况下使用集群？有哪些实现集群的方案？</h3>
+            <h4>小课堂</h4>
+            <h5>分享人：孔晓平</h5>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+        </section>
+        <section>
+
+            <section>
+                <h3>1.背景介绍</h3>
+                <p style="text-align: left">
+
+                </p>
+            </section>
+            <section>
+                <p style="text-align: left">
+                    JavaEE项目，如果部署在一台Tomcat上，所有的请求，都由这一台服务器处理，存在很大风险：               </p>
+            </section>
+            <section>
+                <p>
+                    A：并发处理能力有限
+                </p>
+                <p style="text-align: left">
+                    （一般单台服务器处理的并发量为250左右，超过250，可能会出现数据丢失，链接不稳定的情况）。因为单服务器的性能有限制。所以单台Tomcat的最大连接数有限制，
+                </p>
+
+            </section>
+            <section>
+                <p>
+                    B：容错率低，一旦服务器故障，整个服务就无法访问了。
+                </p>
+                <p style="text-align: left">
+                    eBay于 1999年6月停机22小时的事故，中断了约230万的拍卖，使eBay的股票下降了9.2个百分点。
+                </p>
+            </section>
+            <section>
+                <p>
+                    C：单台服务器计算能力低，无法完成复杂的海量数据计算。
+                </p>
+                <p style="text-align: left">
+                    提高CPU主频和总线带宽是最初提供计算机性能的主要手段。但是这一手段对系统性能的提供是有限的。接着人们通过增加CPU个数和内存容量来提高性能，于是出现了向量机，对称多处理机(SMP)等。但是当CPU的个数超过某一阈值，这些多处理机系统的可扩展性就变的极差。主要瓶颈在于CPU访问内存的带宽并不能随着CPU个数的增加而有效增长。与SMP相反，集群系统的性能随着CPU个数的增加几乎是线性变化的。
+                </p>
+            </section>
+            <section>
+                <p>
+                    D:那么什么是集群呢?
+                </p>
+                <P>
+                    集群是是指将多台服务器集中在一起，每台服务器都实现相同的业务，做相同的事情。但是每台服务器并不是缺一不可，存在的作用主要是缓解并发压力和单点故障转移问题。可以利用一些廉价的符合工业标准的硬件构造高性能的系统。实现：高扩展、高性能、低成本、高可用！
+                </P>
+            </section>
+            <section>
+                <p> 2.1伸缩性（Scalability） </p>
+                <P> 在一些大的系统中，预测最终用户的数量和行为是非常困难的，伸缩性是指系统适应不断增长的用户数的能力。提高这种并发会话能力的一种最直观的方式就增加资源（CPU，内存，硬盘等），集群是解决这个问题的另一种方式，它允许一组服务器组在一起，像单个服务器一样分担处理一个繁重的任务，我们只需要将新的服务器加入集群中即可，对于客户来看，服务无论从连续性还是性能上都几乎没有变化，好像系统在不知不觉中完成了升级</P>
+            </section>
+            <section>
+                <p> 2.2高可用性（High availability） </p>
+                <P> 单一服务器的解决方案并不是一个健壮方式，因为容易出现单点失效。像银行、账单处理这样一些关键的应用程序是不能容忍哪怕是几分钟的死机。它们需要这样一些服务在任何时间都可以访问并在可预期的合理的时间周期内有响应。高可用性集群的出现是为了使集群的整体服务尽可能可用，以便考虑计算硬件和软件的易错性。如果高可用性集群中的主节点发生了故障，那么这段时间内将由次节点代替它。次节点通常是主节点的镜像，所以当它代替主节点时，它可以完全接管其身份，并且因此使系统环境对于用户是一致的。</P>
+            </section>
+
+            <section>
+                <p>
+                    2.3负载均衡（Load balancing）
+                </p>
+                <p>
+                    负载均衡集群为企业需求提供了更实用的系统。如名称所暗示的，该系统使负载可以在计算机集群中尽可能平均地分摊处理。该负载可能是需要均衡的应用程序处理负载或网络流量负载。这样的系统非常适合于运行同一组应用程序的大量用户。每个节点都可以处理一部分负载，并且可以在节点之间动态分配负载，以实现平衡。
+                </p>
+            </section>
+            <section>
+                <p>
+                    2.4高性能 (High Performance )
+                </p>
+                <p>
+                    通常，第一种涉及为集群开发并行编程应用程序，以解决复杂的科学问题。这是并行计算的基础，尽管它不使用专门的并行超级计算机，这种超级计算机内部由十至上万个独立处理器组成。但它却使用商业系统，如通过高速连接来链接的一组单处理器或双处理器 PC，并且在公共消息传递层上进行通信以运行并行应用程序。因此，您会常常听说又有一种便宜的 Linux 超级计算机问世了。但它实际是一个计算机集群，其处理能力与真的超级计算机相等。
+                </p>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>2.知识剖析</h3>
+            </section>
+            <section>
+                <p style="text-align: left">
+                    缓存使用集群主要是为了保证系统的高可用，除了可以分担一台服务器的压力外，当一个缓存服务器宕机，大量缓存失效会导致缓存雪崩，大量请求涌向数据库，数据库瞬时压力过重。这是时用缓存会把宕机的主节点下的从节点上升为主节点，这也是从一方面来保证系统的高可用。
+                </p>
+            </section>
+            <section>
+                <p>
+                    缓存应该在什么情况下使用集群？
+                </p>
+                <p>
+                    缓存里面主要放一些平时不怎么变动的数据用于提供数据查询，然而当读取数据请求过大，超过单一缓存承载极限那么缓存就崩了。而如果这样的情况不使用缓存的话，数据库性能限制就要分库，分表加上读写分离，极大的提高了成本。所以使用缓存可以节约大量经费，而缓存集群提高了缓存应对突发情况性能，有更强的应变能力。
+                </p>
+            </section>
+            <section>
+                <p>Sentinel</p>
+                <p style="text-align: left;font-size: x-large">
+                    Sentinel负责持续监视主从节点的健康，当主节点挂掉的时候，自动选择一个最优的从节点切换成主节点。客户端来连接集群时会先访问Sentinel，通过Sentinel来查询主节点的地址，然后再连接主节点进行数据交换。当出节点发生故障，客户端会重新请求地址。Sentinel会持续
+                    监视挂掉的主节点，等到恢复后回让它成为新的从节点。
+                </p>
+                <p>消息丢失</p>
+                <p style="text-align: left;font-size: x-large">
+                    Redis主从采用异步复制，这意味着当主节点挂掉时，从节点可能没有收到全部的同步消息，未同步的消息就会丢失了，如果延迟特别大，那丢失的数据会特别多。Sentinel不能保证消息完全不丢失。
+                    只能尽量保证少丢失
+                </p>
+
+            </section>
+            <section>
+                <p>Codis</p>
+                <p style="text-align: left;font-size: x-large">
+                    Codis是Redis集群方案之一，它是中国人开发并开源的。Codis使用Go语言开发，是一个代理中间件，当客户向Codis发送指令时，Codis负责将指令转发到后面的Redis实例来执行，并将返回结果再转发回客户端。
+                </p>
+                <p>缺点</p>
+                <p style="text-align: left;font-size: x-large">
+                    Codis中所有的key分布在不同的Redis实例中，所以就不能再支持事务，事务只能在单个实例中完成。为了支持扩容，单个key的value不宜过大，官方推荐单个集合总字节量不要超过1MB。Codis因为增加Proxy作为中转层，所以在网络开销上比单个Redis大。
+                </p>
+                <p>优点</p>
+                <p style="text-align: left;font-size: x-large">
+                    Codis在设计上比Redis官方的Cluster方案简单很多，它将分布式的问题交给了第三方去负责，这样就省去了复杂的分布式一致性代码的编写和维护工作。
+                </p>
+            </section>
+            <section>
+                <p>Cluster</p>
+                <p style="text-align: left;font-size: x-large">
+                    Redis Cluster 是Redis提供的集群方案，和Codis不同，它是去中心化的，客户端随机的请求任意一个Redis节点，然后由这个Redis节点将请求转发给正确的redis节点。
+                </p>
+                <p style="text-align: left;font-size: x-large">
+                    Redis Cluster将数据划分为16384个slot。按照槽存储分布在多个Redis节点中，可以平滑进行增删节点，因为Redis Cluster是在Redis的主从模式和哨兵模式的基础上实现的，支持高可用和自动故障转移。
+                </p>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>3.常见问题</h3>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>4.解决方案</h3>
+            </section>
+            <section>
+                <p>Redis Cluster</p>
+                <p style="text-align: left">
+                    Redis Cluster 使用的数据分布方式是虚拟槽分区，所有的键的哈希值都会映射到0~16383整数槽内，三个主节点分别维护一部分槽。
+                </p>
+            </section>
+            <section>
+                <p style="text-align: left">
+                    我们已经知道redis存取key的时候，都要定位相应的槽(slot)。 Redis 集群键分布算法使用数据分片（sharding）而非一致性哈希（consistency hashing）来实现： 一个 Redis 集群包含 16384 个哈希槽（hash slot）， 它们的编号为0、1、2、3……16382、16383，这个槽是一个逻辑意义上的槽，实际上并不存在。redis中的每个key都属于这 16384 个哈希槽的其中一个，存取key时都要进行key->slot的映射计算。
+                </p>
+            </section>
+            <section>
+                <p>
+                    HASH_SLOT（key）= CRC16(key) % 16384
+                </p>
+                <p style="text-align: left">
+                    其中 CRC16(key) 语句用于计算键 key 的 CRC16 校验和 。key经过公式计算后得到所对应的哈希槽，而哈希槽被某个主节点管理，从而确定key在哪个主节点上存取，这也是redis将数据均匀分布到各个节点上的基础。
+                </p>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>5.编码实战</h3>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>6.扩展思考</h3>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>7.参考文献</h3>
+                <P>
+                    https://www.cnblogs.com/hjwublog/p/5681700.html
+                </P>
+                <p>
+                    https://blog.csdn.net/hyl999/article/details/79552348
+                </p>
+            </section>
+        </section>
+        <section>
+            <h4>鸣谢</h4>
+            <p>感谢大家观看</p>
+            <p><small>BY：孔晓平</small></p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js "></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js "></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc "或"o "键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true},
+            {
+                src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+</html>
