@@ -1,0 +1,221 @@
+-<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>Map，List，Array，Set之间的关系是什么，分别适用于哪些场景，集合大家族还有哪些常见的类？</h2>
+            <p>分享人：白栋</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.编码实战</p>
+            <p>4.常见问题</p>
+			<p>5.解决方案</p>
+			<p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+
+
+        <section>
+
+            <h3>数组和集合</h3>
+            <p>数组：可以存储基本数据类型和对象，数组的长度固定，不适合在对象数量未知的情况下使用。</p>
+            <p>集合：只能存储对象，对象类型可以不一样，长度可变，可在多数情况下使用。</p>
+			  <img src="D:\\接口.png">
+        </section>
+
+        
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+		<section> 
+        
+            <h3>泛型</h3>
+			
+			<p> 泛型E像一个占位符一样表示“未知的某个数据类型”，我们在真正调用的时候传入这个“数据类型”。</p>
+        </section>
+		         <section>
+                    <h3>Controllect接口</h3> 
+					<p> Collection接口的两个子接口是List、Set接口，由于List、Set是Collection的子接口，意味着所有List、Set的实现类都有上面的方法。</p>
+			
+            	                <img src="D:\\controllect接口.png">
+
+                </section>
+        
+		             <section>
+                    <h3>Map接口</h3> 
+					<p>  Map就是用来存储“键(key)-值(value) 对”的。 Map类中存储的“键值对”通过键来标识，所以“键对象”不能重复。</p>
+				
+                </section>
+				<section>
+                    <h3>List、Set、Map接口的比较</h3> 
+					<p>List（有序、可重复、允许存在多个null元素）</p>
+					<p>Set（无序、不能重复、只允许存在一个null元素）</p>
+					<p>Map（键值对、键唯一、值不唯一、只允许存在一个Key为null元素 ）</p>
+					
+                </section>
+        <section>
+		<h3>list接口</h3>  
+                     <p>有序：List中每个元素都有索引标记（在List中的位置）。</p>
+					 <p>可重复：List允许加入重复的元素。</p>
+					 <p>ArrayList底层是用动态数组实现的存储。 特点：查询效率高，增删效率低，线程不安全。<p>
+					 <p>LinkedList底层用双向链表实现的存储。特点：查询效率低，增删效率高，线程不安全。<P>
+		</section>
+        <section>
+		<h3>set接口</h3>  
+		             <p>无序：Set中的元素没有索引，我们只能遍历查找;</p>
+					 <p>不可重复：不允许加入重复的元素。</p>
+					 <p>Set接口继承自Collection，Set接口中没有新增方法，方法和Collection保持完全一致。前面的List学习的方法，在Set中仍然适用。<p>
+					 <p> Set的实现类有：HashSet、TreeSet、LinkedHashSet、EnumSet等，我们一般使用HashSet。<p>
+		</section>
+		<section>
+		<h3>Map接口</h3>  
+		             <p>Map就是用来存储“键(key)-值(value) 对”的。 Map类中存储的“键值对”通过键来标识，所以“键对象”不能重复。</p>
+					 <p>键值对，无序。</p>
+					 <p>键唯一、值不唯一</p>
+					 <p>只允许存在一个Key为null元素<p>
+					 <p>Map 接口的实现类有HashMap、TreeMap、HashTable、Properties等。我们一般使用HashMap。<p>
+		</section>
+	
+		
+		<section>
+		
+            <h3>3.编码实战</h3>
+			
+        </section>	
+					
+					
+		<section>
+		
+            <h3>4.常见问题</h3>
+			
+        </section>
+		
+        <section>
+            <h3>1.为什么要声明为List<String> 而不是ArrayList<String></h3>
+        </section>	
+
+         <section>
+		
+            <h3>5.解决方案</h3>
+			
+        </section>
+		
+		<section>
+		
+            <h3>1.为什么要声明为List<String> 而不是ArrayList<String></h3>
+			<h3>设计模式中有：“代码尽量依赖于抽象，不依赖于具体”。</h3>
+            <h3>通过list来操作集合。代码编写后发现集合使用的不准确，应该使用LinkedList，那么只要修改一行代码List list = new LinkedList();就可以，这行以后的代码不需要修改，因为List接口保证了调用的都是接口中的方法，而ArrayList与LinkedList都实现了List接口。</h3>
+        </section>	
+	 <section>
+		
+            <h3>而如果当时用ArrayList list = new ArrayList()这种形式的话，那么list访问到的就可能是ArrayList里独有的方法而非List接口中的方法。这样替换成LinkedList的时候就有可能需要修改很多的代码。</h3>
+			
+        </section>	
+
+			
+        <section>
+		
+            <h3>6.扩展思考</h3>
+			
+        </section>
+
+       <section>
+		
+            <h3>遍历集合</h3>
+        </section>
+        <section>
+		<section>
+			<h3>迭代器为我们提供了统一的遍历容器的方式</h3>
+        </section>
+      
+    
+        <section>
+		
+            <h3>7.参考资料</h3>
+            <P>https://www.sxt.cn/Java_jQuery_in_action/nine-treemap.html</P>
+			<P>https://www.cnblogs.com/wslook/p/9385610.html</P>
+
+        </section>
+
+        <section>
+            <h3>8.更多讨论</h3>
+            <p></p>
+        </section>
+
+        <section>
+		
+            <h3>鸣谢</h3>
+            <p>感谢观看,如有出错,恳请指正</p>
+           
+        </section>
+
+    </div>
+    <script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
