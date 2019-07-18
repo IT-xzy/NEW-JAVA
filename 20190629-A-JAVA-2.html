@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section class="present" style="top: 221.5px; display: block;">
+            <p>什么叫MVC，Spring里对应的MVC分别是什么，是怎么收到用户请求然后分发给不同的Controller的？</p>
+            <p>分享人：张明顺</p>
+        </section>
+        <!--<section hidden="" aria-hidden="true" class="future" style="top: 69px; display: block;">
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>            
+            <p>4.编码实战</p>
+            <p>5.扩展思考</p>
+            <p>6.参考文献</p>
+            <p>7.更多讨论</p>
+        </section>	-->
+        <section hidden="" aria-hidden="true" class="future" style="top: 267px; display: block;">
+            <h3>1.背景介绍</h3>
+            <p>MVC 是一种软件架构模式,全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写</p>
+            <p>SpringMVC 全称是Spring Web MVC，是来自spring-webmvc模块，只不过我们简称SpringMVC</p>
+        </section>
+
+        <section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+            <h3>2.知识剖析</h3>
+            <P>核心组件</p>
+            <P>前端控制器:DispatcherServlet</p>
+            <P>处理器映射器:HandlerMapping</p>
+            <P>处理器适配器:HandlerAdapter</p>
+            <!--<P>模型数据、逻辑视图名:ModelAndView</p>-->
+            <P>视图解析器:ViewResolver</p>
+
+        </section>
+
+        <section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+            <h3>3.常见问题</h3>
+
+        </section>
+
+        <section class="future" style="top: 119px; display: none;" hidden="" aria-hidden="true">
+            <P>怎么收到用户请求然后分发给不同的Controller</p>
+            <a style="text-align:left; ">
+                <img src="./20190629-A-JAVA-2/MVC流程图.png">
+            </a>
+        </section>
+
+
+        <section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+            <h3>4.编码实战</h3>
+        </section>
+
+        <section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+            <h3>5.扩展思考</h3>
+            <p>MVC和三层架构：表示层、业务层、持久层有什么关系？</p>
+            <p>三层架构分层：表示层、业务层、持久层。</p>
+            <p>1.表示层负责接收用户请求、转发请求、显示数据等；
+            <p>2.业务层负责组织业务逻辑；
+            <p>3.持久层负责持久化业务对象。</p>
+
+            <p>MVC是三层架构中表示层最常用的架构模式</p>
+        </section>
+
+        <section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+            <h3>6.参考文献</h3>
+            <p>三层构架和 MVC 不同吗？</p>
+            <p>https://www.zhihu.com/question/24291079</p>
+        </section>
+        <section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+            <h3>7.更多讨论</h3>
+            <p></p>
+        </section>
+
+        <section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+            <h4>分享到此结束</h4>
+            <p>谢谢大家！</p>
+        </section>
+
+    </div>
+</div>
+
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            {src: '../plugin/markdown/marked.js'},
+            {src: '../plugin/markdown/markdown.js'},
+            {src: '../plugin/notes/notes.js', async: true},
+            {
+                src: '../plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+</html>

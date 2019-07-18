@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? './css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+	<style>
+		.left{ text-align: left; }
+	</style>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>为什么要使用Interface，而不是直接使用一个实体类来完成任务？Interface和Impl这种方式的好处是什么？</h2>
+            <p>分享人：吴振羽</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>            
+            <p>4.编码实战</p>
+            <p>5.扩展思考</p>
+            <p>6.参考文献</p>
+            <p>7.更多讨论</p>
+        </section>
+         <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+            <section style="top: 267px; display: block;" class="" aria-hidden="true">
+                <h3>1.背景介绍</h3>
+            </section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+			    <p>	在开发人员编写程序时，会把属性和方法等等都会放在类中，但这些东西放在一起，我们只需要调用其中之一时非常麻烦。
+					并且会在各层之间出现强耦合的情况，使代码维护的复杂度上升。接口是就是为了解决各个实现类间的耦合问题诞生的。<p>
+				 </section>
+        </section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>2.知识剖析</h3>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>接口</p>
+				<p>在接口（英文：Interface），在JAVA编程语言中是一个抽象类型，是抽象方法的集合，接口通常以interface来声明。一个类通过
+					继承接口的方式，从而来继承接口的抽象方法。
+					接口并不是类，编写接口的方式和类很相似，但是它们属于不同的概念。类描述对象的属性和方法。接口则包含类要实现的方法。
+					除非实现接口的类是抽象类，否则该类要定义接口中的所有方法。
+					接口无法被实例化，但是可以被实现。一个实现接口的类，必须实现接口内所描述的所有方法，否则就必须声明为抽象类。
+					另外，在 Java 中，接口类型可用来声明一个变量，他们可以成为一个空指针，或是被绑定在一个以此接口实现的对象。</p>
+				<p></p>
+				<p></p>
+				<p></p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+			    <p>接口与类相似点：</p>
+				<p>1、一个接口可以有多个方法。</p>
+			    <p>2、接口文件保存在 .java 结尾的文件中，文件名使用接口名。</p>
+				<p>3、接口的字节码文件保存在 .class 结尾的文件中。</p>
+			    <p>4、接口相应的字节码文件必须在与包名称相匹配的目录结构中。</p>
+				<p></p>
+				<p></p>
+				<p></p>
+				
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">			
+				<p>接口与类的区别：</p>
+				<p>1、接口不能用于实例化对象。</p>
+				<p>2、接口没有构造方法。</p>
+				<p>3、接口中所有的方法必须是抽象方法。</p>
+				<p>4、接口不能包含成员变量，除了 static 和 final 变量。</p>
+				<p>5、接口不是被类继承了，而是要被类实现。</p>
+				<p>6、接口支持多继承。</p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+			    <p>接口特性</p>
+				<p>1、接口中每一个方法也是隐式抽象的,接口中的方法会被隐式的指定为 public abstract（只能是 public abstract，其他修饰符都会报错）。</p>
+				<p>2、接口中可以含有变量，但是接口中的变量会被隐式的指定为 public static final 变量（并且只能是 public，用 private 修饰会报编译错误）。</p>
+				<p>3、接口中的方法是不能在接口中实现的，只能由实现接口的类来实现接口中的方法。</p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+			</section>					
+		</section>
+		<section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+				<h3>3.常见问题</h3>
+			</section>	
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>抽象类和接口的区别</p>
+				<p>1、抽象类中的方法可以有方法体，就是能实现方法的具体功能，但是接口中的方法不行。</p>
+				<p>2、抽象类中的成员变量可以是各种类型的，而接口中的成员变量只能是 public static final 类型的。</p>
+				<p>3、接口中不能含有静态代码块以及静态方法(用 static 修饰的方法)，而抽象类是可以有静态代码块和静态方法。</p>
+				<p>4、一个类只能继承一个抽象类，而一个类却可以实现多个接口。</p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+				<p></p>
+			</section>			
+		</section>
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<h3>4.编码实战</h3>
+			</section>			
+		</section>
+		<section  class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<h3>5.扩展思考</h3>				
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+				<p>什么是抽象类</p>
+				<p>并不是所有的类都是用来描绘对象的，如果一个类中没有包含足够的信息描绘一个对象，这样的类就是抽象类。
+					抽象类不能被实例化，但是其他功能都与普通的类一样。
+					抽象类必须被继承后才能实例化。
+				</p>
+				<p></p>
+				<p></p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">
+			<p>接口的多继承</p>
+			<p>在Java中，类的多继承是不合法，但接口允许多继承。
+				在接口的多继承中extends关键字只需要使用一次，在其后跟着继承接口。</p>
+				<p></p>
+				<p></p>
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">				
+			    <p></p>
+				<p></p>
+				<p></p>
+			    <p></p>
+				<p></p>
+			</section>
+		</section>
+		<section>
+			<h3>6.参考文献</h3>
+			<p>https://blog.csdn.net/hellocsz/article/details/81713959</p>
+			<p>https://www.runoob.com/java/java-abstraction.html</p>
+		</section>
+        <section>
+            <h3>7.更多讨论</h3>	
+        </section>
+        
+        <section>
+            <h3>分享到此结束</h3>
+            <p></p>            
+        </section>
+        <section class="stack past" style="top: 0px; display: block;" data-previous-indexv="0" hidden="" aria-hidden="true">
+			<section style="top: 267px; display: block;" class="" aria-hidden="true">
+			</section>
+			<section class="future" aria-hidden="true" style="top: 198px; display: none;" hidden="">				
+			</section>
+		</section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: './plugin/markdown/marked.js' },
+            { src: './plugin/markdown/markdown.js' },
+            { src: './plugin/notes/notes.js', async: true },
+            { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>

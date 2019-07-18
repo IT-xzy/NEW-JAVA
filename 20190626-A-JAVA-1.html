@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+         <section style="text-align: center; top: 178px; display: block;" class="present" data-index-h="0">
+            <h3>为什么响应时间一般不允许超过200MS，怎么查看一个请求从发起到结束，耗费在什么地方了？</h3>
+            <p></p>
+            <h3></h3>
+            <br>
+            <br>
+            <p>分享人：胡畔</p>
+        </section>
+        <section class="future" style="top: 34px; display: block;" data-index-h="1" hidden="" aria-hidden="true">
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+        <section style="text-align: justify; top: 94px; display: block;" class="future" data-index-h="2" hidden="" aria-hidden="true">
+            <h3>1.背景介绍</h3>
+            <h4>为什么要把响应时间控制在200MS?</h4>
+            <p>&emsp;&emsp;平时打开一个网站,如果等待时间特别久,我们会不由自主的说一句:这网站真慢。但是对于一个程序员来说，就必须要把时间精确到多少MS。多少MS才算慢？通常来说，人的眼睛对200MS以上的延迟是有反应的，所以一般而言，一整个页面都应该在200MS之内完成。<br>
+                &emsp;&emsp;对于复杂的请求,可以稍微慢一点,毕竟大家还能忍受,能忍的程度跟网站的价值成正比。<br>
+                &emsp;&emsp;简单的用户个人信息这种请求，应该在50MS左右，List的数据，差不多在100MS左右。这是比较正常的数据。
+            </p>
+        </section>
+
+ <section class="future" style="text-align: justify; top: 0px; display: none;" data-index-h="3" hidden="" aria-hidden="true">
+ <p>&emsp;&emsp;对于一个网络请求来说，第一个层面，你需要知道的时间的损耗可以分解成三大部分。
+<br>&emsp;&emsp;第一部分前端的响应，一般包括解析和渲染，这部分的性能跟前端的代码，前端硬件有关系。
+<br>&emsp;&emsp;第二部分就是网络延迟，这部分的代码正常来讲是在8~16MS左右，是的，Http请求就是差不多这个性能，如果是WebSocket几乎可以做到零延迟。
+<br>&emsp;&emsp;第三部分就是服务器端的响应，我们说的是网站慢，一般而言，也就是主要在这里，要做性能优化的地方，基本上也是看这里。
+ </p>
+ </section>
+
+ <section class="future" style="text-align: left;" style="top: 0px; display: none;" data-index-h="3" hidden="" aria-hidden="true">
+ <p>&emsp;&emsp;那么怎么知道每一段时间间隔多久呢？<br>
+    <br>&emsp;&emsp;客户端到服务器端的响应时间,可以通过浏览器的F12或者Fiddler软件来查看
+ </p>
+ <br>
+  <p>&emsp;&emsp;服务器端的响应时间就要通过nginx和Tomcat的日志来查看了<br>
+ </p>
+ </section>
+
+ <section class="future" style="top: 0px; display: none;" data-index-h="3" hidden="" aria-hidden="true">
+ <section class="future" style="text-align: justify;" style="top: 0px; display: none;" data-index-h="3" hidden="" aria-hidden="true">
+            <h3>2.知识剖析</h3>
+            <h4>F12查看前端响应时间</h4>
+ <p>&emsp;&emsp;在访问网站的时候按F12后刷新,点击Network就可以看到各种资源的访问时间<br>
+    &emsp;&emsp;不同的浏览器渲染引擎也不一样,渲染引擎首先通过网络获得所请求文档的内容，通常以8K分块的方式完成。下面是渲染引擎在取得内容之后的基本流程：<br>
+    <br>解析html以构建dom树 -> 构建render树 -> 布局render树 -> 绘制render树
+ </p>
+ </section>
+
+        <section class="future" style="top: 0px; display: none;" data-index-h="7" hidden="" aria-hidden="true">
+            <p>如果前端相应正常,网络传输正常,就是后端相应的问题了,这时候就要去服务器看nginx和Tomcat的日志<br>
+            所有的请求都是先到nginx，nginx记录的是所有的请求的出入时间。然后再分发给后面的Tomcat，jetty，resin等容器。nginx不管是域名还是跨域,还是防止Ddos攻击,都很好用。还能同时配置多个服务器还能做负载均衡。
+            </p>
+        </section>
+
+        <section class="future" style="top: 0px; display: none;" data-index-h="7" hidden="" aria-hidden="true">
+            <p>Tomcat后面基本上就是java人员所写的代码了，所以对于后端人员来说，就是对后端的代码进行优化<br>
+                而Tomcat再进行优化，就是看controller层和service层了。<br>
+                controller控制service,所以主要做事情的也是service
+            </p>
+        </section>
+
+        <section class="future" style="top: 0px; display: none;" data-index-h="7" hidden="" aria-hidden="true">
+            <p>所以Tomcat响应时间可以分为:<br>
+                1.Controller的处理时间<br>
+                2.Service的调用时间<br>
+                3.返回结果的处理时间<br>
+            </p>
+        </section>
+
+        <section class="future" style="top: 0px; display: none;" data-index-h="7" hidden="" aria-hidden="true">
+            <p>一般而言，我们会写一个AOP的Util。并不会在Controller里手写StartAt和EndAt。<br>
+                这个Aop一般可以实现的功能为：<br>
+                如果超过了50MS，记录日志，入参，时间。<br>
+                如果不超过50MS，不记录。<br>
+                当然这个50MS是根据每个应用的情况来自行设置的。<br>
+            </p>
+        </section>
+
+        <section class="future" style="top: 0px; display: none;" data-index-h="7" hidden="" aria-hidden="true">
+            <p>MemCache和DB做了什么?<br>
+
+            </p>
+        </section>
+
+        <section class="future" style="top: 0px; display: none;" data-index-h="7" hidden="" aria-hidden="true">
+            <h3>3.常见问题</h3>
+        </section>
+
+        <section class="future" style="top: 0px; display: none;" hidden="" aria-hidden="true" data-index-h="9">
+            <h3>4.解决方案</h3>
+        </section>
+
+        <section class="future" style="top: 0px; display: none;" hidden="" aria-hidden="true" data-index-h="11">
+            <h3>5.编码实战</h3>
+        </section>
+
+        <section class="future" style="top: 0px; display: none;" hidden="" aria-hidden="true" data-index-h="12">
+            <h3>6.扩展思考</h3>
+        </section>
+
+        <section class="future" style="top: 0px; display: none;" hidden="" aria-hidden="true" data-index-h="12">
+            <p>我们一直说的，一个程序员的真正工作的地方不在笔记本上，也不是在开发环境，也不是在测试环境，而是在线上环境，就是这个道理。
+做为一个老程序员来说，对于线上有哪几台服务器，IP是多少，内存是多大，硬盘是多大，CPU是几核的，常用负载是多少，IO有多少，每天增长的日志是多少，DB里的数据库大小是多大，每天的增量是多少，系统中最慢的请求是什么，每天会访问多少次，最快的请求是什么，每天应该访问多少次，每次访问的时候正常应该是在多少MS内返回，一次会取多少条数据，分解到哪几个Service，每个Service的不同时间请求是多少，有多少穿透DB的次数。所有的这些数据都要了如指掌，这样才能够非常快的定位线上的问题。我们不能说这样的程序员是一个水平多厉害的高手，但是他如果做到了这么一点，他就是一个久经沙场的老兵，这样才像是一个职业的工程师。</p>
+        </section>
+
+        <section class="future" style="top: 0px; display: none;" hidden="" aria-hidden="true" data-index-h="13">
+            <h3>7.参考文献</h3>
+            <p>https://zhuanlan.zhihu.com/p/26362431</p>
+        </section>
+
+        <section class="future" style="top: 0px; display: none;" hidden="" aria-hidden="true" data-index-h="14">
+            <h3>8.更多讨论</h3>
+            <p></p>
+        </section>
+
+        <section class="future" style="top: 0px; display: none;" hidden="" aria-hidden="true" data-index-h="15">
+            <h4>鸣谢</h4>
+            <p>感谢师兄的指导，以及各位前端大佬帮忙改PPT格式</p>
+            <p>感谢观看,如有出错,恳请指正</p>
+            <p><small>BY : 胡畔</small></p>
+        </section>
+   
+    </div>
+
+</div>
+
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    //  controls: true, // 是否在右下角展示控制条
+    //  progress: true, // 是否显示演示的进度条
+    //  slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    //  history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    //  keyboard: true, // 是否启用键盘快捷键来导航
+    //  overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    //  center: true, // 是否将幻灯片垂直居中
+    //  touch: true, // 是否在触屏设备上启用触摸滑动切换
+    //  loop: false, // 是否循环演示
+    //  rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    //  fragments: true, // 全局开启和关闭碎片。
+    //  autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    //  transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    //  transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    //  mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            {src: '../plugin/markdown/marked.js'},
+            {src: '../plugin/markdown/markdown.js'},
+            {src: '../plugin/notes/notes.js', async: true},
+            {
+                src: '../plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            }
+        ]
+    });
+</script>
+</body>
+</html>
