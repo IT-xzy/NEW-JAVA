@@ -1,0 +1,288 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>葡萄藤PPT</title>
+
+   <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+     <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    
+</head>
+
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>什么是restful？rest的请求方法有哪些，有什么区别？  </h2>
+            <h3>java小课堂</h3>
+			<p>分享人：王全</p>
+        </section>
+
+        <section>
+            <p>目录</p>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+
+        <section>
+            <section>
+                <h3>1.背景介绍</h3>
+            </section>
+
+            <section style="text-align: left;">
+                <br style="text-align: left">
+                <h3>(1)为什么用RESTful结构</h3>
+                曾经,网页是前端后端不分离的,例如PHP,JSP等.<br>
+				但随着移动互联网的发展,各类客户端层出不穷,RESTful就可以通过一套统一的接口为各类Client提供服务.<br>
+				对于广大平台来说,比如微博,微信等,他们不需要有显示的前端,只需要一套提供服务的接口,于是RESTful就是最好的选择.</p>
+            </section>
+			
+			<section style="text-align: left;">
+				<h3>(2)REST的提出</h3>
+				<p style="text-align:left">REST全称是resource representational state,意为表现层状态转化.<br>
+				它首次出现在2000年Roy Fielding的博士论文中，Roy Fielding是HTTP规范的主要编写者之一。 <br>他在论文中提到："我这篇文章的写作目的，就是想在符合架构原理的前提下，理解和评估以网络为基础的应用软件的架构设计，得到一个功能强、性能好、适宜通信的架构。<br>
+				REST指的是一组架构约束条件和原则。" 如果一个架构符合REST的约束条件和原则，我们就称它为RESTful架构。<br>
+			</p>
+			</section>
+			
+			<section style="text-align: left;">
+			用一句话概括RESTful：<br><br>
+			URL定位资源，用HTTP动词（GET,POST,DELETE,DETC）描述操作。
+			</section>
+        </section>
+
+        <section>
+
+            <section>
+                <h3>2.知识剖析</h3>
+            </section>
+
+            
+
+            <section style="text-align: left;">
+                <section style="text-align: center;"><strong><h3>资源resources</h3></strong></section>
+                REST的名称"表现层状态转化"中，其实省略了主语: "表现层"指的是"资源"（Resources）的"表现层".<br>
+				所谓资源,是网络上的一个具体信息, 它可以是一段文本、一张图片、一首歌曲、一种服务，总之就是一个具体的实体。<br>资源本质上是数据,它是网络的核心.
+            </section>
+            
+            <section style="text-align: left;">
+                <section style="text-align: center;"><strong><h3>统一标识符URI</h3></strong></section>
+                要让一个资源可以被识别,需要有个独一无二标识,在WEB中这个唯一标识就是URI(Unriform Resource Identifier)<br>
+				URI既可以看成是资源的地址,也可以看成是资源的名称,如果某些信息没有使用URI来表示,那就不能算是一个"资源",只能算是资源的一些信息.
+            
+            </section>
+            
+            
+ 
+            <section style="text-align: left;">
+                <h3>URI的设计</h3>
+                URI的设计应遵循可寻址性原则,具有自描述性,需要在形式上给人以直觉的关联.<br>
+				例如:
+				
+				https://github.com/wang/git/blob/master/block-sha1/sha1.h<br>
+				https://github.com/wang/git/commit/e3af72cdafab5993d18fae056f87e1d675913d08<br>
+				https://github.com/wang/git/pulls<br>
+				https://github.com/wang/git/pulls?state=closed<br>
+				https://github.com/wang/git/compare/master…next<br>
+            </section>
+
+            <section style="text-align: left;">
+                <h3>URI示例</h3>
+            反面示例:<br>
+			/getProducts<br>
+			/listOrders<br>
+			/retrieveClientByOrder?orderId=1<br>
+			正面示例:<br>
+			GET /products : 返回所有产品列表<br>
+			POST /products : 新增一个产品<br>
+			GET /products/4 : 返回id为4的产品信息<br>
+			PATCH/PUT /products/4 : 更新id为4的产品信息<br>
+            </section>
+
+             <section style="text-align: left;">
+                <h3>表现层Representation</h3>
+                资源是一种信息实体,它可以有多种外在表现形式,把"资源"具体呈现出来的方式叫做它的"表现层".<br>
+				比如，文本可以用txt格式表现，也可以用HTML格式、XML格式、JSON格式表现，甚至可以采用二进制格式；图片可以用JPG格式表现，也可以用PNG格式表现。
+            </section>
+			<section style="text-align: left;">
+                <h3>状态转化state transfer</h3>
+                访问一个资源,就代表了客户端和服务端一个互动过程,在这个过程中势必涉及到数据和状态的变化.<br>
+				如果客户端想要操作服务器，必须通过某种手段，让服务器端发生"状态转化"（State Transfer）。而这种转化是建立在表现层之上的，所以就是"表现层状态转化"。<br>
+				客户端用到的手段，只能是HTTP协议。具体来说，就是HTTP协议里面，四个表示操作方式的动词：GET、POST、PUT、DELETE。它们对应四种基本操作：增删查改.
+            </section>
+
+        </section>
+
+        <section>
+            <section>
+                <h3>3.常见问题</h3>
+            </section>
+             <section style="text-align: left;">
+                什么是restful？rest的请求方法有哪些，有什么区别？  
+            </section>
+			
+        </section>
+
+
+        <section>
+            <section>
+                <h3>4.解决方案</h3>
+            </section>
+			<section style="text-align: left;">
+               用一句话概括restful：<br><br>
+			URL定位资源，用HTTP动词（GET,POST,DELETE,DETC）描述操作。
+            </section>
+			
+			<section style="text-align: left;">
+			<h3>rest的请求方法,及其区别</h3>
+			HTTP协议里面，四个表示操作方式的动词：GET、POST、PUT、DELETE。它们分别对应四种基本操作：
+			GET用来获取资源，POST用来新建资源（也可以用于更新资源），PUT用来更新资源，DELETE用来删除资源。
+			</section>
+			
+			<section style="text-align: left;">
+			GET - 提供的资源的只读访问。常用于查询某些信息,可将查询参数追加到URL末尾.<br>
+			安全且幂等<br>
+			PUT - 在REST中主要用于更新资源,因为大多数浏览器会自动将put和delete请求转换get和post,因此需要以post发送请求,在表单中使用隐藏域发送真实请求。<br>
+			不安全但幂等<br>
+			DELETE - 用于删除资源。<br>
+			不安全但幂等.<br>
+			POST - 用于更新现有资源或创建新的资源。<br>
+			不安全且不幂等.<br>
+			</section>
+			
+			<section style="text-align: left;">
+			POST方法提交的数据放置在HTTP报文实体的主体里,所以相比GET方法而言,POST方法安全性更高.<br>
+			GET方法传输的数据量一般限制在2KB,而POST方法对于数据大小是无限制的.<br>
+			</section>
+			
+			
+			
+			
+         </section>
+         
+         
+        <section>
+            <section>
+                <h3>5.编码实战</h3>
+            </section>
+        </section>
+
+
+        <section>
+            <section>
+                <h3>6.扩展思考</h3>
+            </section>
+			
+			<section style="text-align: left;">
+                <h3>关于无状态statelessness</h3>
+               状态指的是请求的状态<br>
+			   在无状态的Web服务中,每一个Web请求都必须是独立的,请求之间是完全分离的,Server没有保存Client的状态信息,所以Client发送的请求必须包含有能够让服务器理解请求的全部信息,使得一个Client的Web请求能够被任何可用的Server应答;<br>
+			   而有状态的请求的状态信息只保存在第一次接受请求的Server上,所以之后同一个Client的请求都只能由这一台Server来处理.
+			   无状态的请求有利于实现均衡负载<br>
+            </section>
+			
+            <section style="text-align: left;">
+                <h3>restful的好处</h3>
+                REST极大降低沟通复杂度,通过把表征作为唯一的沟通方式,无需去讨论过程而只需讨论表征.<br>
+				URL具有很强的可读性，具有自描述性；<br>
+				资源描述与视图的松耦合；<br>
+				可提供OpenAPI，便于第三方系统集成，提高互操作性；<br>
+				如果提供无状态的服务接口，可提高应用的水平扩展性；<br>
+            </section>
+            
+
+        </section>
+           
+
+        <section>
+            <section>
+                <h3>7.参考文献</h3>
+            </section>
+
+            <section>
+                <p style="text-align: left">参考：<br>
+                    怎样用通俗的语言解释REST，以及RESTful?(知乎)<br>
+                    https://www.zhihu.com/question/28557115<br><br>
+                    RESTful 架构详解(菜鸟教程)<br>
+                    https://www.runoob.com/w3cnote/restful-architecture.html
+                    
+                    
+                    
+                    
+                </p>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h3>8.更多讨论</h3>
+            </section>
+        </section>
+
+        <section>
+            <!--<h4>鸣谢</h4>-->
+            <p>感谢大家观看</p>
+            <p>
+                <small>BY : 杨若曦</small>
+            </p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js "></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js "></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc "或"o "键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js'},
+            {src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true},
+            {
+                src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ]
+    });
+</script>
+</body>
+
+</html>
