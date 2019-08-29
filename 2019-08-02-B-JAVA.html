@@ -1,0 +1,232 @@
+-<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>什么是session？什么是cookie？session和cookie有什么区别？什么场景适用于session？什么场景适用于cookie？</h2>
+            <p>分享人：白栋</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.编码实战</p>
+            <p>4.常见问题</p>
+			<p>5.解决方案</p>
+			<p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+			<p>9.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+
+
+        <section>
+
+            <h3>发展史</h3>
+            <p>很久很久以前，Web 基本上就是文档的浏览而已， 既然是浏览，作为服务器， 不需要记录谁在某一段时间里都浏览了什么文档，每次请求都是一个新的HTTP协议， 就是请求加响应，  
+			尤其是我不用记住是谁刚刚发了HTTP请求，   每个请求对我来说都是全新的。这段时间很嗨皮</p>
+            <p>但是随着交互式Web应用的兴起，像在线购物网站，需要登录的网站等等，马上就面临一个问题，那就是要管理会话，必须记住哪些人登录系统，  哪些人往自己的购物车中放商品，  也就是说我必须把每个人区分开，这就是一个不小的挑战，因为HTTP请求是无状态的，所以想出的办法就是给大家发一个会话标识(session id), 说白了就是一个随机的字串，每个人收到的都不一样，  
+			每次大家向我发起HTTP请求的时候，把这个字符串给一并捎过来， 这样我就能区分开谁是谁了</p>
+        </section>
+        <section>
+
+          
+            <p>虽然每个人只需要保存自己的session id，而服务器要保存所有人的session id ！  如果访问服务器多了， 就得由成千上万，甚至几十万个。
+这对服务器说是一个巨大的开销 ， 严重的限制了服务器扩展能力</p>
+            <p>session sticky ， 就是让小F的请求一直粘连在机器A上， 但是这也不管用， 要是机器A挂掉了， 还得转到机器B去。</p>
+			<p>Memcached的支了招： 把session id 集中存储到一个地方， 所有的机器都来访问这个地方的数据，但是增加了单点失败的可能性， 
+			要是那个负责session 的机器挂了，所有人都得重新登录一遍， 估计得被人骂死。</p>
+        </section>
+
+<section>
+
+          
+            <p>小F已经登录了系统， 我给他发一个令牌(token)， 里边包含了小F的 user id， 
+			下一次小F 再次通过Http 请求访问我的时候， 把这个token 通过Http header 带过来不就可以了。</p>
+            <p>加密，当小F把这个token 给我发过来的时候，我再用同样的HMAC-SHA256 算法和同样的密钥，对数据再计算一次签名， 和token 中的签名做个比较， 如果相同， 我就知道小F已经登录过了，
+			并且可以直接取到小F的user id ,  如果不相同， 数据部分肯定被人篡改过， 我就告诉发送者： 对不起，没有认证。</p>
+			
+        </section>
+<section>
+            <h3>2.知识剖析</h3>
+        </section>
+		<section> 
+        
+            <h3>Cookie</h3>
+			
+			<p>cookie 是一个非常具体的东西，指的就是浏览器里面能永久存储的一种数据，仅仅是浏览器实现的一种数据存储功能。
+
+cookie由服务器生成，发送给浏览器，浏览器把cookie以 K-V 形式保存到某个目录下的文本文件内，下一次请求同一网站时会把该cookie发送给服务器。
+由于cookie是存在客户端上的，所以浏览器加入了一些限制确保cookie不会被恶意使用，同时不会占据太多磁盘空间，所以每个域的cookie数量是有限的。</p>
+        </section>
+		<section>
+                    <h3>Session</h3> 
+                    
+                     <p> session 是服务器要知道当前发请求给自己的是谁。为了做这种区分，服务器就要给每个客户端分配不同的“身份标识”，然后客户端每次向服务器发请求的时候，都带上这个“身份标识”，服务器就知道这个请求来自于谁了。至于客户端怎么保存这个“身份标识”，可以有很多种方式，对于浏览器客户端，大家都默认采用 cookie 的方式。
+
+服务器使用session把用户的信息临时保存在了服务器上，用户离开网站后session会被销毁。这种用户信息存储方式相对cookie来说更安全，可是session有一个缺陷：如果web服务器做了负载均衡，那么下一个操作请求到了另一台服务器的时候session会丢失。</p>
+                </section>
+        
+        <section>
+	<section>
+	
+		<h3>cookie的实现步骤</h3>  
+                     <p>客户端请求服务器后，如果服务器需要记录用户状态，服务器会在响应信息中包含一个Set-Cookie的响应头，客户端会根据这个响应头存储Cookie信息。再次请求服务器时，客户端会在请求信息中包含一个Cookie请求头，而服务器会根据这个请求头进行用户身份、状态等较验。</p>
+
+		</section>
+        <section>
+		<h3>session实现的步骤</h3>  
+                     <p>1.浏览器访问某个Servlet，这时如果服务器要从请求对象中获取Session对象（第一次获取也是创建），那么服务器会为这个Session对象创建一个id：JSESSIONID</p>
+					 <p>2.同时在对浏览器的响应过程中，这个Session会将JSESSIONID这个id以Cookie形式回送给客户端浏览器，记住，这时候Cookie服务器没有设置有效时间，因此是存在浏览器的缓存中，而不是在硬盘文件。</p>
+		</section>
+        <section>
+		<p>3.同时在对浏览器的响应过程中，这个Session会将JSESSIONID这个id以Cookie形式回送给客户端浏览器，记住，这时候Cookie服务器没有设置有效时间，因此是存在浏览器的缓存中，而不是在硬盘文件。</p>
+		</section>
+		<section>
+		<h3>总结</h3>  
+		<p>Session是基于Cookie的</p>
+		<p>cookie并不是万能的，Session首先是依据cookie，但是有时候cookie不能用，这时候Session会查询发来请求的URL地址是否有JSESSIONID。</p>
+		</section>	
+
+		
+		<section>
+		
+            <h3>3.编码实战</h3>
+			
+        </section>	
+					
+					
+		<section>
+		
+        <h3>4.常见问题</h3>
+			
+        </section>
+		
+        <section>
+            <h3>1.session和cookie的区别</h3>
+    		<h3>2.session的代码中为什么没有使用cookie传回sessionId</h3>
+        </section>	
+
+         <section>
+		
+            <h3>5.解决方案</h3>
+			
+        </section>
+		
+		<section>
+		
+            <h3>1. session和cookie的区别</h3>
+			 <img src=">D:\1.png">
+        </section>	
+					
+		<section>
+		
+            <h3>2.session的代码中为什么没有使用cookie传回sessionId</h3>
+			<img>Session的隐藏Cookie的实现过程</img>
+        </section>
+
+			
+        <section>
+		
+            <h3>6.扩展思考</h3>
+			
+        </section>
+
+       <section>
+		
+            <h3>Token验证</h3>
+        </section>
+        <section>
+		<section>
+			<P>用户登录校验，校验成功后就返回Token给客户端。</P>
+			<P>客户端收到数据后保存在客户端</P>
+			<P>客户端每次访问API是携带Token到服务器端。</P>
+			<P>服务器端采用filter过滤器校验。校验成功则返回请求数据，校验失败则返回错误码</P>
+        </section>
+      
+    
+        <section>
+		
+            <h3>7.参考资料</h3>
+            <P>https://www.php.cn/java-article-375683.html</P>
+
+        </section>
+
+        <section>
+            <h3>8.更多讨论</h3>
+            <p></p>
+        </section>
+
+        <section>
+		
+            <h3>鸣谢</h3>
+            <p>感谢观看,如有出错,恳请指正</p>
+           
+        </section>
+
+    </div>
+    <script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
