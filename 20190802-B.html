@@ -1,0 +1,266 @@
+-<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>Memcache和Redis的区别是什么？</h2>
+            <p>分享人：白栋</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.编码实战</p>
+            <p>4.常见问题</p>
+			<p>5.解决方案</p>
+			<p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+
+
+        <section>
+
+            <h3>Redis</h3>
+            <p> Redis是当前比较热门的NOSQL系统之一，它是一个开源的使用ANSI c语言编写的key-value存储系统（区别于MySQL的二维表格的形式存储。）。和Memcache类似，但很大程度补偿了Memcache的不足。
+			和Memcache一样，Redis数据都是缓存在计算机内存中，不同的是，Memcache只能将数据缓存到内存中，无法自动定期写入硬盘，这就表示，一断电或重启，内存清空，数据丢失。所以Memcache的应
+			用场景适用于缓存无需持久化的数据。而Redis不同的是它会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，实现数据的持久化</p>
+        </section>
+        <section>
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+		<section> 
+        
+            <h3>Redis查询效率高的原因</h3>
+			
+			<p>完全基于内存</p>
+			<p>数据结构简单，对数据库的操作也简单-</p>
+			<p>采用单线程，没有并发</p>
+			<p>使用多路I/O复用模型，实现非阻塞I/O</p>
+        </section>
+		<section>
+            <h3>多路I/O复用模型</h3>
+        </section>
+		
+		<section>
+        <h3>传统的阻塞I/O模型</h3> 
+         <p>当read/write一个数据的时候，如果该数据不可被reade/write的时候，就会阻塞，其他对FD的操作不可进行</p>
+		 <h3>多路I/O复用模型</h3>
+		  <p>用select来监听文件的可读写的情况，将可以读写的放入select中</p>
+       </section>
+        
+        <section>
+	
+		<h3>Redis的数据类型</h3>  
+                     <p>string类型：基本数据类型，二进制安全</p>
+					 <p>Hash类型：string元素组成的字典，适用于存储对象</p>
+					 <p>List类型：列表，按照string元素的插入顺序进行排序</p>
+					 <p>set类型：string元素组成的无序集合，通过哈希表实现，不允许重复</p>
+					 <p>sorted set类型：通过分数为集合中成员进行由小到大的排序</p>
+                     <p>Hyperlog：用来计数</p>
+					  <p>Geo：存储地理位置</p>
+		</section>
+		<section>
+		<h3>Redis的分布锁</h3>  
+         </section>
+        <section>
+		<h3>分布锁要解决的问题</h3>  
+                     
+					 <p>互斥性:任一时刻是有一个客户端获取锁,不能两个客户端获取到锁</p>
+					 <p>安全性:锁只能被持有该客户端的删除,不能由其他客户端删除</p>
+					 <p>死锁:一个客户端获取到锁,导致宕机,而其他客户端无法获取到资源</p>
+					 <p>.容错:一些节点宕机,客户端任然能获取锁和释放锁</p>
+					
+		</section>
+        <section>
+		<h3>setnx和expire</h3>  
+		<p>setnx key value：key不存在就创建一个</p>
+		<p>expire 可以seconds：设置key的生存时间</p>
+		<h3>set</h3> 
+		<p>set key value （EX second）（PX millseconds）（NX\XX）</p>
+--		</section>
+		<section>
+		<h3>Redis异步队列</h3>  
+		<p>用List作队列，Rpush是生产消费者，lpop是消费信息</p>
+		<p>缺点:lpop不会等队列有值才会消费，可以引入sleep机制调用lpop重试</p>
+		</section>	
+        <section>
+		<p>Bipop key (key...) timeout:阻塞到队列有消息或者超时</p>
+		<p>缺点:只能提供一个消费者消费</p>
+		</section>	
+		<section>
+		<p>pub/sub：主题订阅者模式</p>
+		<p>缺点:消息不发誓无状态的，无法保证可达</p>
+		</section>	
+		<section>
+		<h3>Redis持久化</h3>  
+		
+		</section>	
+		<section>
+		<h3>RDB:快照持久化，保存某一个时间点的全量数据</h3>  
+		<p>缺点：内存中的数据全部同步，数量会由于I/O严重影响性能</p>
+		<p>会因为在某一时刻redis挂掉，丢失从当前至最近一次快照期间的数据</p>
+		</section>
+		<section>
+		<h3>AOF:保存状态</h3>  
+		<p>记录了出了查询之外，所有变更数据库状态的指令</p>
+		<p>以append形式追加保存到AOF文件（保存增量）</p>
+		</section>
+		<section>
+		<h3>RDB-AOF混合持久化方式</h3>  
+		<p>一个全量持久化，一个增量持久化</p>
+		</section>
+		<section>
+		<h3>主从同步机制</h3>  
+		<p>master和slave：主从刚刚连接的时候，进行全量同步；全同步结束后，进行增量同步</p>
+		</section>
+		<section>
+		<h3>redis集群</h3>  
+		<p>分片：按某种规则划分数据，分散存储多个节点</p>
+		<p>引入一致性哈希算法：对2的32次方取模，将哈希值的空间组成虚拟跑 圆环</p>
+		</section>
+		
+		<section>
+		
+            <h3>3.编码实战</h3>
+			
+        </section>	
+					
+					
+		<section>
+		
+        <h3>4.常见问题</h3>
+			
+        </section>
+		
+        <section>
+            <h3>Memcache和Redis的区别是什么？</h3>
+        </section>	
+
+         <section>
+		
+            <h3>5.解决方案</h3>
+			
+        </section>
+		
+		<section>
+		
+            <h3>Memcache</h3>
+			<p>支持简单的数据类型</p>
+			<p>不支持数据持久化存储</p>
+			<p>不支持主从同步</p>
+			<p>不支持分片</p>
+        </section>	
+				<section>
+		
+            <h3>Redis</h3>
+			<p>数据类型丰富</p>
+			<p>支持数据磁盘持久化存储</p>
+			<p>支持主从同步</p>
+			<p>支持分片</p>
+        </section>		
+			
+        <section>
+		
+            <h3>6.扩展思考</h3>
+			
+        </section>
+
+       <section>
+		
+            <h3>RDB和AOF的优缺点</h3>
+        </section>
+		<section>
+			<P>RDB优点：全量数据快照，文件小恢复快。</P>
+			<P>缺点：无法保存最近快照后的数据</P>
+			<P>AOF优点：可读性高，适合保存增量数据</P>
+			<P>AOF缺点：文件体积大，恢复时间长</P>
+        </section>
+      
+    
+        <section>
+		
+            <h3>7.参考资料</h3>
+            <P>https://www.php.cn/java-article-375683.html</P>
+
+        </section>
+
+        <section>
+            <h3>8.更多讨论</h3>
+            <p></p>
+        </section>
+
+        <section>
+		
+            <h3>鸣谢</h3>
+            <p>感谢观看,如有出错,恳请指正</p>
+           
+        </section>
+
+    </div>
+    <script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
