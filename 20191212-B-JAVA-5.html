@@ -1,0 +1,228 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>什么是session？什么是cookie？session和cookie有什么区别？</h2>
+            <p></p>
+            <h2>什么场景适用于session？</h2>
+            <p></p>
+            <h2>什么场景适用于cookie？</h2>
+            <p></p>
+            <h3>java小课堂</h3>
+            <p>分享人：张恒</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+        <section>
+        <p>随着交互式Web应用的兴起，像在线购物网站，需要登录的网站等等，就需要要管理会话，必须
+            把每个人区分开，因为HTTP请求是无状态的，所以想着给大家发一个
+            会话标识(session id), 说白了就是一个随机的字符串，每个人收到的都不一样，每次大家发起HTTP
+            请求的时候，把这个字符串给一并捎上，这样服务器就能区分谁是谁了。</p>
+        <p>但是这样，对于服务器的压力很大，而且也有着局限性，所以进而将标识改为客户端保存。</p>
+        </section>
+        <section>
+            <p>那就需要解决服务器如何认证的问题了，怎么区分这个标识呢，
+                其实就是通过某种方式对id进行加密，作为签名，并存储于标识中，每次请求都携带标识，服务器以相同的方式进行加密，
+                并将加密结果与标识中的签名对比，一致则说明该用户就是该用户。</p>
+            <p>这其中就是今天所说的session、cookie以及token的来源。</p>
+        </section>
+
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+        <section>
+            <p>什么是session？</p>
+            <p>session从字面上讲，就是会话。</p>
+            <p>HTTP是无状态协议，也就无法知道会话什么时候开始、结束，也无法确定发出请求的用户身份。</p>
+            <p>session是因为请求产生的，是一个容器，可以存放会话过程中的任何对象。</p>
+        </section>
+        <section>
+            <p>服务器使用session把用户的信息临时保存在了服务器上，用户离开网站后session会被销毁。</p>
+            <p>session的创建和使用都在服务器，浏览器从来没得到过session对象，因此相对cookie来说更安全，
+                可是session有一个缺陷：如果web服务器做了负载均衡，那么下一个操作请求到了另一台服务器的时候，session就会丢失。</p>
+        </section>
+
+        <section>
+            <p>什么是cookie？</p>
+            <p>cookie是一个非常具体的东西，指的就是浏览器里面能永久存储的一种数据，
+                仅仅是浏览器实现的一种数据存储功能。</p>
+            <p>cookie由服务器生成，发送给浏览器，
+                浏览器把cookie以键值对的形式保存到某个目录下的文本文件内，下一次请求同一网站时会把该cookie发送给服务器。</p>
+            <p>由于cookie是存在客户端上的，所以浏览器加入了一些限制确保cookie不会被恶意使用 ，同时不会占据太多磁盘空间，
+                所以每个域的cookie数量是有限的。</p>
+        </section>
+
+        <section>
+            <p>cookie的过期时间：cookie的生命周期，单位秒。</p>
+            <p>cookie.setmaxage设置为0时，会立刻删除指定的cookie。</p>
+            <p>设置为-1时，代表关闭当前浏览器即失效。</p>
+            <p>如果不设置过期时间，则表示这个cookie生命周期为浏览器会话期间，只要关闭浏览器窗口，cookie就删除了。</p>
+        </section>
+        <section>
+            <p>cookie的路径：路径就是跟在域名后面的URL路径。</p>
+            <p>正常的cookie只能在一个应用中共享，即一个cookie只能由创建它的应用获得。
+                可在同一应用服务器内,tomcat/webapp下面有两个应用,
+                共享方法：设置cookie.setPath("/");。</p>
+            <p>cookie的域：域可以指定某一个域，路径与域合在一起就构成了cookie的作用范围。
+                跨域共享：设置cookie.setDomain(".baidu.com");</p>
+        </section>
+
+        <section>
+            <h3>3.常见问题</h3>
+        </section>
+        <section>
+            <p>session和cookie区别？</p>
+
+            <p>1、Cookie在客户端，Session在服务器端。</p>
+            <p>2、Cookie的安全性一般。重要信息，如权限等就要放在Session中，一般信息放Cookie就好。</p>
+            <p>3、单个Cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个Cookie。</p>
+
+            <p>4、session是一个容器，可以存放会话过程中的任何对象。由于一定时间内它是保存在服务器上，当访问增多，会占用服务器性能。</p>
+            <p>5、Session更安全，用户验证这种场合一般会用Session。</p>
+        </section>
+        <section>
+            <p>什么场景适用于session？什么场景适用于cookie？</p>
+            <p>如上所述，重要信息，如权限等就要放在Session中，一般信息，不涉及安全性的，放Cookie就好。</p>
+        </section>
+
+        <section>
+            <h3>4.解决方案</h3>
+        </section>
+
+        <section>
+            <h3>5.编码实战</h3>
+        </section>
+
+        <section>
+            <h3>6.扩展思考</h3>
+        </section>
+        <section>
+            <p>token是什么？</p>
+            <p>token，就是一种身份验证的令牌，是一些信息的集合。
+                当用户登录成功后，服务器会返回一个token，浏览器使用cookie保存，在以后的每次请求中都带着这个token令牌，服务器识别后，就认为是处于登录状态。当然也可以进行其他的一些请求。</p>
+        </section>
+        <section>
+    <p>而JWT就是一种基于json的开放标准，也是一种token的格式。</p>
+    <p>JWT的token有三个部分，分别是header（头部）、payload（负载）、signature（签名），中间是使用“.”进行分隔的。</p>
+    <p>header是描述最基本的信息，类型、及签名所用算法，为json格式。</p>
+    <p>payload也是json对象，用来传递实际需要的东西，官方定义了7个字段，也可以添加自定义私有字段。</p>
+    <p>signature有三个部分，先是用 base64 编码 header.payload 部分，再使用密钥进行加密，然后再和 header、payload 组合成一个JWT。这个密钥最好保存在服务器端。</p>
+        </section>
+
+        <section>
+            <p>JWT的特点：</p>
+            <p>（1）JWT默认是不加密的，所以不可以把秘密信息放入到JWT中，当然生成原始token后，根据自身情况进行加密也是可以的。</p>
+            <p>（2）JWT不仅用于认证，也可以用于交换信息，有效使用JWT，尽量降低服务器的查询次数。</p>
+        </section>
+        <section>
+            <p>（3）JWT本身包含认证信息，一旦泄露，任何人都可以获得该令牌的所有权限，所以为减少盗用，有效期尽可能设置短些，对于一些重要权限，使用时应该再次对用户进行认证。</p>
+            <p>（4）为安全起见，JWT应使用HTTPS协议传输。</p>
+            <p>（5）JWT的最大缺点，由于服务器不保存session状态，所以无法在使用过程中废止某个token，或更改token权限，也及时说，一旦JWT签发，在到期之前都是有效的，除非服务器部署额外的逻辑。</p>
+        </section>
+
+        <section>
+            <h3>7.参考文献</h3>
+            <p>【1】https://blog.csdn.net/qq_37939251/article/details/83511451</p>
+            <p>【2】https://www.cnblogs.com/moyand/p/9047978.html</p>
+            <p>【3】https://www.cnblogs.com/huzi007/p/8073765.html</p>
+        </section>
+        <section>
+            <h3>8.更多讨论</h3>
+        </section>
+        <section>
+            <p>Token 的身份验证过程</p>
+        </section>
+        <section>
+            <p>基于Token的身份验证方法。</p>
+            <p>1.客户端使用用户名跟密码请求登录。</p>
+            <p>2.服务端收到请求，去验证用户名与密码。</p>
+            <p>3.验证成功后，服务端会签发一个Token，再把这个Token发送给客户端。</p>
+            <p>4.客户端收到Token后把它存储起来，比如放在Cookie里。</p>
+            <p>5.客户端每次向服务端请求资源时都带着服务端签发的Token。</p>
+            <p>6.服务端收到请求，然后去验证客户端请求里的Token，如果验证成功，就向客户端返回请求的数据。</p>
+        </section>
+        <section>
+            <h4>鸣谢</h4>
+            <p>感谢观看,如有错误,烦请指正，谢谢！</p>
+            <p><small>北京分院Java学员: 张恒</small></p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
