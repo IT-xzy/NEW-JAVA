@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>Mybatis有哪些常用标签？怎么使用标签来完成动态查询？</h2>
+            <p></p>
+            <h3>java小课堂</h3>
+            <p>分享人：张恒</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+        <section>
+
+            <p>什么是Mybatis？</p>
+            <p>我们先来看一下Mybatis的官方简介</p>
+            <p>MyBatis是一款优秀的持久层框架，它支持定制化SQL、存储过程以及高级映射。
+                MyBatis避免了几乎所有的JDBC代码和手动设置参数以及获取结果集。
+                MyBatis可以使用简单的XML或注解来配置和映射原生信息，将接口和Java的POJO(普通的 Java对象)
+                映射成数据库中的记录。</p>
+
+        </section>
+        <section>
+
+            <p>MyBatis的强大特性之一就是动态sql，它极大的简化了我们拼接sql语句的操作。</p>
+            <p>简单举个例子就能了解它的作用有多么强大，就拿查询语句来说。
+                后端的sql语句都是事先写好的，而为了功能的全面性，前端页面的查询条件必须要涉及所有可能出现的条件，
+                这里可不是说表格有多少字段，编写多少个查询sql语句就可以了，还要考虑多条件查询的情况，任何条件都有可能相互搭配查询，
+                因此所需编写的sql语句就要成指数倍的上涨。</p>
+            <p>动态sql，则让这种情况只需要编写一个sql语句就能自动判断拼接sql语句，省去很大的功夫，减少重复性工作。</p>
+        </section>
+
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+        <section>
+            <p>Mybatis的常用标签有哪些呢？</p>
+            <p>1、定义sql语句标签：insert（增）、select（查）、update（改）、delete（删）；</p>
+            <p>2、sql标签：定义代码片段，实现代码复用，引用时需要用include标签；</p>
+            <p>3、resultMap标签：解决实体类中变量名和数据库表格字段名称不同的问题；</p>
+            <p>4、动态sql标签：进行sql语句拼接，详细标签见下文。</p>
+        </section>
+        <section>
+            <p>Mybatis动态查询时常用标签有哪些？</p>
+            <p>1、where、if标签</p>
+            <p>2、choose（when、otherwise）标签</p>
+            <p>3、set标签</p>
+            <p>4、trim标签</p>
+            <p>5、foreach标签</p>
+            <p>6、bind标签</p>
+        </section>
+
+        <section>
+            <h3>3.常见问题</h3>
+        </section>
+        <section>
+            <p>1、如何实现动态查询、动态更新？</p>
+            <p>2、表格字段较多时，如何提高代码复用率？</p>
+            <p>3、如何批量操作？</p>
+        </section>
+        <section>
+            <h3>4.解决方案</h3>
+            <p>1、使用where、if，或choose等标签实现动态查询，使用set、if标签实现动态更新。</p>
+            <p>2、使用trim标签定义sql片段，提高代码复用率。</p>
+            <p>3、使用foreach标签进行批量插入、查询、删除操作。</p>
+        </section>
+
+        <section>
+            <h3>5.编码实战</h3>
+
+        </section>
+
+        <section>
+            <h3>6.扩展思考</h3>
+        </section>
+        <section>
+            <h3>7.参考文献</h3>
+            <p>http://how2j.cn/k/mybatis/mybatis-if/1112.html#nowhere</p>
+            <p>https://blog.csdn.net/codejas/article/details/79536863</p>
+            <p>https://blog.csdn.net/death05/article/details/53098328</p>
+            <p>https://blog.csdn.net/zhq426/article/details/78750499</p>
+        </section>
+        <section>
+            <h3>8.更多讨论</h3>
+        </section>
+        <section>
+            <h4>鸣谢</h4>
+            <p>感谢观看,如有错误,烦请指正，谢谢！</p>
+            <p><small>北京分院Java学员: 张恒</small></p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>

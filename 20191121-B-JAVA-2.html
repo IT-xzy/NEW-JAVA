@@ -1,0 +1,180 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>生成Json有几种方式，他们之间的好处和坏处分别是什么，为什么推荐使用JsonTaglib来处理Json？</h2>
+            <p></p>
+            <h3>java小课堂</h3>
+            <p>分享人：张恒</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+        <section>
+
+            <p>Json，是一种轻量级的数据交换格式，易于阅读、编写，
+                同时也易于机器解析和生成，并有效的提升网络传输效率。</p>
+            <p>而数据传输是前后端交互的关键，给数据一个统一的格式
+                有利于我们编写和解析数据。所以json在数据交互中有较为广泛的应用。</p>
+
+        </section>
+
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+        <section>
+            <p>在Json出现之前，大家都在用xml来传递数据，因为xml是一种纯文本格式，所以适合在网络上交换数据。
+                xml本身并不复杂，但是加上DTD、XSD等一大堆复杂的规范后，就会很让人头疼。</p>
+            <p>所以在Json出现后，因为其简单、方便，很快就普及了。</p>
+        </section>
+        <section>
+            <p>Json的语法规则：</p>
+            <p>数组（Array）用方括号（“[]”）表示。</p>
+            <p>对象（Object）用大括号（“{}”）表示。</p>
+            <p>键值对（name/value）组合成数组和对象。</p>
+            <p>name置于双引号中，value有字符串（在双引号中）、数字（整数/浮点数）、
+                布尔值、null、对象（在花括号中）和数组（在方括号中）。</p>
+            <p>其中并列的数据用逗号（“,”）分隔。</p>
+        </section>
+        <section>
+            <p>Json生成方式有三种：</p>
+            <p>① 使用json工具类库转化生成，如FastJson（阿里巴巴）、Gson（谷歌）、Jackson等；</p>
+            <p>② 用@ResponseBody返回java对象、集合，自动转化生成；</p>
+            <p>③ 使用JsonTaglib在jsp中设置字段或者嵌套生成。</p>
+            <p>那为什么推荐使用JsonTaglib来处理Json呢？</p>
+            <p>因为使用JsonTaglib最大区别就是更加灵活，修改更加方便，
+                只需在jsp中修改即可，不需要修改controller中的代码。</p>
+            <p>并且，在项目简单的情况下，controller中的代码简洁度并不明显，但是当项目复杂时，
+                可以很清晰的认识到代码的简洁、易读。而这其实也就是Json诞生原因之一。</p>
+        </section>
+
+        <section>
+            <h3>3.常见问题</h3>
+        </section>
+        <section>
+            <p>1、使用注解ResponseBody如何生成Json？</p>
+            <p>2、如何实现使用JsonTaglib来处理Json？</p>
+        </section>
+        <section>
+            <h3>4.解决方案</h3>
+            <p>1、只需要在controller方法上添加ResponseBody注解，直接返回java对象即可，
+                该对象就不会经过视图解析器的渲染，而是根据HTTP的RequestHeader的Accept字段内容，
+                转换为指定格式，写入到Response对象的body数据区，
+                如果没有额外的配置，就会返回json格式的数据。</p>
+        </section>
+
+        <section>
+            <p>2、首先需要添加JsonTaglib依赖，指定所在仓库。</p>
+
+            <p>在jsp中添加声明标签，并使用JsonTaglib内的标签。</p>
+            <p>json:object，表示json数据对象；</p>
+            <p>json:property，表示json对象中的属性；</p>
+            <p>json:array，表示json数组。</p>
+            <p>对象中可以有数组，数组中也可以有对象，
+                使用这三种标签嵌套生成各种格式的json数据，完全能够满足开发需求。</p>
+        </section>
+
+        <section>
+            <h3>5.编码实战</h3>
+
+        </section>
+
+        <section>
+            <h3>6.扩展思考</h3>
+            <p>为什么生成Json的效率反而是使用JsonTaglib时较低呢？</p>
+            <p>因为使用JsonTaglib需要页面支撑，数据是需要返回jsp页面的，
+                而注解的形式只需要直接返回java对象即可，不需要通过jsp页面，所以效率较高。</p>
+        </section>
+        <section>
+            <h3>7.参考文献</h3>
+            <p>https://blog.csdn.net/u012843873/article/details/86711896</p>
+            <p>http://json-taglib.sourceforge.net/index.html</p>
+            <p>https://www.cnblogs.com/ZHOUVIP/p/7255955.html</p>
+        </section>
+        <section>
+            <h3>8.更多讨论</h3>
+        </section>
+        <section>
+            <h4>鸣谢</h4>
+            <p>感谢观看,如有错误,烦请指正，谢谢！</p>
+            <p><small>北京分院Java学员: 张恒</small></p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
