@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+	
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>为什么不可以用Select * from table?</h2>
+			<p></p>
+            <h3>java小课堂</h3>
+            <p>分享人：张粤艺</p>
+        </section>
+
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+
+        <section>
+            <section>
+                <h3>1.背景介绍</h3>
+            </section>
+            <section>
+                <p style="text-align: left;">SQL -- 应用最为广泛运用的数据库语言。</p>
+                <p style="text-align: left;">是一种特定目的编程语言，用于管理关系数据库管理系统。</p>
+                <p style="text-align: left;">数据插入、查询、更新和删除，数据库模式创建和修改，以及数据访问控制。</p>
+                <p style="text-align: left;">大部分的SQL代码在不同的数据库系统中并不具有完全的跨平台性。</p>
+                
+            </section>
+            <section>
+                <p style="text-align: left;">select * from table_name;</p>
+                <p style="text-align: left;">查询出表中所有的的字段数据（以 MySQL 为例）。</p>
+                <img src="./20200630-A-JAVA-1/img/select_all_test.png">
+            </section>
+        </section>
+		
+        <section>
+            <section>
+                <h3>2.知识剖析</h3>
+            </section>
+            <section>
+                <p>MySQL 执行查询的流程图</p>
+                <img src="./20200630-A-JAVA-1/img/sql_workflow.png">
+            </section>
+            <section>
+                <p style="text-align: left;">MySQL 执行基本步骤</p>
+                <p style="text-align: left;">1.客户端发送一条查询给服务器。</p> 
+                <p style="text-align: left;">2.服务器先检查查询缓存，如果命中了缓存，则立刻返回存储在缓存中的结果。否则进入下一阶段。 </p>
+                <p style="text-align: left;">3.服务器端进行SQL解析，预处理，再由优化器生成对应的执行计划</p> 
+                <p style="text-align: left;">4.MySql根据优化器生成的执行计划，调用存储引擎的API执行查询。</p>			
+                <p style="text-align: left;">5.返回结果给客户端。</p>
+            </section>
+            <section>
+                <p style="text-align: left;">MySQL 客户端/服务端通信</p>
+                <p style="text-align: left;">任一时刻，要么是服务器向客户端发送数据，要么是客户端向服务器发送数据，这两个动作不能同时发生。</p>
+                <p style="text-align: left;">一旦一端开始发送消息，另一端要接收完整个消息才能响应它，所以我们无法也无须将一个消息切成小块独立发送，也没有办法进行流量控制。</p>
+            </section>
+            <section>
+                <p style="text-align: left;">select * from table_name;</p>
+                <p style="text-align: left;">1、会取出表中的所有字段，解析更多的 对象、字段、权限、属性···</br>不论该字段的数据对调用的应用程序是否有用。</p>
+                <p style="text-align: left;">2、如果表的结构在以后发生了改变，那么可能会取到不正确的数据甚至是出错。</p>
+                <p style="text-align: left;">3、妨碍优化器选择更优的执行计划，不利于查询的性能优化。</br>(索引覆盖：索引覆盖是一种速度极快，效率极高的查询方式。选中的数据列只用从索引中就能够获得。)</p>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h3>3.常见问题</h3>
+            </section>
+            <section>
+                <p>我们该如何接受数据？</p>
+            </section>
+        </section>
+        
+        <section>
+            <section>
+                <h3>4.解决方案</h3>
+            </section>
+			<section>
+                <p style="text-align: left;">1. 不使用通配符，SQL 中只选取必须的字段。</p>
+                <p style="text-align: left;">2. 映射文件中添加 resultmap，注明映射关系。</p>
+            </section>
+        </section>
+	   
+        <section>
+            <section>
+                <h3>5.编码实战</h3>
+            </section>
+            <section>
+                <p style="text-align: left;">索引覆盖</p>
+                <img src="./20200630-A-JAVA-1/img/select_info_1.png">
+            </section>
+            <section>
+                <p style="text-align: left;">无索引</p>
+                <img src="./20200630-A-JAVA-1/img/select_info_2.png">
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h3>6.扩展思考</h3>
+            </section>
+            <section>
+                <p style="text-align: left;">SQL 中其他的通配符用法</p>
+                <p style="text-align: left;">select count(*) from table_name;</p>
+            </section>
+            <section>
+                <img src="./20200630-A-JAVA-1/img/select_count_all.png">
+                <img src="./20200630-A-JAVA-1/img/select_count_imges.png">
+            </section>
+            <section>
+                <img src="./20200630-A-JAVA-1/img/select_count_id.png">
+                <img src="./20200630-A-JAVA-1/img/select_count_info_1.png">
+            </section>
+            <section>
+                <p style="text-align: left;">Explain 语句分析 SQL 语句执行效率</p>
+                <img src="./20200630-A-JAVA-1/img/explain.png">
+            </section>
+        </section>
+
+		
+        <section>
+            <h3>7.参考文献</h3>
+            <p>http://bbs.csdn.net/topics/390302591?page=1#post-393091122</p>
+			<p>http://blog.csdn.net/li563868273/article/details/51254907</p>
+        </section>
+
+        <section>
+            <h3>8.更多讨论</h3>
+        </section>
+
+        <section>
+            <h4>鸣谢</h4>
+            <p>感谢刘家铭、杨腾东师兄，本次小课堂是在他们之前技术分享的基础上完善而成</p>
+            <p><small>BY : 张粤艺</small></p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
